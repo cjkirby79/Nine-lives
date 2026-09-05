@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Sydney",
+  "West Coast"
+ ],
+ "premier": "West Coast",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": -1,
+   "opponent": "Sydney",
+   "stage": "Finals Week 1",
+   "venue": "Subiaco"
+  },
+  {
+   "at_home": true,
+   "margin": 74,
+   "opponent": "Western Bulldogs",
+   "stage": "Semi-Finals",
+   "venue": "Subiaco"
+  },
+  {
+   "at_home": false,
+   "margin": 10,
+   "opponent": "Adelaide",
+   "stage": "Preliminary Finals",
+   "venue": "Football Park"
+  },
+  {
+   "at_home": false,
+   "margin": 1,
+   "opponent": "Sydney",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Melbourne",
+   "home": "Fremantle",
+   "winner": "Fremantle"
+  },
+  {
+   "away": "Western Bulldogs",
+   "home": "West Coast",
+   "winner": "West Coast"
+  }
+ ],
+ "year": 2006
+}

@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Richmond",
+  "Geelong"
+ ],
+ "premier": "Richmond",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": -15,
+   "opponent": "Brisbane Lions",
+   "stage": "Finals Week 1",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": true,
+   "margin": 31,
+   "opponent": "St Kilda",
+   "stage": "Semi-Finals",
+   "venue": "Carrara"
+  },
+  {
+   "at_home": false,
+   "margin": 6,
+   "opponent": "Port Adelaide",
+   "stage": "Preliminary Finals",
+   "venue": "Adelaide Oval"
+  },
+  {
+   "at_home": true,
+   "margin": 31,
+   "opponent": "Geelong",
+   "stage": "Grand Final",
+   "venue": "Gabba"
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "St Kilda",
+   "home": "Richmond",
+   "winner": "Richmond"
+  },
+  {
+   "away": "Collingwood",
+   "home": "Geelong",
+   "winner": "Geelong"
+  }
+ ],
+ "year": 2020
+}

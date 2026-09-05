@@ -416,6 +416,120 @@
     });
   }
 
+  // ---- it has been done -------------------------------------------------
+
+  function renderPrecedent(state) {
+    var p = state.precedent;
+    if (!p) return;
+
+    var position = ordinal(p.ladder_position || 5);
+    var flags = p.flags_from_here || [];
+
+    field("precedent-sub").textContent = flags.length
+      ? "Sides who finished " + position + " or lower and won the whole thing " +
+        "anyway, since " + p.from_year + ". Two of them. One of them was the " +
+        "year before last, and they took our exact road."
+      : "Nobody has done it from here since " + p.from_year +
+        ". Somebody has to be first.";
+
+    var host = field("precedent-paths");
+    host.textContent = "";
+
+    flags.forEach(function (run, index) {
+      var box = el("div", "roadmap");
+      var head = el("div", "roadmap-head");
+      head.appendChild(document.createTextNode(run.year + " · "));
+      head.appendChild(el("b", null, run.team));
+      head.appendChild(document.createTextNode(
+        " — finished " + ordinal(run.position)));
+      box.appendChild(head);
+
+      var away = (run.path || []).filter(function (g) { return !g.at_home; }).length;
+      var beatUs = (run.path || []).filter(function (g) {
+        return g.opponent === state.club;
+      })[0];
+
+      var line = index === 0
+        ? "Same ladder spot as us. Same elimination final. Same road."
+        : plural(away, "away final") + " on the bounce, and they won the lot.";
+      // No point pretending we don't remember.
+      if (beatUs) {
+        line += " Yes, that " +
+          (beatUs.stage || "").toLowerCase().replace("preliminary finals", "prelim")
+            .replace("finals week 1", "final").replace("semi-finals", "semi") +
+          " was against us. We have not forgotten.";
+      }
+      box.appendChild(el("div", "roadmap-sub", line));
+
+      var list = document.createElement("ol");
+      (run.path || []).forEach(function (game) {
+        var item = document.createElement("li");
+        item.appendChild(el("span", "rm-stage",
+          (game.stage || "").replace("Finals Week 1", "Elimination")
+            .replace("Preliminary Finals", "Prelim")
+            .replace("Semi-Finals", "Semi")));
+        var line = el("span", null, "v " + game.opponent + " ");
+        if (!game.at_home) line.appendChild(el("span", "rm-away", "away"));
+        item.appendChild(line);
+        item.appendChild(el("span", "rm-margin",
+          (game.margin > 0 ? "+" : "") + game.margin));
+        list.appendChild(item);
+      });
+      box.appendChild(list);
+      host.appendChild(box);
+    });
+
+    // The odds facing a side in our exact seat, and how we compare to them.
+    var stats = field("precedent-stats");
+    stats.textContent = "";
+
+    var ours = (state.next_fixture || {}).club_win_probability;
+    var rows = [];
+
+    if (typeof p.visitor_win_rate === "number") {
+      rows.push({
+        label: "Visitors have won this many semi-finals since " + p.from_year,
+        value: percent(p.visitor_win_rate, 0),
+        note: typeof ours === "number" && ours > p.visitor_win_rate
+          ? "we are rated " + percent(ours, 0) + " — better than the average side in our seat"
+          : "the away side is always up against it, and always has been"
+      });
+    }
+    if (typeof p.flag_rate_after_winning_semi === "number") {
+      rows.push({
+        label: "Win the semi and this many go on to lift the cup",
+        value: percent(p.flag_rate_after_winning_semi, 0),
+        note: p.semi_winners_to_flag + " of " + p.semi_finals +
+              " since " + p.from_year + " — better than one in seven"
+      });
+    }
+    if (p.semi_winners_to_grand_final) {
+      rows.push({
+        label: "And this many reach the Grand Final",
+        value: percent(p.semi_winners_to_grand_final / p.semi_finals, 0),
+        note: "one in four. We have been worse places."
+      });
+    }
+
+    rows.forEach(function (row) {
+      var item = document.createElement("li");
+      var left = el("span", null, row.label);
+      left.appendChild(document.createTextNode(" "));
+      left.appendChild(el("span", "record-note", row.note));
+      item.appendChild(left);
+      var value = el("span", "record-value", row.value);
+      value.setAttribute("data-tone", "good");
+      item.appendChild(value);
+      stats.appendChild(item);
+    });
+
+    field("precedent-note").textContent =
+      "Nobody is pretending this is the easy way round. Brisbane were not " +
+      "supposed to do it in 2024 either, and they went and won three finals " +
+      "away from home to get there. Somebody wins it from fifth. It may as " +
+      "well be us.";
+  }
+
   // ---- Geelong, the greatest team of all --------------------------------
 
   function renderGreatest(state) {
@@ -1124,6 +1238,7 @@
     renderHeadline(state, history);
     renderScottEra(state);
     renderNextFixture(state);
+    renderPrecedent(state);
     renderGreatest(state);
     renderExperts(state);
     renderPathToGlory(state);

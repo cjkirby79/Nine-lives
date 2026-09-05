@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Essendon",
+  "Melbourne"
+ ],
+ "premier": "Essendon",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 125,
+   "opponent": "North Melbourne",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 45,
+   "opponent": "Carlton",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 60,
+   "opponent": "Melbourne",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Hawthorn",
+   "home": "North Melbourne",
+   "winner": "North Melbourne"
+  },
+  {
+   "away": "Brisbane Lions",
+   "home": "Carlton",
+   "winner": "Carlton"
+  }
+ ],
+ "year": 2000
+}

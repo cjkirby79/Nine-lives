@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "St Kilda",
+  "Geelong"
+ ],
+ "premier": "Geelong",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 14,
+   "opponent": "Western Bulldogs",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 73,
+   "opponent": "Collingwood",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 12,
+   "opponent": "St Kilda",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 2,
+ "semis": [
+  {
+   "away": "Brisbane Lions",
+   "home": "Western Bulldogs",
+   "winner": "Western Bulldogs"
+  },
+  {
+   "away": "Adelaide",
+   "home": "Collingwood",
+   "winner": "Collingwood"
+  }
+ ],
+ "year": 2009
+}

@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Geelong",
+  "Brisbane Lions"
+ ],
+ "premier": "Brisbane Lions",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": -38,
+   "opponent": "Geelong",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 53,
+   "opponent": "Gold Coast",
+   "stage": "Semi-Finals",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": false,
+   "margin": 29,
+   "opponent": "Collingwood",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 47,
+   "opponent": "Geelong",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "Hawthorn",
+   "home": "Adelaide",
+   "winner": "Hawthorn"
+  },
+  {
+   "away": "Gold Coast",
+   "home": "Brisbane Lions",
+   "winner": "Brisbane Lions"
+  }
+ ],
+ "year": 2025
+}

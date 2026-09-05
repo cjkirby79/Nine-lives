@@ -39,6 +39,14 @@ because the point of the page is Saturday.
 lands harder than 5–1, and the won–lost sits underneath it in small type so
 nothing is lost.
 
+**"It has been done"** is the hope section. Since 2000, two sides have won the
+flag from fifth or lower — and one of them was Brisbane in 2024, from exactly
+fifth, via an elimination final, an away semi, an away prelim and the Grand
+Final. Their whole road is drawn out, including the prelim they won against us,
+because leaving that bit out would be the coward's version. The section also
+carries what actually happens to sides in our seat: visitors win 29% of
+semi-finals, and 15% of semi-final winners go on to lift the cup.
+
 **Not a betting site.** The headline is the tipping panel's consensus, not a
 bookmaker price. The market gets one line, last, in a panel of expert opinion,
 and there are no bookmaker links anywhere. The weight sits on history and form.

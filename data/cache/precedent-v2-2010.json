@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Collingwood",
+  "St Kilda"
+ ],
+ "premier": "Collingwood",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 62,
+   "opponent": "Western Bulldogs",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 41,
+   "opponent": "Geelong",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 0,
+   "opponent": "St Kilda",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 56,
+   "opponent": "St Kilda",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Fremantle",
+   "home": "Geelong",
+   "winner": "Geelong"
+  },
+  {
+   "away": "Sydney",
+   "home": "Western Bulldogs",
+   "winner": "Western Bulldogs"
+  }
+ ],
+ "year": 2010
+}

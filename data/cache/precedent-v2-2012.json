@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Hawthorn",
+  "Sydney"
+ ],
+ "premier": "Sydney",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": 29,
+   "opponent": "Adelaide",
+   "stage": "Finals Week 1",
+   "venue": "Football Park"
+  },
+  {
+   "at_home": true,
+   "margin": 26,
+   "opponent": "Collingwood",
+   "stage": "Preliminary Finals",
+   "venue": "Stadium Australia"
+  },
+  {
+   "at_home": false,
+   "margin": 10,
+   "opponent": "Hawthorn",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "Fremantle",
+   "home": "Adelaide",
+   "winner": "Adelaide"
+  },
+  {
+   "away": "West Coast",
+   "home": "Collingwood",
+   "winner": "Collingwood"
+  }
+ ],
+ "year": 2012
+}

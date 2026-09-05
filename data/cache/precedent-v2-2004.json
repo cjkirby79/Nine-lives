@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Port Adelaide",
+  "Brisbane Lions"
+ ],
+ "premier": "Port Adelaide",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 55,
+   "opponent": "Geelong",
+   "stage": "Finals Week 1",
+   "venue": "Football Park"
+  },
+  {
+   "at_home": true,
+   "margin": 6,
+   "opponent": "St Kilda",
+   "stage": "Preliminary Finals",
+   "venue": "Football Park"
+  },
+  {
+   "at_home": true,
+   "margin": 40,
+   "opponent": "Brisbane Lions",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Sydney",
+   "home": "St Kilda",
+   "winner": "St Kilda"
+  },
+  {
+   "away": "Essendon",
+   "home": "Geelong",
+   "winner": "Geelong"
+  }
+ ],
+ "year": 2004
+}

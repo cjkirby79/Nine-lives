@@ -261,6 +261,132 @@ def _season_summary(year):
     return summary
 
 
+PRECEDENT_FROM = 2000        # as far back as Squiggle's archive reaches
+
+
+def _precedent_season(year):
+    """What a season's finals say about sides in our position.
+
+    Reduced to a few facts per year and cached, rather than keeping the whole
+    fixture: who won the flag, where they finished, and how the semi-finals
+    went. In a semi-final the home side is the beaten qualifying finalist and
+    the away side is the elimination-final winner, which is exactly the seat
+    Geelong are sitting in.
+    """
+    path = os.path.join(CACHE, f"precedent-v2-{year}.json")
+    if year < SEASON and os.path.exists(path):
+        cached = read_json(path, None)
+        if cached:
+            return cached
+
+    games = query("games", year=year)
+    ladder, semis, decider = {}, [], None
+
+    for game in games:
+        if game.get("complete") != 100:
+            continue
+        if not game.get("is_final"):
+            for team, scored, conceded in (
+                (game["hteam"], game["hscore"], game["ascore"]),
+                (game["ateam"], game["ascore"], game["hscore"]),
+            ):
+                row = ladder.setdefault(team, {"points": 0, "for": 0, "against": 0})
+                row["for"] += scored
+                row["against"] += conceded
+                row["points"] += 4 if game.get("winner") == team else (
+                    0 if game.get("winner") else 2)
+        else:
+            name = (game.get("roundname") or "").lower()
+            if game.get("is_grand_final"):
+                decider = game
+            elif "semi" in name:
+                semis.append(game)
+
+    ordered = sorted(ladder, key=lambda t: (
+        -ladder[t]["points"], -(ladder[t]["for"] / max(ladder[t]["against"], 1))))
+
+    grand_finalists = [decider["hteam"], decider["ateam"]] if decider else []
+    premier = (decider or {}).get("winner")
+    premier_path = []      # not `path`: that name is the cache file above
+    if premier:
+        for game in sorted(
+            (g for g in games
+             if g.get("is_final") and g.get("complete") == 100
+             and premier in (g.get("hteam"), g.get("ateam"))),
+            key=lambda g: g.get("unixtime") or 0,
+        ):
+            at_home = game["hteam"] == premier
+            premier_path.append({
+                "stage": game.get("roundname"),
+                "opponent": game["ateam"] if at_home else game["hteam"],
+                "at_home": at_home,
+                "venue": game.get("venue"),
+                "margin": (game["hscore"] - game["ascore"]) * (1 if at_home else -1),
+            })
+
+    result = {
+        "premier_path": premier_path,
+        "year": year,
+        "premier": (decider or {}).get("winner"),
+        "premier_position": (
+            ordered.index(decider["winner"]) + 1
+            if decider and decider.get("winner") in ordered else None),
+        "grand_finalists": grand_finalists,
+        "semis": [
+            {"home": g["hteam"], "away": g["ateam"], "winner": g.get("winner")}
+            for g in semis
+        ],
+    }
+    if year < SEASON:
+        write_json(path, result)
+    return result
+
+
+def precedent_for_our_position(club, ladder_position):
+    """Sides who have stood exactly here before, and what happened to them."""
+    seasons = [_precedent_season(y) for y in range(PRECEDENT_FROM, SEASON)]
+
+    from_here, semi_played, semi_won = [], 0, 0
+    winners_to_grand_final, winners_to_flag = 0, 0
+
+    for season in seasons:
+        if season["premier"] and season["premier_position"]:
+            if season["premier_position"] >= (ladder_position or 5):
+                from_here.append({
+                    "year": season["year"],
+                    "team": season["premier"],
+                    "position": season["premier_position"],
+                    "path": season.get("premier_path") or [],
+                })
+        for semi in season["semis"]:
+            if not semi["winner"]:
+                continue
+            semi_played += 1
+            # The away side is the elimination-final winner: our seat.
+            if semi["winner"] == semi["away"]:
+                semi_won += 1
+            if semi["winner"] in season["grand_finalists"]:
+                winners_to_grand_final += 1
+                if semi["winner"] == season["premier"]:
+                    winners_to_flag += 1
+
+    from_here.sort(key=lambda row: -row["year"])
+    return {
+        "from_year": PRECEDENT_FROM,
+        "to_year": SEASON - 1,
+        "seasons": len(seasons),
+        "ladder_position": ladder_position,
+        "flags_from_here": from_here,
+        "semi_finals": semi_played,
+        "semi_finals_won_by_visitor": semi_won,
+        "visitor_win_rate": round(semi_won / semi_played, 4) if semi_played else None,
+        "semi_winners_to_grand_final": winners_to_grand_final,
+        "semi_winners_to_flag": winners_to_flag,
+        "flag_rate_after_winning_semi": (
+            round(winners_to_flag / semi_played, 4) if semi_played else None),
+    }
+
+
 def dominance_since(from_year, club):
     """How the club stacks up against the whole competition since `from_year`.
 
@@ -718,6 +844,8 @@ def collect():
         "field": field,
         "scott_era": era,
         "dominance": dominance_since(SCOTT_ERA_FROM, CLUB),
+        "precedent": precedent_for_our_position(
+            CLUB, club_row["rank"] if club_row else None),
         "case": case_cards,
         "ladder": ladder,
     }

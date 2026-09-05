@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Richmond",
+  "Greater Western Sydney"
+ ],
+ "premier": "Richmond",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": 47,
+   "opponent": "Brisbane Lions",
+   "stage": "Finals Week 1",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": true,
+   "margin": 19,
+   "opponent": "Geelong",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 89,
+   "opponent": "Greater Western Sydney",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "West Coast",
+   "home": "Geelong",
+   "winner": "Geelong"
+  },
+  {
+   "away": "Greater Western Sydney",
+   "home": "Brisbane Lions",
+   "winner": "Greater Western Sydney"
+  }
+ ],
+ "year": 2019
+}

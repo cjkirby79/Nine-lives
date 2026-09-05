@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "West Coast",
+  "Sydney"
+ ],
+ "premier": "Sydney",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": -4,
+   "opponent": "West Coast",
+   "stage": "Finals Week 1",
+   "venue": "Subiaco"
+  },
+  {
+   "at_home": true,
+   "margin": 3,
+   "opponent": "Geelong",
+   "stage": "Semi-Finals",
+   "venue": "S.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 31,
+   "opponent": "St Kilda",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 4,
+   "opponent": "West Coast",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "Geelong",
+   "home": "Sydney",
+   "winner": "Sydney"
+  },
+  {
+   "away": "Port Adelaide",
+   "home": "Adelaide",
+   "winner": "Adelaide"
+  }
+ ],
+ "year": 2005
+}

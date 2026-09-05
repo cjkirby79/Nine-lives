@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Geelong",
+  "Sydney"
+ ],
+ "premier": "Geelong",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 6,
+   "opponent": "Collingwood",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 71,
+   "opponent": "Brisbane Lions",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 81,
+   "opponent": "Sydney",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Brisbane Lions",
+   "home": "Melbourne",
+   "winner": "Brisbane Lions"
+  },
+  {
+   "away": "Fremantle",
+   "home": "Collingwood",
+   "winner": "Collingwood"
+  }
+ ],
+ "year": 2022
+}

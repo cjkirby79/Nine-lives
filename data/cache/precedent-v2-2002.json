@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Collingwood",
+  "Brisbane Lions"
+ ],
+ "premier": "Brisbane Lions",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 71,
+   "opponent": "Adelaide",
+   "stage": "Finals Week 1",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": true,
+   "margin": 56,
+   "opponent": "Port Adelaide",
+   "stage": "Preliminary Finals",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": false,
+   "margin": 9,
+   "opponent": "Collingwood",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 2,
+ "semis": [
+  {
+   "away": "Essendon",
+   "home": "Port Adelaide",
+   "winner": "Port Adelaide"
+  },
+  {
+   "away": "Adelaide",
+   "home": "Melbourne",
+   "winner": "Adelaide"
+  }
+ ],
+ "year": 2002
+}

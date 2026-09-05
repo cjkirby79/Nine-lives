@@ -45,22 +45,23 @@
       "focus": "50% 45%"
     },
     {
-      "file": "chris-scott.jpg",
-      "role": "portrait",
-      "target": "scott",
-      "alt": "Chris Scott on the boundary line, looking out across the ground",
-      "caption": "",
-      "credit": "",
-      "focus": "50% 32%"
-    },
-    {
       "file": "scott-premiership.jpg",
       "role": "panel",
-      "target": "greatest",
+      "target": "scott",
       "alt": "Chris Scott roaring with both fists clenched, a premiership medal round his neck",
       "caption": "",
       "credit": "",
       "focus": "50% 30%"
+    },
+    {
+      "file": "team-with-cup.jpg",
+      "role": "panel",
+      "target": "greatest",
+      "alt": "The Geelong team gathered around the premiership cup amid confetti",
+      "caption": "",
+      "credit": "",
+      "focus": "50% 45%",
+      "height": 300
     },
     {
       "file": "cup-lift.jpg",

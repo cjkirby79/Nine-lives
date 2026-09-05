@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Hawthorn",
+  "Fremantle"
+ ],
+ "premier": "Hawthorn",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 54,
+   "opponent": "Sydney",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 5,
+   "opponent": "Geelong",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 15,
+   "opponent": "Fremantle",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Port Adelaide",
+   "home": "Geelong",
+   "winner": "Geelong"
+  },
+  {
+   "away": "Carlton",
+   "home": "Sydney",
+   "winner": "Sydney"
+  }
+ ],
+ "year": 2013
+}

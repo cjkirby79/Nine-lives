@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Sydney",
+  "Western Bulldogs"
+ ],
+ "premier": "Western Bulldogs",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": 47,
+   "opponent": "West Coast",
+   "stage": "Finals Week 1",
+   "venue": "Subiaco"
+  },
+  {
+   "at_home": false,
+   "margin": 23,
+   "opponent": "Hawthorn",
+   "stage": "Semi-Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 6,
+   "opponent": "Greater Western Sydney",
+   "stage": "Preliminary Finals",
+   "venue": "Sydney Showground"
+  },
+  {
+   "at_home": false,
+   "margin": 22,
+   "opponent": "Sydney",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 7,
+ "semis": [
+  {
+   "away": "Western Bulldogs",
+   "home": "Hawthorn",
+   "winner": "Western Bulldogs"
+  },
+  {
+   "away": "Adelaide",
+   "home": "Sydney",
+   "winner": "Sydney"
+  }
+ ],
+ "year": 2016
+}

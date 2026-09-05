@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Sydney",
+  "Brisbane Lions"
+ ],
+ "premier": "Brisbane Lions",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 28,
+   "opponent": "Carlton",
+   "stage": "Finals Week 1",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": false,
+   "margin": 5,
+   "opponent": "Greater Western Sydney",
+   "stage": "Semi-Finals",
+   "venue": "Sydney Showground"
+  },
+  {
+   "at_home": false,
+   "margin": 10,
+   "opponent": "Geelong",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 60,
+   "opponent": "Sydney",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 5,
+ "semis": [
+  {
+   "away": "Hawthorn",
+   "home": "Port Adelaide",
+   "winner": "Port Adelaide"
+  },
+  {
+   "away": "Brisbane Lions",
+   "home": "Greater Western Sydney",
+   "winner": "Brisbane Lions"
+  }
+ ],
+ "year": 2024
+}

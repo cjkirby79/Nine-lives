@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "West Coast",
+  "Collingwood"
+ ],
+ "premier": "West Coast",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 16,
+   "opponent": "Collingwood",
+   "stage": "Finals Week 1",
+   "venue": "Perth Stadium"
+  },
+  {
+   "at_home": true,
+   "margin": 66,
+   "opponent": "Melbourne",
+   "stage": "Preliminary Finals",
+   "venue": "Perth Stadium"
+  },
+  {
+   "at_home": true,
+   "margin": 5,
+   "opponent": "Collingwood",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 2,
+ "semis": [
+  {
+   "away": "Melbourne",
+   "home": "Hawthorn",
+   "winner": "Melbourne"
+  },
+  {
+   "away": "Greater Western Sydney",
+   "home": "Collingwood",
+   "winner": "Collingwood"
+  }
+ ],
+ "year": 2018
+}

@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Adelaide",
+  "Richmond"
+ ],
+ "premier": "Richmond",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": 51,
+   "opponent": "Geelong",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 36,
+   "opponent": "Greater Western Sydney",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 48,
+   "opponent": "Adelaide",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "Sydney",
+   "home": "Geelong",
+   "winner": "Geelong"
+  },
+  {
+   "away": "West Coast",
+   "home": "Greater Western Sydney",
+   "winner": "Greater Western Sydney"
+  }
+ ],
+ "year": 2017
+}

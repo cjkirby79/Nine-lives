@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Geelong",
+  "Port Adelaide"
+ ],
+ "premier": "Geelong",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 106,
+   "opponent": "North Melbourne",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 5,
+   "opponent": "Collingwood",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 119,
+   "opponent": "Port Adelaide",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Collingwood",
+   "home": "West Coast",
+   "winner": "Collingwood"
+  },
+  {
+   "away": "Hawthorn",
+   "home": "North Melbourne",
+   "winner": "North Melbourne"
+  }
+ ],
+ "year": 2007
+}

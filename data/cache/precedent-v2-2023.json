@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Collingwood",
+  "Brisbane Lions"
+ ],
+ "premier": "Collingwood",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 7,
+   "opponent": "Melbourne",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 1,
+   "opponent": "Greater Western Sydney",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 4,
+   "opponent": "Brisbane Lions",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Carlton",
+   "home": "Melbourne",
+   "winner": "Carlton"
+  },
+  {
+   "away": "Greater Western Sydney",
+   "home": "Port Adelaide",
+   "winner": "Greater Western Sydney"
+  }
+ ],
+ "year": 2023
+}

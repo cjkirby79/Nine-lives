@@ -1,0 +1,51 @@
+{
+ "grand_finalists": [
+  "Collingwood",
+  "Brisbane Lions"
+ ],
+ "premier": "Brisbane Lions",
+ "premier_path": [
+  {
+   "at_home": false,
+   "margin": -15,
+   "opponent": "Collingwood",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 42,
+   "opponent": "Adelaide",
+   "stage": "Semi-Finals",
+   "venue": "Gabba"
+  },
+  {
+   "at_home": false,
+   "margin": 44,
+   "opponent": "Sydney",
+   "stage": "Preliminary Finals",
+   "venue": "Stadium Australia"
+  },
+  {
+   "at_home": false,
+   "margin": 50,
+   "opponent": "Collingwood",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 3,
+ "semis": [
+  {
+   "away": "Adelaide",
+   "home": "Brisbane Lions",
+   "winner": "Brisbane Lions"
+  },
+  {
+   "away": "Essendon",
+   "home": "Port Adelaide",
+   "winner": "Port Adelaide"
+  }
+ ],
+ "year": 2003
+}

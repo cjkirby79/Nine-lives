@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Geelong",
+  "Hawthorn"
+ ],
+ "premier": "Hawthorn",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 51,
+   "opponent": "Western Bulldogs",
+   "stage": "Finals Week 1",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": true,
+   "margin": 54,
+   "opponent": "St Kilda",
+   "stage": "Preliminary Finals",
+   "venue": "M.C.G."
+  },
+  {
+   "at_home": false,
+   "margin": 26,
+   "opponent": "Geelong",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  }
+ ],
+ "premier_position": 2,
+ "semis": [
+  {
+   "away": "Sydney",
+   "home": "Western Bulldogs",
+   "winner": "Western Bulldogs"
+  },
+  {
+   "away": "Collingwood",
+   "home": "St Kilda",
+   "winner": "St Kilda"
+  }
+ ],
+ "year": 2008
+}

@@ -1,0 +1,44 @@
+{
+ "grand_finalists": [
+  "Melbourne",
+  "Western Bulldogs"
+ ],
+ "premier": "Melbourne",
+ "premier_path": [
+  {
+   "at_home": true,
+   "margin": 33,
+   "opponent": "Brisbane Lions",
+   "stage": "Finals Week 1",
+   "venue": "Adelaide Oval"
+  },
+  {
+   "at_home": true,
+   "margin": 83,
+   "opponent": "Geelong",
+   "stage": "Preliminary Finals",
+   "venue": "Perth Stadium"
+  },
+  {
+   "at_home": true,
+   "margin": 74,
+   "opponent": "Western Bulldogs",
+   "stage": "Grand Final",
+   "venue": "Perth Stadium"
+  }
+ ],
+ "premier_position": 1,
+ "semis": [
+  {
+   "away": "Greater Western Sydney",
+   "home": "Geelong",
+   "winner": "Geelong"
+  },
+  {
+   "away": "Western Bulldogs",
+   "home": "Brisbane Lions",
+   "winner": "Western Bulldogs"
+  }
+ ],
+ "year": 2021
+}
