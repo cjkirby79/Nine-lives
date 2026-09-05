@@ -45,6 +45,16 @@
     return count + " " + word + (count === 1 ? "" : "s");
   }
 
+  /** A bare duration for "in the past ___" — no "ago", no leading 1. */
+  function durationPhrase(seconds) {
+    var minutes = Math.round(seconds / 60);
+    if (minutes < 90) return minutes < 2 ? "minute" : minutes + " minutes";
+    var hours = Math.round(minutes / 60);
+    if (hours < 36) return hours < 2 ? "hour" : hours + " hours";
+    var days = Math.round(hours / 24);
+    return days < 2 ? "day" : days + " days";
+  }
+
   function describeAge(seconds) {
     if (seconds < 90) return "just now";
     var minutes = Math.round(seconds / 60);
@@ -106,30 +116,39 @@
       field("hero-label").textContent = lead.label;
     }
 
-    // The supporting line backs the case up rather than undercutting it.
-    // "Ranked 5th of 7" is true, and it is not what this page is for.
-    var parts = [];
-    var reach = percent(headline.reaches_grand_final);
-    if (reach) parts.push(reach + " to reach the Grand Final");
+    // One game at a time. Nothing up here mentions the Grand Final: a
+    // premiership probability five weeks out excites nobody, and the number
+    // that matters this week is the one on Saturday's game.
+    var fixture = state.next_fixture;
+    field("hero-title").textContent = fixture
+      ? (fixture.stage || "Next match") + " · v " + fixture.opponent
+      : "The case for Geelong";
 
-    var cards = state.case || [];
-    for (var i = 1; i < cards.length && parts.length < 2; i++) {
-      if (cards[i].id === "winning_streak") {
-        parts.push(cards[i].stat + " straight wins");
-      }
-    }
-    field("figure-note").textContent = parts.join(" · ");
+    var supporting = (state.case || []).length - 1;
+    field("figure-note").textContent = supporting > 0
+      ? supporting + " reasons that number looks light."
+      : "";
 
     renderDelta(state, history);
     renderMethod(state);
     renderCase(state);
   }
 
+  var NUMBER_WORDS = ["no", "one", "two", "three", "four", "five", "six",
+                      "seven", "eight", "nine", "ten", "eleven", "twelve"];
+
   function renderCase(state) {
     var list = field("case");
     list.textContent = "";
     // The lead card is the headline; the rest make up the argument.
     var cards = (state.case || []).slice(1);
+
+    // Count the cards rather than hardcoding a number in the heading -- rules
+    // drop out when they stop being true, and a heading promising nine reasons
+    // over eight of them is the sort of thing a nephew notices.
+    var word = NUMBER_WORDS[cards.length] || String(cards.length);
+    field("case-title").textContent =
+      word.charAt(0).toUpperCase() + word.slice(1) + " reasons to believe";
 
     if (!cards.length) {
       var empty = document.createElement("li");
@@ -175,9 +194,9 @@
     var node = field("delta");
     var lead = (state.case || [])[0];
     // Track whatever the headline is actually showing, not a different number.
-    var tracking = lead && lead.id === "one_win_away"
-      ? "flag_if_we_win" : "probability";
-    var current = tracking === "flag_if_we_win"
+    var tracking = lead && lead.id === "what_the_market_gives_us"
+      ? "market_next_game" : "probability";
+    var current = tracking === "market_next_game"
       ? parseFloat(lead.stat) / 100 : state.headline.probability;
 
     if (!Array.isArray(history) || history.length < 2 ||
@@ -203,16 +222,16 @@
     }
 
     var move = (current - baseline.probability) * 100;
-    var since = describeAge((now - baseline.time) / 1000);
+    var since = durationPhrase((now - baseline.time) / 1000);
     if (Math.abs(move) < 0.05) {
       node.removeAttribute("data-dir");
-      node.textContent = "unchanged since " + since.replace(" ago", "");
+      node.textContent = "hasn't budged in the past " + since;
       return;
     }
     node.setAttribute("data-dir", move > 0 ? "up" : "down");
     // "points" would read as a score in an AFL context, so be explicit.
-    node.textContent = (move > 0 ? "▲ " : "▼ ") + Math.abs(move).toFixed(1) +
-      " percentage points since " + since.replace(" ago", "");
+    node.textContent = (move > 0 ? "▲ drifting our way — " : "▼ ") +
+      Math.abs(move).toFixed(1) + " percentage points in the past " + since;
   }
 
   function renderMethod(state) {

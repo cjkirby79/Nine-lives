@@ -25,6 +25,13 @@ not appear. If the betting market rated us below the models, the market card
 would vanish rather than spin it. If a rival is on a longer winning run, the
 page does not claim our form is the best left in the draw — it checks first.
 
+**One game at a time.** The page leads with the bookmakers' price for the next
+match and then argues that it is light. It deliberately does not put a
+premiership probability anywhere near the top — a number describing five weeks
+away excites nobody, and there is a test that fails if any case card starts
+quoting one. The full bracket arithmetic is still there under "Show me the
+working" and in Path to Glory, where someone who wants it can go looking.
+
 The language is a supporter's. The arithmetic is not. The unflattering number
 is still there. The compound probability of winning
 every remaining game sits in the method panel, stated plainly, because a site

@@ -209,6 +209,30 @@ def current_win_streak(games, club):
     return streak, note
 
 
+def season_series(games, club, opponent):
+    """This season's meetings between the two, most recent first."""
+    if not opponent:
+        return []
+    meetings = [
+        g for g in games
+        if g.get("complete") == 100 and not g.get("is_final")
+        and {g.get("hteam"), g.get("ateam")} == {club, opponent}
+    ]
+    meetings.sort(key=lambda g: g.get("unixtime") or 0, reverse=True)
+    rows = []
+    for game in meetings:
+        at_home = game["hteam"] == club
+        rows.append({
+            "round": game["round"],
+            "venue": model.canonical_venue(game.get("venue")),
+            "club_is_home": at_home,
+            "our_score": game["hscore"] if at_home else game["ascore"],
+            "their_score": game["ascore"] if at_home else game["hscore"],
+            "margin": (game["hscore"] - game["ascore"]) * (1 if at_home else -1),
+        })
+    return rows
+
+
 def last_defeat(games, team):
     """That side's most recent match, if they lost it."""
     played = sorted(
@@ -420,6 +444,11 @@ def collect():
         "grand_finals_reached": era["grand_finals_reached"],
         "seasons_playing_finals": era["seasons_playing_finals"],
         "seasons_coached": SEASON - SCOTT_ERA_FROM + 1,
+        "next_venue": (next_fixture or {}).get("venue"),
+        "next_venue_provisional": bool(
+            (next_fixture or {}).get("provisional_reasons")),
+        "season_series": season_series(
+            games, CLUB, (next_fixture or {}).get("opponent")),
         "flag_if_we_win": (
             (club_semi["club_if_home_wins"] if club_semi["home"] == CLUB
              else club_semi["club_if_away_wins"]) if club_semi else None
@@ -489,16 +518,11 @@ def update_history(state):
     if not isinstance(history, list):
         history = []
     probability = state["headline"]["probability"]
-    lead = (state.get("case") or [{}])[0]
     entry = {
         "at": state["generated_at"],
         "probability": probability,
-        # The page leads with the conditional figure, so track it too or the
-        # movement shown would belong to a different number than the headline.
-        "flag_if_we_win": (
-            float(lead["stat"].rstrip("%")) / 100
-            if lead.get("id") == "one_win_away" else None
-        ),
+        # The page leads with this week's market price, so that is what the
+        # movement shown underneath the headline has to be tracking.
         "market_next_game": (state.get("market") or {}).get("club_win_probability"),
         "next_opponent": (state.get("next_fixture") or {}).get("opponent"),
     }

@@ -360,6 +360,14 @@ def case_context(**overrides):
         "grand_finals_reached": 4,
         "seasons_playing_finals": 14,
         "seasons_coached": 16,
+        "next_venue": "Perth Stadium",
+        "next_venue_provisional": False,
+        "season_series": [
+            {"round": 15, "venue": "Perth Stadium", "club_is_home": False,
+             "our_score": 90, "their_score": 99, "margin": -9},
+            {"round": 1, "venue": "Kardinia Park", "club_is_home": True,
+             "our_score": 110, "their_score": 100, "margin": 10},
+        ],
         "flag_if_we_win": 0.219,
         "grand_final_scenarios": [
             {"opponent": "Hawthorn", "probability": 0.66, "club_win_probability": 0.481},
@@ -387,8 +395,8 @@ def ids_for(**overrides):
 def test_the_case_is_built_from_the_current_data():
     cards = case.build_case(case_context())
     check(len(cards) >= 8, f"expected a full case, got {len(cards)} cards")
-    check(cards[0]["id"] == "one_win_away",
-          "the reframed headline figure should lead")
+    check(cards[0]["id"] == "what_the_market_gives_us",
+          "this week's price leads -- one game at a time")
     for card in cards:
         for key in ("id", "stat", "label", "detail", "source", "priority"):
             check(key in card, f"{card.get('id')} is missing {key}")
@@ -407,19 +415,60 @@ def test_the_semi_final_card_only_fires_for_a_semi_final():
           "the semi-final record is only the argument when a semi is next")
 
 
-def test_market_card_only_fires_when_the_market_agrees():
-    check("the_money_likes_us" in ids_for(),
-          "the market rates us above the models, so say so")
-    check("the_money_likes_us" not in
-          ids_for(market_probability=0.30, model_probability=0.38),
-          "when the market rates us BELOW the models, the card must vanish "
-          "rather than spin it")
+def test_nothing_quotes_a_premiership_probability():
+    """One game at a time: a flag probability five weeks out excites nobody."""
+    cards = case.build_case(case_context())
+    check("one_win_away" not in {c["id"] for c in cards},
+          "the 'for the flag if we win' card is retired")
+    check("favoured_in_the_decider" not in {c["id"] for c in cards},
+          "the Grand Final matchup card is retired")
+    for card in cards:
+        text = (card["label"] + " " + card["detail"]).lower()
+        check("for the flag" not in text and "premiership probability" not in text,
+              f"{card['id']} still talks about winning the flag: {card['label']}")
 
 
-def test_no_grand_final_card_when_we_are_favoured_against_nobody():
-    check("favoured_in_the_decider" not in ids_for(grand_final_scenarios=[
-        {"opponent": "Hawthorn", "probability": 1.0, "club_win_probability": 0.2}]),
-          "there is no 'favoured against' card when we are favoured against none")
+def test_the_price_leads_and_names_the_opponent():
+    lead = case.build_case(case_context())[0]
+    check(lead["stat"] == "39.1%", f"the market price should lead, got {lead['stat']}")
+    check("Fremantle" in lead["label"], "the lead card names who we are playing")
+    check("38.0%" in lead["detail"],
+          "and notes the models rate us lower still")
+
+
+def test_the_price_falls_back_to_the_models_without_a_market():
+    lead = case.build_case(case_context(market_probability=None))[0]
+    check(lead["stat"] == "38.0%",
+          "with no bookmaker price, quote the model consensus rather than nothing")
+
+
+def test_a_tight_season_series_is_the_argument():
+    cards = {c["id"]: c for c in case.build_case(case_context())}
+    check("one_point_in_it" in cards, "200-199 across two games is the story")
+    check(cards["one_point_in_it"]["stat"] == "1", "one point in it")
+    # A blowout series is not an argument for us.
+    blown = ids_for(season_series=[
+        {"round": 15, "venue": "Perth Stadium", "club_is_home": False,
+         "our_score": 40, "their_score": 120, "margin": -80},
+        {"round": 1, "venue": "Kardinia Park", "club_is_home": True,
+         "our_score": 60, "their_score": 110, "margin": -50},
+    ])
+    check("one_point_in_it" not in blown,
+          "when they have thrashed us twice, that is not a selling point")
+    check("we_have_beaten_them" not in blown,
+          "and we cannot claim a win we did not have")
+
+
+def test_the_ground_card_waits_for_a_confirmed_venue():
+    winning_ground = {"M.C.G.": {"venue": "M.C.G.", "played": 24,
+                                 "won": 13, "lost": 11}}
+    check("finals_at_this_ground" in
+          ids_for(next_venue="M.C.G.", by_venue=winning_ground),
+          "a winning record at a confirmed ground is worth saying")
+    check("finals_at_this_ground" not in
+          ids_for(next_venue="M.C.G.", by_venue=winning_ground,
+                  next_venue_provisional=True),
+          "but not while the AFL has not actually confirmed the ground")
 
 
 def test_percentage_card_only_fires_when_it_flatters_us():

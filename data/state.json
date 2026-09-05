@@ -132,84 +132,76 @@
  ],
  "case": [
   {
-   "detail": "One win. That is the whole gap between a long shot and a live one. Win on Saturday and better than one side in five left standing is us — from fifth, with nothing to lose and everyone above us with everything to.",
-   "id": "one_win_away",
-   "label": "for the flag the moment we beat Fremantle",
-   "priority": 105,
-   "source": "Derived from the Squiggle consensus across the remaining bracket",
-   "stat": "21.9%"
+   "detail": "One game. Nothing beyond it matters this week. The computers have us lower still, at 38.0%. The money is already braver than the machines.",
+   "id": "what_the_market_gives_us",
+   "label": "what the bookies give us against Fremantle",
+   "priority": 110,
+   "source": "Squiggle's Punters source, derived from bookmaker pricing",
+   "stat": "39.1%"
+  },
+  {
+   "detail": "2 games against Fremantle this season. 200 points to us, 199 to them — 1 to us across the whole year. There is nothing between these teams, and everyone except us seems to have forgotten it.",
+   "id": "one_point_in_it",
+   "label": "point between these two sides all year",
+   "priority": 100,
+   "source": "2026 home-and-away results",
+   "stat": "1"
   },
   {
    "detail": "Six times he has taken a side into a semi-final. Five times he has walked off with it. This is the game Chris Scott does not lose — and it is exactly the game sitting in front of us.",
    "id": "semi_final_pedigree",
    "label": "in semi-finals under Chris Scott",
-   "priority": 100,
+   "priority": 95,
    "source": "Every final Geelong have played since 2011, from match records",
    "stat": "5–1"
-  },
-  {
-   "detail": "And Hawthorn, the most likely of the lot? 48% — a coin toss. Get us to the last Saturday in September, on a neutral deck, and there is not a team left in this competition we are frightened of.",
-   "id": "favoured_in_the_decider",
-   "label": "sides in the Grand Final we would start favourite against",
-   "priority": 90,
-   "source": "Squiggle model consensus, priced at a neutral M.C.G.",
-   "stat": "3 of 5"
-  },
-  {
-   "detail": "5th on the ladder is a lie. Only 2 sides in the entire competition scored more heavily against what they let in. We are a top-three team wearing a fifth-place jumper, and the draw is about to find that out.",
-   "id": "better_than_our_ladder_position",
-   "label": "the 3rd best percentage in the competition",
-   "priority": 85,
-   "source": "Final 2026 home-and-away ladder",
-   "stat": "122.3%"
-  },
-  {
-   "detail": "We have met these sides in September before and walked off winners more often than not. None of them are ghosts. None of them frighten us.",
-   "id": "finals_form_against_the_field",
-   "label": "in finals against Hawthorn, Brisbane Lions and Sydney",
-   "priority": 80,
-   "source": "Geelong finals results since 2011, from match records",
-   "stat": "8–5"
-  },
-  {
-   "detail": "The longest active run of anyone left in the draw. Not beaten since round 18 against Greater Western Sydney, and in no mood to start now.",
-   "id": "winning_streak",
-   "label": "straight wins going into this week",
-   "priority": 75,
-   "source": "2026 results",
-   "stat": "7"
   },
   {
    "detail": "Beaten by Hawthorn in their own backyard at Perth Stadium. The minor premiers come into this bruised, doubting, one loss from the off-season. We come into it off a win, with the handbrake off.",
    "id": "opponent_is_wounded",
    "label": "points — what Fremantle were rolled by last week",
-   "priority": 70,
+   "priority": 90,
    "source": "2026 finals results",
    "stat": "32"
   },
   {
-   "detail": "Higher than the computers do (38.0%). When real money and a machine disagree, back the money — it has skin in the game.",
-   "id": "the_money_likes_us",
-   "label": "what the betting market gives us this week",
-   "priority": 65,
-   "source": "Squiggle's Punters source, derived from bookmaker pricing",
-   "stat": "39.1%"
+   "detail": "The longest active run of anyone left in the draw. Not beaten since round 18 against Greater Western Sydney, and in no mood to start now.",
+   "id": "winning_streak",
+   "label": "straight wins going into this week",
+   "priority": 85,
+   "source": "2026 results",
+   "stat": "7"
+  },
+  {
+   "detail": "At Kardinia Park, this season, with this list. We have already proved we can do it once. Saturday is about doing it again when it counts.",
+   "id": "we_have_beaten_them",
+   "label": "points — how we beat Fremantle in round 1",
+   "priority": 80,
+   "source": "2026 home-and-away results",
+   "stat": "10"
+  },
+  {
+   "detail": "5th on the ladder is a lie. Only 2 sides in the entire competition scored more heavily against what they let in. We are a top-three team wearing a fifth-place jumper, and the draw is about to find that out.",
+   "id": "better_than_our_ladder_position",
+   "label": "the 3rd best percentage in the competition",
+   "priority": 75,
+   "source": "Final 2026 home-and-away ladder",
+   "stat": "122.3%"
   },
   {
    "detail": "4 Grand Finals, 14 finals campaigns, 16 seasons. He has stood on that dais and held it above his head. He knows the road because he has walked it.",
    "id": "a_coach_who_has_done_it",
    "label": "premierships under this coach",
-   "priority": 60,
+   "priority": 65,
    "source": "Geelong finals results since 2011, from match records",
    "stat": "2"
   },
   {
-   "detail": "It is our second home in September. It is where we ran over the top of Carlton a week ago. And it is where the Grand Final is played.",
-   "id": "september_at_the_mcg",
-   "label": "in finals at the M.C.G. under Chris Scott",
-   "priority": 55,
+   "detail": "We have met these sides in September before and walked off winners more often than not. None of them are ghosts. None of them frighten us.",
+   "id": "finals_form_against_the_field",
+   "label": "in finals against Hawthorn, Brisbane Lions and Sydney",
+   "priority": 60,
    "source": "Geelong finals results since 2011, from match records",
-   "stat": "13–11"
+   "stat": "8–5"
   }
  ],
  "club": "Geelong",
@@ -243,7 +235,7 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T06:45:17+00:00",
+ "generated_at": "2026-09-05T06:50:39+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -694,7 +686,7 @@
     "club_if_away_wins": 0.077093,
     "club_if_home_wins": 0.089485,
     "club_swing": 0.012392,
-    "complete_percent": 50,
+    "complete_percent": 51,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
@@ -709,7 +701,7 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "1/2 Time",
+    "time_string": "Q3  1:35",
     "timezone": "+10:00",
     "venue": "S.C.G."
    },

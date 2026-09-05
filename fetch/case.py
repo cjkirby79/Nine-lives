@@ -20,6 +20,14 @@ leads with.
 """
 
 
+# Grounds known by an abbreviation take "the"; proper names don't.
+_TAKES_THE = {"M.C.G.", "S.C.G.", "Gabba"}
+
+
+def _the(venue):
+    return f"the {venue}" if venue in _TAKES_THE else venue
+
+
 def _record(row):
     return f"{row['won']}–{row['lost']}"
 
@@ -41,52 +49,76 @@ def semi_final_pedigree(ctx):
                   "Chris Scott does not lose — and it is exactly the game "
                   "sitting in front of us.",
         "source": "Every final Geelong have played since 2011, from match records",
+        "priority": 95,
+    }
+
+
+def what_the_market_gives_us(ctx):
+    """This week's price. One game at a time -- this is the only number that
+    matters right now, and everything else on the page argues it is light."""
+    market, models = ctx["market_probability"], ctx["model_probability"]
+    price = market if market is not None else models
+    if price is None or not ctx["next_opponent"]:
+        return None
+
+    if market is not None and models is not None and market > models:
+        tail = (f"The computers have us lower still, at {models * 100:.1f}%. "
+                "The money is already braver than the machines.")
+    else:
+        tail = "That is the number to beat. Here is why we think it is light."
+
+    return {
+        "id": "what_the_market_gives_us",
+        "stat": f"{price * 100:.1f}%",
+        "label": f"what the bookies give us against {ctx['next_opponent']}",
+        "detail": "One game. Nothing beyond it matters this week. " + tail,
+        "source": "Squiggle's Punters source, derived from bookmaker pricing",
+        "priority": 110,
+    }
+
+
+def one_point_in_it(ctx):
+    """The season series with this week's opponent, when it has been tight."""
+    series = ctx["season_series"]
+    if not series or len(series) < 2:
+        return None
+
+    ours = sum(game["our_score"] for game in series)
+    theirs = sum(game["their_score"] for game in series)
+    gap = abs(ours - theirs)
+    if gap > 12:
+        return None
+
+    lead = "to us" if ours > theirs else "to them"
+    return {
+        "id": "one_point_in_it",
+        "stat": f"{gap}",
+        "label": f"point{'s' if gap != 1 else ''} between these two sides all year",
+        "detail": f"{len(series)} games against {ctx['next_opponent']} this "
+                  f"season. {ours} points to us, {theirs} to them — {gap} "
+                  f"{lead} across the whole year. There is nothing between "
+                  "these teams, and everyone except us seems to have forgotten it.",
+        "source": f"{ctx['season']} home-and-away results",
         "priority": 100,
     }
 
 
-def one_win_away(ctx):
-    """What beating this week's opponent is actually worth."""
-    if ctx["flag_if_we_win"] is None or not ctx["next_opponent"]:
+def we_have_beaten_them(ctx):
+    """We have already taken one off them this season."""
+    wins = [g for g in (ctx["season_series"] or []) if g["margin"] > 0]
+    if not wins:
         return None
+    best = max(wins, key=lambda g: g["margin"])
     return {
-        "id": "one_win_away",
-        "stat": f"{ctx['flag_if_we_win'] * 100:.1f}%",
-        "label": f"for the flag the moment we beat {ctx['next_opponent']}",
-        "detail": "One win. That is the whole gap between a long shot and a "
-                  "live one. Win on Saturday and better than one side in five "
-                  "left standing is us — from fifth, with nothing to lose and "
-                  "everyone above us with everything to.",
-        "source": "Derived from the Squiggle consensus across the remaining bracket",
-        "priority": 105,
-    }
-
-
-def favoured_in_the_decider(ctx):
-    """Sides we would start favourite against in a Grand Final."""
-    scenarios = ctx["grand_final_scenarios"]
-    if not scenarios:
-        return None
-    favoured = [s for s in scenarios if s["club_win_probability"] > 0.5]
-    if not favoured:
-        return None
-
-    # Quote the opponent we are most likely to actually meet, not the one we
-    # rate best against -- being 70% against a side with a 2% chance of getting
-    # there is a hollow number to lead with.
-    likeliest = max(scenarios, key=lambda s: s["probability"])
-    against_likeliest = likeliest["club_win_probability"] * 100
-
-    return {
-        "id": "favoured_in_the_decider",
-        "stat": f"{len(favoured)} of {len(scenarios)}",
-        "label": "sides in the Grand Final we would start favourite against",
-        "detail": f"And {likeliest['opponent']}, the most likely of the lot? "
-                  f"{against_likeliest:.0f}% — a coin toss. Get us to the last "
-                  "Saturday in September, on a neutral deck, and there is not "
-                  "a team left in this competition we are frightened of.",
-        "source": "Squiggle model consensus, priced at a neutral M.C.G.",
-        "priority": 90,
+        "id": "we_have_beaten_them",
+        "stat": f"{best['margin']}",
+        "label": f"points — how we beat {ctx['next_opponent']} in round "
+                 f"{best['round']}",
+        "detail": f"At {best['venue']}, this season, with this list. "
+                  "We have already proved we can do it once. Saturday is "
+                  "about doing it again when it counts.",
+        "source": f"{ctx['season']} home-and-away results",
+        "priority": 80,
     }
 
 
@@ -105,7 +137,7 @@ def better_than_our_ladder_position(ctx):
                   "team wearing a fifth-place jumper, and the draw is about to "
                   "find that out.",
         "source": f"Final {ctx['season']} home-and-away ladder",
-        "priority": 85,
+        "priority": 75,
     }
 
 
@@ -127,7 +159,7 @@ def finals_form_against_the_field(ctx):
                   "winners more often than not. None of them are ghosts. None "
                   "of them frighten us.",
         "source": "Geelong finals results since 2011, from match records",
-        "priority": 80,
+        "priority": 60,
     }
 
 
@@ -154,7 +186,7 @@ def winning_streak(ctx):
                   + (ctx["last_loss_note"] or "mid-season")
                   + ", and in no mood to start now.",
         "source": f"{ctx['season']} results",
-        "priority": 75,
+        "priority": 85,
     }
 
 
@@ -172,24 +204,7 @@ def opponent_is_wounded(ctx):
                   "doubting, one loss from the off-season. We come into it off "
                   "a win, with the handbrake off.",
         "source": f"{ctx['season']} finals results",
-        "priority": 70,
-    }
-
-
-def the_money_likes_us(ctx):
-    """The market rates us above the models."""
-    market, models = ctx["market_probability"], ctx["model_probability"]
-    if market is None or models is None or market <= models:
-        return None
-    return {
-        "id": "the_money_likes_us",
-        "stat": f"{market * 100:.1f}%",
-        "label": "what the betting market gives us this week",
-        "detail": f"Higher than the computers do ({models * 100:.1f}%). When "
-                  "real money and a machine disagree, back the money — it has "
-                  "skin in the game.",
-        "source": "Squiggle's Punters source, derived from bookmaker pricing",
-        "priority": 65,
+        "priority": 90,
     }
 
 
@@ -208,38 +223,47 @@ def a_coach_who_has_done_it(ctx):
                   "and held it above his head. He knows the road because he has "
                   "walked it.",
         "source": "Geelong finals results since 2011, from match records",
-        "priority": 60,
+        "priority": 65,
     }
 
 
-def september_at_the_mcg(ctx):
-    """A winning finals record at the ground the Grand Final is played on."""
-    row = ctx["by_venue"].get("M.C.G.")
-    if not row or row["won"] <= row["lost"] or row["played"] < 6:
+def finals_at_this_ground(ctx):
+    """A winning finals record at the ground THIS week's game is played on.
+
+    Follows the fixture rather than always pointing at the M.C.G. -- a card
+    about the Grand Final venue is no use in a week we are playing in Perth,
+    and it quietly stops appearing when the record there isn't one to boast of.
+    """
+    if ctx.get("next_venue_provisional"):
+        return None            # the ground isn't settled; don't argue from it
+    venue = ctx["next_venue"]
+    row = ctx["by_venue"].get(venue)
+    if not row or row["won"] <= row["lost"] or row["played"] < 4:
         return None
     return {
-        "id": "september_at_the_mcg",
+        "id": "finals_at_this_ground",
         "stat": _record(row),
-        "label": "in finals at the M.C.G. under Chris Scott",
-        "detail": "It is our second home in September. It is where we ran over "
-                  "the top of Carlton a week ago. And it is where the Grand "
-                  "Final is played.",
+        "label": f"in finals at {_the(venue)} under Chris Scott",
+        "detail": "We have been here in September plenty of times, and walked "
+                  "off happy more often than not. The ground holds no fear.",
         "source": "Geelong finals results since 2011, from match records",
         "priority": 55,
     }
 
 
+# Ordered by what matters this week, not what matters in five weeks. Nothing
+# here quotes a probability of winning the Grand Final: one game at a time.
 RULES = [
+    what_the_market_gives_us,
+    one_point_in_it,
     semi_final_pedigree,
-    one_win_away,
-    favoured_in_the_decider,
-    better_than_our_ladder_position,
-    finals_form_against_the_field,
-    winning_streak,
     opponent_is_wounded,
-    the_money_likes_us,
+    winning_streak,
+    we_have_beaten_them,
+    better_than_our_ladder_position,
     a_coach_who_has_done_it,
-    september_at_the_mcg,
+    finals_form_against_the_field,
+    finals_at_this_ground,
 ]
 
 
