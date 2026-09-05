@@ -375,6 +375,14 @@ a thought, and the `credit` field is there if you want to attribute them.
 
 ---
 
+## An offline copy
+
+`python3 tools/snapshot.py nine-lives.html` writes the whole site into one HTML
+file — styles, script, data and every photograph inlined — that works with no
+network and no server. Handy on a plane. It is frozen at the moment you build
+it and says so in a banner at the top; nothing in it updates until you open the
+live site again.
+
 ## Running it locally
 
 ```bash

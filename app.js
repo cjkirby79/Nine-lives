@@ -88,6 +88,10 @@
   }
 
   function loadJSON(path) {
+    // An offline snapshot bakes the data in rather than fetching it.
+    var bundled = window.__NINE_LIVES_DATA;
+    if (bundled && bundled[path]) return Promise.resolve(bundled[path]);
+
     // Pages caches aggressively; the whole point of the manual refresh button
     // is being able to watch the number move, so bypass it.
     return fetch(path + "?t=" + Date.now(), { cache: "no-store" })
@@ -1260,7 +1264,9 @@
     if (!container || !spec || !spec.file) return null;
 
     var image = new Image();
-    image.src = "images/" + spec.file;
+    var src = "images/" + spec.file;
+    var inlined = window.__NINE_LIVES_IMAGES;
+    image.src = (inlined && inlined[src]) || src;
     image.alt = decorative ? "" : (spec.alt || "");
     if (decorative) image.setAttribute("aria-hidden", "true");
     image.loading = "lazy";
