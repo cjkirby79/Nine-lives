@@ -1004,7 +1004,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T22:06:43+00:00",
+ "generated_at": "2026-09-05T22:35:16+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1327,7 +1327,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T22:06:42+00:00",
+  "fetched_at": "2026-09-05T22:35:15+00:00",
   "items": [],
   "source": "AFL.com.au",
   "source_url": "https://www.afl.com.au/rss",
