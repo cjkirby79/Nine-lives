@@ -132,10 +132,9 @@ body {
    smear. Bounded to the fade distance, it crops horizontally instead and the
    subject survives. Everything below is solid navy anyway. */
 .panel.has-media .media-layer {
-  height: 420px;
+  height: var(--media-height, 420px);
   bottom: auto;
 }
-.panel.has-media[data-panel="headline"] .media-layer { height: 600px; }
 
 .panel.has-media .media-layer img {
   filter: saturate(.7) contrast(1.05) brightness(1);
@@ -148,10 +147,10 @@ body {
 .panel.has-media .media-layer::after {
   background:
     linear-gradient(180deg,
-      rgba(5, 18, 43, .40) 0px,
-      rgba(5, 18, 43, .80) 150px,
-      rgba(5, 18, 43, .96) 290px,
-      var(--navy-900) 400px),
+      rgba(5, 18, 43, .40) 0%,
+      rgba(5, 18, 43, .80) 36%,
+      rgba(5, 18, 43, .96) 72%,
+      var(--navy-900) 100%),
     linear-gradient(90deg, rgba(5, 18, 43, .7) 0%, rgba(5, 18, 43, .05) 100%);
 }
 
@@ -164,6 +163,7 @@ body {
 .panel.has-media[data-panel="headline"] .media-layer img {
   filter: saturate(.5) contrast(1) brightness(.75);
 }
+.panel.has-media[data-panel="headline"] { --media-height: 600px; }
 .panel.has-media[data-panel="headline"] .media-layer::after {
   background:
     radial-gradient(115% 62% at 50% 34%,
@@ -171,10 +171,10 @@ body {
       rgba(3, 13, 32, .78) 55%,
       rgba(3, 13, 32, .55) 100%),
     linear-gradient(180deg,
-      rgba(5, 18, 43, .45) 0px,
-      rgba(5, 18, 43, .72) 300px,
-      rgba(5, 18, 43, .94) 480px,
-      var(--navy-900) 580px);
+      rgba(5, 18, 43, .45) 0%,
+      rgba(5, 18, 43, .72) 50%,
+      rgba(5, 18, 43, .94) 82%,
+      var(--navy-900) 100%);
 }
 
 /* --- crest -------------------------------------------------------------- */
@@ -785,6 +785,28 @@ main { margin-top: 1rem; }
 .league li[data-club="true"] .league-pos { color: var(--cat); }
 
 .experts li[data-market="true"] .expert-value { color: var(--warn); }
+
+/* --- inline portrait ----------------------------------------------------- */
+
+.panel-portrait {
+  float: right;
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: .1rem 0 .5rem .9rem;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(3, 13, 32, .5);
+  filter: saturate(.85) contrast(1.05);
+}
+@media (min-width: 560px) {
+  .panel-portrait { width: 104px; height: 104px; }
+}
+
+/* The portrait floats past the intro text only. Without this the stat grid
+   flows around it and the tiles get squashed into three-line labels. */
+.panel-portrait ~ .stat-strip,
+.panel-portrait ~ .sub-title { clear: both; }
 
 /* --- comparison boards --------------------------------------------------- */
 

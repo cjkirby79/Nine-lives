@@ -8,6 +8,9 @@
     "          'band'    full width, keeps its own proportions. For wide shots",
     "                    too panoramic to crop into a panel.",
     "          'panel'   behind the panel named in 'target'.",
+    "          'portrait' an inline headshot in the panel named in 'target'.",
+    "          'panel'   a backdrop. Use 'height' (px, default 420) for a wide,",
+    "                    short photo so it isn't zoomed into the middle of.",
     "          'gallery' the 'The campaign' rail at the foot. This season.",
     "          'history' the 'Silverware' rail under the Chris Scott panel.",
     "target  — for role 'panel'. Any section with a data-panel attribute:",
@@ -42,9 +45,18 @@
       "focus": "50% 45%"
     },
     {
+      "file": "chris-scott.jpg",
+      "role": "portrait",
+      "target": "scott",
+      "alt": "Chris Scott on the boundary line, looking out across the ground",
+      "caption": "",
+      "credit": "",
+      "focus": "50% 32%"
+    },
+    {
       "file": "scott-premiership.jpg",
       "role": "panel",
-      "target": "scott",
+      "target": "greatest",
       "alt": "Chris Scott roaring with both fists clenched, a premiership medal round his neck",
       "caption": "",
       "credit": "",
@@ -75,6 +87,14 @@
       "caption": "The squad",
       "credit": "",
       "focus": "50% 50%"
+    },
+    {
+      "file": "chris-scott.jpg",
+      "role": "gallery",
+      "alt": "Chris Scott on the boundary line, looking out across the ground",
+      "caption": "Chris Scott",
+      "credit": "",
+      "focus": "50% 30%"
     },
     {
       "file": "mob-celebration.jpg",

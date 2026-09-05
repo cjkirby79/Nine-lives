@@ -270,11 +270,21 @@ Photos are driven by `images/manifest.json`. To add one: drop the file into
 | role | where it lands |
 |---|---|
 | `crest` | the club badge in the masthead |
+| `portrait` | an inline headshot in the panel named in `target` |
 | `hero` | behind the masthead. First one wins, the rest are ignored |
 | `band` | full width, keeping its own proportions |
 | `panel` | behind a panel — set `target` to one of the names below |
 | `gallery` | the "The campaign" rail at the foot — this season |
 | `history` | the "Silverware" rail under the Chris Scott panel — past flags |
+
+Use `portrait` for a face you actually want people to see. A clean headshot
+used as a panel backdrop is a headshot nobody can make out — it sits behind the
+numbers under a fade built to keep text readable. As an inline portrait it
+reads properly and stops fighting the content.
+
+A `panel` backdrop also takes an optional `height` in pixels (default 420).
+Drop it for a wide, short photo: `object-fit: cover` scales to the taller side,
+so a 650×366 image in a 420px band gets zoomed into the middle of itself.
 
 Use `band` for anything too panoramic to crop into a panel — a team photo
 cropped to a phone-height masthead is four torsos. The band keeps the image's

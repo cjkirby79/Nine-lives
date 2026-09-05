@@ -963,6 +963,11 @@
       panel.insertBefore(layer, panel.firstChild);
       if (mountImage(layer, spec, true)) {
         panel.classList.add("has-media");
+        // A wide, short photograph forced into a tall layer zooms into the
+        // middle of it. Let the manifest say how deep the layer should be.
+        if (spec.height) {
+          panel.style.setProperty("--media-height", spec.height + "px");
+        }
       } else {
         panel.removeChild(layer);
       }
@@ -990,6 +995,19 @@
         }
       }
     }
+
+    // Inline headshots. A face is worth showing properly rather than washing
+    // out behind a table of numbers.
+    byRole("portrait").forEach(function (spec) {
+      var panel = document.querySelector('[data-panel="' + spec.target + '"]');
+      if (!panel || panel.querySelector(".panel-portrait")) return;
+      var holder = el("div", "portrait-holder");
+      if (!mountImage(holder, spec, false)) return;
+      var image = holder.querySelector("img");
+      image.className = "panel-portrait";
+      var title = panel.querySelector(".panel-title");
+      panel.insertBefore(image, title ? title.nextSibling : panel.firstChild);
+    });
 
     renderRail(byRole("gallery"), "gallery", "gallery-panel");
     renderRail(byRole("history"), "history", "history-panel");
