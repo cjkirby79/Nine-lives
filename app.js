@@ -365,15 +365,6 @@
                  note: recordDetail(row), row: row };
       });
 
-    fillRecordList(field("scott-opponents"), era.against_live_teams, function (row) {
-      return {
-        label: row.team,
-        value: row.played ? record(row) : "—",
-        note: row.played ? recordDetail(row) : "never met in finals",
-        row: row
-      };
-    });
-
     var recent = field("scott-recent");
     recent.textContent = "";
     (era.recent || []).forEach(function (game) {
@@ -413,6 +404,107 @@
       }
       item.appendChild(value);
       list.appendChild(item);
+    });
+  }
+
+  // ---- September, and this lot ------------------------------------------
+
+  /** A supporter's read on a head-to-head record, built from the games. */
+  function h2hLine(row, club) {
+    if (!row.played) {
+      return "Never met them in September. No history, no scar tissue, " +
+        "nothing to be frightened of.";
+    }
+    var best = row.biggest_win;
+    var recent = row.most_recent;
+    var parts = [];
+
+    if (best) {
+      parts.push("We put " + best.margin + " points on them in " + best.year +
+        (/grand final/i.test(best.stage || "") ? " — in a Grand Final." :
+         /preliminary/i.test(best.stage || "") ? " — in a preliminary final." :
+         /semi/i.test(best.stage || "") ? " — in a semi-final, the same game " +
+           "we are playing now." : "."));
+    }
+    // Don't say "and the last time we met..." about the game just quoted.
+    var recentIsBest = best && recent &&
+      recent.year === best.year && recent.margin === best.margin;
+
+    if (recentIsBest || !best) {
+      // Nothing to add: either the biggest win is also the most recent
+      // meeting, or there are no wins and the line below covers it.
+    } else if (recent && !recent.won) {
+      var since = new Date().getFullYear() - recent.year;
+      parts.push(since > 6
+        ? "The last time they beat us in a final was " + recent.year +
+          ", which is " + since + " years and about three lists ago."
+        : "They got us in " + recent.year + ", by " +
+          Math.abs(recent.margin) + ". We owe them one.");
+    } else if (recent && recent.won) {
+      parts.push("Last time we met in September, " + recent.year +
+        ", we won by " + recent.margin + ".");
+    }
+    if (!best) {
+      parts.push("Beaten by " + Math.abs(recent.margin) + " in " + recent.year +
+        ". One game is not a hoodoo, it is one game.");
+    }
+    return parts.join(" ");
+  }
+
+  function renderHeadToHead(state) {
+    var data = state.finals_head_to_head;
+    var host = field("h2h");
+    if (!data || !host) return;
+    host.textContent = "";
+
+    field("h2h-sub").textContent =
+      "Every final we have played against the sides still standing, back to " +
+      data.from_year + ". In the order we could meet them. Tap any of them " +
+      "for the games.";
+
+    (data.teams || []).forEach(function (row, index) {
+      var box = document.createElement("details");
+      box.className = "h2h";
+
+      var summary = document.createElement("summary");
+      var name = el("div", "h2h-team", row.team);
+      if (index === 0) name.appendChild(el("span", "h2h-when", "Saturday"));
+      summary.appendChild(name);
+
+      var rate = el("div", "h2h-rate",
+        row.played ? Math.round(row.win_rate * 100) + "%" : "—");
+      rate.setAttribute("data-tone",
+        !row.played ? "level"
+          : row.won > row.lost ? "good"
+          : row.won === row.lost ? "level" : "quiet");
+      summary.appendChild(rate);
+
+      summary.appendChild(el("div", "h2h-line",
+        (row.played ? row.won + "–" + row.lost + " in finals. " : "") +
+        h2hLine(row, state.club)));
+      box.appendChild(summary);
+
+      var list = document.createElement("ol");
+      (row.meetings || []).forEach(function (game) {
+        var item = document.createElement("li");
+        item.setAttribute("data-won", String(game.won));
+        item.appendChild(el("span", "m-year", game.year));
+        item.appendChild(el("span", null,
+          (game.stage || "").replace("Finals Week 1", "Week 1 final")
+            .replace("Preliminary Finals", "Preliminary final")
+            .replace("Semi-Finals", "Semi-final") +
+          " · " + game.venue));
+        item.appendChild(el("span", "m-margin",
+          (game.margin > 0 ? "+" : "") + game.margin));
+        list.appendChild(item);
+      });
+      if (!row.meetings.length) {
+        var none = document.createElement("li");
+        none.appendChild(el("span", null, "No finals meetings on record."));
+        list.appendChild(none);
+      }
+      box.appendChild(list);
+      host.appendChild(box);
     });
   }
 
@@ -1238,6 +1330,7 @@
     renderHeadline(state, history);
     renderScottEra(state);
     renderNextFixture(state);
+    renderHeadToHead(state);
     renderPrecedent(state);
     renderGreatest(state);
     renderExperts(state);

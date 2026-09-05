@@ -39,6 +39,12 @@ because the point of the page is Saturday.
 lands harder than 5–1, and the won–lost sits underneath it in small type so
 nothing is lost.
 
+**"September, and this lot"** is our finals record against every side still
+standing, back to 2000 rather than just the Scott era — a 69-point semi-final
+win over Fremantle in 2010 still happened. Ordered by when we could meet them,
+each with every match listed, and a supporter's read written from the games
+themselves rather than typed in.
+
 **"It has been done"** is the hope section. Since 2000, two sides have won the
 flag from fifth or lower — and one of them was Brisbane in 2024, from exactly
 fifth, via an elimination final, an away semi, an away prelim and the Grand

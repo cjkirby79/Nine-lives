@@ -264,6 +264,62 @@ def _season_summary(year):
 PRECEDENT_FROM = 2000        # as far back as Squiggle's archive reaches
 
 
+FINALS_HISTORY_FROM = 2000    # the full reach of Squiggle's archive
+
+
+def finals_head_to_head(club, club_id, order):
+    """Every final we have played against the sides still standing.
+
+    Deliberately wider than the Chris Scott era: a 69-point semi-final win over
+    Fremantle in 2010 is still a thing that happened, and a supporter wants the
+    whole story rather than the slice that starts in 2011.
+    """
+    meetings = {team: [] for team in order}
+
+    for year in range(FINALS_HISTORY_FROM, SEASON + 1):
+        if year == SEASON:
+            games = query("games", year=year, team=club_id)
+        else:
+            games = cached_query(
+                os.path.join(CACHE, f"games-{club}-{year}.json"),
+                "games", year=year, team=club_id)
+
+        for game in games:
+            if not (game.get("is_final") and game.get("complete") == 100):
+                continue
+            at_home = game["hteam"] == club
+            opponent = game["ateam"] if at_home else game["hteam"]
+            if opponent not in meetings:
+                continue
+            meetings[opponent].append({
+                "year": game["year"],
+                "unixtime": game.get("unixtime") or 0,
+                "stage": game.get("roundname"),
+                "venue": model.canonical_venue(game.get("venue")),
+                "at_home": at_home,
+                "margin": (game["hscore"] - game["ascore"]) * (1 if at_home else -1),
+                "won": game.get("winner") == club,
+                "scott_era": game["year"] >= SCOTT_ERA_FROM,
+            })
+
+    rows = []
+    for team in order:
+        games = sorted(meetings[team], key=lambda g: -g["unixtime"])
+        won = sum(1 for g in games if g["won"])
+        wins = [g for g in games if g["won"]]
+        rows.append({
+            "team": team,
+            "played": len(games),
+            "won": won,
+            "lost": len(games) - won,
+            "win_rate": round(won / len(games), 4) if games else None,
+            "biggest_win": max(wins, key=lambda g: g["margin"]) if wins else None,
+            "most_recent": games[0] if games else None,
+            "meetings": games,
+        })
+    return {"from_year": FINALS_HISTORY_FROM, "to_year": SEASON, "teams": rows}
+
+
 def _precedent_season(year):
     """What a season's finals say about sides in our position.
 
@@ -807,6 +863,18 @@ def collect():
     }
     case_cards = case.build_case(case_context)
 
+    # Next opponent first, then who we could meet in a prelim, then the rest.
+    head_to_head_order = []
+    if next_fixture:
+        head_to_head_order.append(next_fixture["opponent"])
+    for step in steps[1:]:
+        for scenario in step.get("scenarios", []):
+            if scenario["opponent"] not in head_to_head_order:
+                head_to_head_order.append(scenario["opponent"])
+    for team in live_teams:
+        if team != CLUB and team not in head_to_head_order:
+            head_to_head_order.append(team)
+
     ladder = [
         {"rank": r["rank"], "team": r["name"], "wins": r["wins"], "losses": r["losses"],
          "draws": r["draws"], "percentage": round(r["percentage"], 1), "points": r["pts"]}
@@ -842,6 +910,8 @@ def collect():
         "market": market,
         "bracket": display_bracket,
         "field": field,
+        "finals_head_to_head": finals_head_to_head(
+            CLUB, team_ids[CLUB], head_to_head_order),
         "scott_era": era,
         "dominance": dominance_since(SCOTT_ERA_FROM, CLUB),
         "precedent": precedent_for_our_position(
