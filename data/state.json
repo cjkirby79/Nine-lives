@@ -72,11 +72,11 @@
   },
   {
    "away": "Western Bulldogs",
-   "away_score": 38,
+   "away_score": 40,
    "complete": false,
    "date": "2026-09-05 19:35:00",
    "home": "Adelaide",
-   "home_score": 44,
+   "home_score": 59,
    "involves_club": false,
    "node": "EF2",
    "provisional_reasons": [],
@@ -1004,7 +1004,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T11:06:08+00:00",
+ "generated_at": "2026-09-05T11:34:42+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1339,22 +1339,8 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T11:06:06+00:00",
-  "items": [
-   {
-    "about": [
-     "Geelong"
-    ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1601414/geelong-cats-coach-chris-scott-confident-max-holmes-will-benefit-from-the-run-after-elimination-final-gamble",
-    "published_utc": "2026-09-04T14:55:00Z",
-    "score": 16,
-    "tags": [
-     "finals"
-    ],
-    "title": "Scott confident Holmes will benefit from the run after risky EF call"
-   }
-  ],
+  "fetched_at": "2026-09-05T11:34:41+00:00",
+  "items": [],
   "source": "AFL.com.au",
   "source_url": "https://www.afl.com.au/rss",
   "stale": false
@@ -1445,16 +1431,16 @@
    {
     "away": "Western Bulldogs",
     "away_probability": 0.314,
-    "away_score": 38,
+    "away_score": 40,
     "club_if_away_wins": 0.099895,
     "club_if_home_wins": 0.099666,
     "club_swing": 0.000229,
-    "complete_percent": 51,
+    "complete_percent": 75,
     "date": "2026-09-05 19:35:00",
     "game_id": 38722,
     "home": "Adelaide",
     "home_probability": 0.686,
-    "home_score": 44,
+    "home_score": 59,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 19:05:00",
@@ -1464,7 +1450,7 @@
     "source_kind": "published",
     "stage": "Elimination final",
     "start_utc": "2026-09-05T09:35:00Z",
-    "time_string": "Q3  1:06",
+    "time_string": "3/4 Time",
     "timezone": "+10:00",
     "venue": "Adelaide Oval",
     "we_want": null
