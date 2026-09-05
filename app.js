@@ -525,6 +525,84 @@
     });
   }
 
+  // ---- photographs ------------------------------------------------------
+
+  /* Driven entirely by images/manifest.json so adding a photo is a file drop
+     plus one entry, with no code change. Anything that fails -- a missing
+     manifest, an unknown role, a filename typo -- degrades to no image rather
+     than a broken layout or a broken-image icon. */
+
+  function mountImage(container, spec, decorative) {
+    if (!container || !spec || !spec.file) return null;
+
+    var image = new Image();
+    image.src = "images/" + spec.file;
+    image.alt = decorative ? "" : (spec.alt || "");
+    if (decorative) image.setAttribute("aria-hidden", "true");
+    image.loading = "lazy";
+    image.decoding = "async";
+    if (spec.focus) image.style.objectPosition = spec.focus;
+
+    // A photo that 404s should leave no trace.
+    image.addEventListener("error", function () {
+      if (image.parentNode) image.parentNode.removeChild(image);
+      if (!container.querySelector("img")) container.hidden = true;
+    });
+
+    container.appendChild(image);
+    return image;
+  }
+
+  function renderMedia(manifest) {
+    var images = (manifest && Array.isArray(manifest.images)) ? manifest.images : [];
+    if (!images.length) return;
+
+    function byRole(role, target) {
+      return images.filter(function (item) {
+        return item.role === role && (!target || item.target === target);
+      });
+    }
+
+    // The masthead backdrop. First hero wins; the rest are ignored.
+    var hero = byRole("hero")[0];
+    if (hero) mountImage(field("hero"), hero, false);
+
+    // A photograph behind the Next up panel.
+    var next = byRole("panel", "next")[0];
+    if (next) {
+      var layer = field("panel-next");
+      if (mountImage(layer, next, true) && layer.parentNode) {
+        layer.parentNode.classList.add("has-media");
+      }
+    }
+
+    var gallery = byRole("gallery");
+    if (!gallery.length) return;
+
+    var rail = field("gallery");
+    rail.textContent = "";
+    gallery.forEach(function (spec) {
+      var item = document.createElement("li");
+      var figure = document.createElement("figure");
+      var holder = document.createElement("div");
+
+      if (!mountImage(holder, spec, false)) return;
+      var image = holder.querySelector("img");
+      figure.appendChild(image);
+
+      if (spec.caption || spec.credit) {
+        var caption = document.createElement("figcaption");
+        if (spec.caption) caption.appendChild(document.createTextNode(spec.caption));
+        if (spec.credit) caption.appendChild(el("span", "credit", spec.credit));
+        figure.appendChild(caption);
+      }
+      item.appendChild(figure);
+      rail.appendChild(item);
+    });
+
+    if (rail.children.length) field("gallery-panel").hidden = false;
+  }
+
   // ---- 6. provenance and staleness -------------------------------------
 
   function renderFooter(state, status) {
@@ -586,6 +664,12 @@
     banner.setAttribute("data-level", "bad");
     banner.textContent = message;
   }
+
+  // Photos are independent of the data, so a manifest problem must never stop
+  // the numbers rendering, and vice versa.
+  loadJSON("images/manifest.json")
+    .then(renderMedia)
+    .catch(function () { /* no photos configured; the page works without them */ });
 
   Promise.all([
     loadJSON("data/state.json"),

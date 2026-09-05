@@ -167,6 +167,49 @@ one.
 
 ---
 
+## Adding photos
+
+Photos are driven by `images/manifest.json`. To add one: drop the file into
+`images/`, then add an entry.
+
+```json
+{
+  "file": "your-photo.jpg",
+  "role": "gallery",
+  "alt": "What is happening in the picture",
+  "caption": "Shown under the photo",
+  "credit": "Photographer or agency",
+  "focus": "50% 30%"
+}
+```
+
+**`role`** decides where it goes:
+
+| role | where it lands |
+|---|---|
+| `hero` | behind the masthead. First one wins, the rest are ignored |
+| `panel` | behind a panel — add `"target": "next"` for the Next up panel |
+| `gallery` | the scrolling rail near the foot of the page |
+
+**`focus`** is a CSS `object-position`. Use it when a crop cuts someone's head
+off: `"50% 20%"` pulls the crop upwards, `"20% 50%"` shifts the subject right.
+Nothing in the CSS needs touching.
+
+Every photo gets the same grade — pulled towards navy, slightly desaturated —
+so a press shot, a phone snap and a screenshot all still look like one site.
+You don't need to edit anything before dropping it in.
+
+Nothing here can break the page. An unknown role is ignored, a filename typo is
+dropped silently, and if the manifest is missing entirely the site renders
+exactly as it did before there were any photos.
+
+Two practical notes. Keep files under a few hundred KB — they're committed to
+the repo and served on phones, and there's no image pipeline. And the photos
+currently in there look like agency press images; on a public site that's worth
+a thought, and the `credit` field is there if you want to attribute them.
+
+---
+
 ## Running it locally
 
 ```bash
@@ -188,6 +231,7 @@ install, for the site or the fetch script.
 | `data/history.json` | The headline number over time, so the page can show movement |
 | `data/status.json` | Fetch health. Always written, success or failure |
 | `index.html` `styles.css` `app.js` | The site |
+| `images/manifest.json` | Which photos appear and where. See above |
 
 Useful environment variables: `NINE_LIVES_FORCE_FAIL=1` simulates an outage,
 `NINE_LIVES_SEASON` overrides the season (otherwise it's the current year — not

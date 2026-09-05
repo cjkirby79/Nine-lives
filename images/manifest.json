@@ -1,0 +1,58 @@
+{
+  "_readme": [
+    "Photos on the site. To add one: drop the file in images/, add an entry here.",
+    "role  — where it goes. 'hero' sits behind the masthead (one only; the first wins).",
+    "        'panel' fills the background of the panel named in 'target'.",
+    "        'gallery' joins the scrolling rail near the foot of the page.",
+    "target— for role 'panel' only. Currently supported: 'next' (the Next up panel).",
+    "focus — CSS object-position. Nudge this if a crop cuts someone's head off.",
+    "        e.g. '50% 20%' pulls the crop upwards. Default is '50% 50%'.",
+    "alt   — read aloud by screen readers. Describe it, don't caption it.",
+    "credit— shown small under gallery photos. Leave empty to hide.",
+    "Unknown roles are ignored, and a file that fails to load is dropped silently,",
+    "so a typo here can never break the page."
+  ],
+  "images": [
+    {
+      "file": "kardinia-park-night.jpg",
+      "role": "hero",
+      "alt": "Kardinia Park under lights at night, seen from the air, with Corio Bay behind it",
+      "caption": "Kardinia Park",
+      "credit": "",
+      "focus": "50% 45%"
+    },
+    {
+      "file": "smith-v-hawthorn.jpg",
+      "role": "panel",
+      "target": "next",
+      "alt": "A Geelong player celebrating a goal as a Hawthorn opponent walks away",
+      "caption": "",
+      "credit": "",
+      "focus": "20% 26%"
+    },
+    {
+      "file": "smith-profile.jpg",
+      "role": "gallery",
+      "alt": "Bailey Smith in the Geelong hoops, headband on, during a match",
+      "caption": "Bailey Smith",
+      "credit": "",
+      "focus": "50% 40%"
+    },
+    {
+      "file": "smith-celebration.jpg",
+      "role": "gallery",
+      "alt": "Bailey Smith celebrating after a goal",
+      "caption": "Bailey Smith",
+      "credit": "",
+      "focus": "50% 35%"
+    },
+    {
+      "file": "smith-v-hawthorn.jpg",
+      "role": "gallery",
+      "alt": "A Geelong player celebrating a goal as a Hawthorn opponent walks away",
+      "caption": "Against Hawthorn",
+      "credit": "",
+      "focus": "45% 30%"
+    }
+  ]
+}
