@@ -72,11 +72,11 @@
   },
   {
    "away": "Western Bulldogs",
-   "away_score": 0,
+   "away_score": 13,
    "complete": false,
    "date": "2026-09-05 19:35:00",
    "home": "Adelaide",
-   "home_score": 0,
+   "home_score": 19,
    "involves_club": false,
    "node": "EF2",
    "provisional_reasons": [],
@@ -995,7 +995,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T09:35:52+00:00",
+ "generated_at": "2026-09-05T10:06:50+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1330,7 +1330,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T09:35:51+00:00",
+  "fetched_at": "2026-09-05T10:06:48+00:00",
   "items": [
    {
     "about": [
@@ -1450,17 +1450,17 @@
    {
     "away": "Western Bulldogs",
     "away_probability": 0.314,
-    "away_score": null,
+    "away_score": 13,
     "club_if_away_wins": 0.089487,
     "club_if_home_wins": 0.089293,
     "club_swing": 0.000194,
-    "complete_percent": 0,
+    "complete_percent": 24,
     "date": "2026-09-05 19:35:00",
     "game_id": 38722,
     "home": "Adelaide",
     "home_probability": 0.686,
-    "home_score": null,
-    "in_progress": false,
+    "home_score": 19,
+    "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 19:05:00",
     "market_home_probability": 0.7291,
@@ -1469,7 +1469,7 @@
     "source_kind": "published",
     "stage": "Elimination final",
     "start_utc": "2026-09-05T09:35:00Z",
-    "time_string": null,
+    "time_string": "Q1 30:18",
     "timezone": "+10:00",
     "venue": "Adelaide Oval",
     "we_want": null
@@ -1505,7 +1505,7 @@
     "we_want": "Geelong"
    }
   ],
-  "games_in_progress": 0,
+  "games_in_progress": 1,
   "if_we_win": {
    "conditional_probability": 0.464404,
    "cumulative_probability": 0.1807,
@@ -1534,7 +1534,7 @@
    "stage": "Preliminary final",
    "venue": "S.C.G."
   },
-  "live_disclaimer": null,
+  "live_disclaimer": "A final is being played right now. Every probability here is the pre-match consensus and takes no account of the live score.",
   "playing_now": {
    "conditional_probability": 0.3891,
    "cumulative_probability": 0.3891,
