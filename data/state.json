@@ -127,7 +127,7 @@
   },
   {
    "away": null,
-   "club_appearance_probability": 0.185336,
+   "club_appearance_probability": 0.185844,
    "club_wins_away": 2,
    "home": null,
    "node": "GF",
@@ -532,31 +532,31 @@
  },
  "field": [
   {
-   "probability": 0.323316,
+   "probability": 0.323275,
    "team": "Hawthorn"
   },
   {
-   "probability": 0.256875,
+   "probability": 0.255859,
    "team": "Sydney"
   },
   {
-   "probability": 0.150148,
+   "probability": 0.150636,
    "team": "Brisbane Lions"
   },
   {
-   "probability": 0.147418,
+   "probability": 0.147788,
    "team": "Fremantle"
   },
   {
-   "probability": 0.091828,
+   "probability": 0.09207,
    "team": "Geelong"
   },
   {
-   "probability": 0.024536,
+   "probability": 0.0245,
    "team": "Adelaide"
   },
   {
-   "probability": 0.005878,
+   "probability": 0.005872,
    "team": "Western Bulldogs"
   }
  ],
@@ -995,7 +995,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T08:07:18+00:00",
+ "generated_at": "2026-09-05T08:21:54+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1005,8 +1005,8 @@
   "winner": null
  },
  "headline": {
-  "probability": 0.091828,
-  "reaches_grand_final": 0.185336,
+  "probability": 0.09207,
+  "reaches_grand_final": 0.185844,
   "steps": [
    {
     "conditional_probability": 0.3942,
@@ -1037,8 +1037,8 @@
     "venue": "M.C.G."
    },
    {
-    "conditional_probability": 0.470157,
-    "cumulative_probability": 0.185336,
+    "conditional_probability": 0.471447,
+    "cumulative_probability": 0.185844,
     "node": "PF2",
     "opponents": [
      {
@@ -1052,7 +1052,7 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.470157,
+      "club_win_probability": 0.471447,
       "neutral": false,
       "opponent": "Sydney",
       "probability": 1.0,
@@ -1065,24 +1065,24 @@
     "venue": "S.C.G."
    },
    {
-    "conditional_probability": 0.49547,
-    "cumulative_probability": 0.091828,
+    "conditional_probability": 0.495413,
+    "cumulative_probability": 0.09207,
     "node": "GF",
     "opponents": [
      {
-      "probability": 0.634555,
+      "probability": 0.633985,
       "team": "Hawthorn"
      },
      {
-      "probability": 0.291518,
+      "probability": 0.292284,
       "team": "Brisbane Lions"
      },
      {
-      "probability": 0.056763,
+      "probability": 0.056609,
       "team": "Adelaide"
      },
      {
-      "probability": 0.017164,
+      "probability": 0.017122,
       "team": "Western Bulldogs"
      }
     ],
@@ -1092,34 +1092,34 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.481417,
+      "club_win_probability": 0.481615,
       "neutral": true,
       "opponent": "Hawthorn",
-      "probability": 0.634558,
+      "probability": 0.633987,
       "venue": "M.C.G."
      },
      {
       "club_is_home": false,
-      "club_win_probability": 0.49031,
+      "club_win_probability": 0.489717,
       "neutral": true,
       "opponent": "Brisbane Lions",
-      "probability": 0.291518,
+      "probability": 0.292284,
       "venue": "M.C.G."
      },
      {
       "club_is_home": true,
-      "club_win_probability": 0.616679,
+      "club_win_probability": 0.616861,
       "neutral": true,
       "opponent": "Adelaide",
-      "probability": 0.056761,
+      "probability": 0.056607,
       "venue": "M.C.G."
      },
      {
       "club_is_home": true,
-      "club_win_probability": 0.701827,
+      "club_win_probability": 0.701986,
       "neutral": true,
       "opponent": "Western Bulldogs",
-      "probability": 0.017163,
+      "probability": 0.017122,
       "venue": "M.C.G."
      }
     ],
@@ -1314,15 +1314,15 @@
   "calibration": {
    "diagnostics": {
     "finals_holdout_games": 7,
-    "finals_holdout_rmse_points": 7.99,
+    "finals_holdout_rmse_points": 7.98,
     "margin_fit_from_round": 17,
     "margin_fit_games": 79,
     "margin_fit_r_squared": 0.933,
     "margin_fit_rmse_points": 6.44,
     "probability_fit_games": 214
    },
-   "home_ground_points": 3.5448,
-   "interstate_travel_points": 4.4508,
+   "home_ground_points": 3.5366,
+   "interstate_travel_points": 4.4665,
    "logit_per_point": 0.04701,
    "points_per_power_point": 1.683
   },
@@ -1330,7 +1330,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T08:07:17+00:00",
+  "fetched_at": "2026-09-05T08:21:52+00:00",
   "items": [
    {
     "about": [
@@ -1383,24 +1383,24 @@
  },
  "path_to_glory": {
   "final_step": {
-   "conditional_probability": 0.49547,
-   "cumulative_probability": 0.091828,
+   "conditional_probability": 0.495413,
+   "cumulative_probability": 0.09207,
    "node": "GF",
    "opponents": [
     {
-     "probability": 0.634555,
+     "probability": 0.633985,
      "team": "Hawthorn"
     },
     {
-     "probability": 0.291518,
+     "probability": 0.292284,
      "team": "Brisbane Lions"
     },
     {
-     "probability": 0.056763,
+     "probability": 0.056609,
      "team": "Adelaide"
     },
     {
-     "probability": 0.017164,
+     "probability": 0.017122,
      "team": "Western Bulldogs"
     }
    ],
@@ -1410,34 +1410,34 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.481417,
+     "club_win_probability": 0.481615,
      "neutral": true,
      "opponent": "Hawthorn",
-     "probability": 0.634558,
+     "probability": 0.633987,
      "venue": "M.C.G."
     },
     {
      "club_is_home": false,
-     "club_win_probability": 0.49031,
+     "club_win_probability": 0.489717,
      "neutral": true,
      "opponent": "Brisbane Lions",
-     "probability": 0.291518,
+     "probability": 0.292284,
      "venue": "M.C.G."
     },
     {
      "club_is_home": true,
-     "club_win_probability": 0.616679,
+     "club_win_probability": 0.616861,
      "neutral": true,
      "opponent": "Adelaide",
-     "probability": 0.056761,
+     "probability": 0.056607,
      "venue": "M.C.G."
     },
     {
      "club_is_home": true,
-     "club_win_probability": 0.701827,
+     "club_win_probability": 0.701986,
      "neutral": true,
      "opponent": "Western Bulldogs",
-     "probability": 0.017163,
+     "probability": 0.017122,
      "venue": "M.C.G."
     }
    ],
@@ -1451,9 +1451,9 @@
     "away": "Western Bulldogs",
     "away_probability": 0.3129,
     "away_score": null,
-    "club_if_away_wins": 0.091978,
-    "club_if_home_wins": 0.091761,
-    "club_swing": 0.000217,
+    "club_if_away_wins": 0.092216,
+    "club_if_home_wins": 0.092003,
+    "club_swing": 0.000213,
     "complete_percent": 0,
     "date": "2026-09-05 19:35:00",
     "game_id": 38722,
@@ -1478,9 +1478,9 @@
     "away": "Geelong",
     "away_probability": 0.3942,
     "away_score": null,
-    "club_if_away_wins": 0.232949,
+    "club_if_away_wins": 0.233561,
     "club_if_home_wins": 0.0,
-    "club_swing": 0.232949,
+    "club_swing": 0.233561,
     "complete_percent": 0,
     "date": "2026-09-12 19:20:00",
     "game_id": 38725,
@@ -1507,8 +1507,8 @@
   ],
   "games_in_progress": 0,
   "if_we_win": {
-   "conditional_probability": 0.470157,
-   "cumulative_probability": 0.185336,
+   "conditional_probability": 0.471447,
+   "cumulative_probability": 0.185844,
    "node": "PF2",
    "opponents": [
     {
@@ -1522,7 +1522,7 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.470157,
+     "club_win_probability": 0.471447,
      "neutral": false,
      "opponent": "Sydney",
      "probability": 1.0,
