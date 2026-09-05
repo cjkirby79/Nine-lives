@@ -25,8 +25,10 @@ not appear. If the betting market rated us below the models, the market card
 would vanish rather than spin it. If a rival is on a longer winning run, the
 page does not claim our form is the best left in the draw — it checks first.
 
-**Everything is written from the point of view of someone who wants Geelong to
-win.** Not just the case panel — the whole page. Other finals are framed as who
+**The whole page is biased towards Geelong, on purpose.** Wins carry the
+colour, losses sit back in grey. The marquee leads with premierships. Records
+are ordered scalps-first. Other finals are framed as who to barrack for. That
+is the brief: get the family up for the finals. Not just the case panel — the whole page. Other finals are framed as who
 to barrack for rather than as a swing table ("Get on Sydney, their win is worth
 1.2 points to us"). The bracket counts wins away rather than quoting
 probabilities. Head-to-head records lead with the sides we have beaten. And the

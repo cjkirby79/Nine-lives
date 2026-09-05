@@ -322,14 +322,18 @@
     if (!era) { strip.appendChild(gap("finals history not available")); return; }
 
     field("scott-range").textContent =
-      era.from_year + "–" + era.to_year + " · every final Geelong have played under him, " +
-      "counted from match records";
+      "Sixteen seasons, " + era.seasons_playing_finals + " finals campaigns, " +
+      "two flags. Not many clubs have had it this good for this long.";
 
     var overall = era.overall || {};
     var semis = (era.by_stage || []).filter(function (s) { return s.stage === "Semi-final"; })[0];
 
+    var flags = (era.by_stage || []).filter(function (s) {
+      return s.stage === "Grand Final";
+    })[0];
+
     var stats = [
-      { value: record(overall), label: "Finals record", tone: "" },
+      { value: flags ? flags.won : null, label: "Premierships", tone: "stat-strong" },
       { value: semis ? record(semis) : null, label: "In semi-finals", tone: "stat-strong" },
       { value: era.grand_finals_reached, label: "Grand Finals", tone: "" },
       { value: era.seasons_playing_finals, label: "Finals series", tone: "" }
@@ -345,15 +349,21 @@
       strip.appendChild(box);
     });
 
-    fillRecordList(field("scott-stages"), era.by_stage, function (row) {
-      return { label: row.stage, value: record(row), note: null };
-    });
+    fillRecordList(field("scott-stages"),
+      (era.by_stage || []).concat(overall.played
+        ? [{ stage: "Every final since 2011", won: overall.won,
+             lost: overall.lost, played: overall.played }]
+        : []),
+      function (row) {
+        return { label: row.stage, value: record(row), row: row };
+      });
 
     fillRecordList(field("scott-opponents"), era.against_live_teams, function (row) {
       return {
         label: row.team,
         value: row.played ? record(row) : "—",
-        note: row.played ? null : "never met in finals"
+        note: row.played ? null : "never met in finals",
+        row: row
       };
     });
 
@@ -388,7 +398,13 @@
         left.appendChild(el("span", "record-note", mapped.note));
       }
       item.appendChild(left);
-      item.appendChild(el("span", "record-value", mapped.value));
+      var value = el("span", "record-value", mapped.value);
+      if (mapped.row && mapped.row.played) {
+        value.setAttribute("data-tone",
+          mapped.row.won > mapped.row.lost ? "good"
+            : mapped.row.won === mapped.row.lost ? "level" : "quiet");
+      }
+      item.appendChild(value);
       list.appendChild(item);
     });
   }
