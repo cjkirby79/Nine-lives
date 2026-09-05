@@ -267,7 +267,65 @@ PRECEDENT_FROM = 2000        # as far back as Squiggle's archive reaches
 FINALS_HISTORY_FROM = 2000    # the full reach of Squiggle's archive
 
 
-def finals_head_to_head(club, club_id, order):
+def premiers_by_year():
+    """{year: premier}, from the cached precedent seasons."""
+    return {y: _precedent_season(y).get("premier")
+            for y in range(PRECEDENT_FROM, SEASON)}
+
+
+def in_our_defence(club, club_id, premiers):
+    """Context for the finals we lost, because bare records are unkind.
+
+    Nothing here excuses a defeat, and none of it is invented -- it is simply
+    the rest of what the scoreboard does not say. Team news is the one thing
+    genuinely missing: injuries and late outs are not in this data source at
+    all, so the page says that rather than guessing at it.
+    """
+    losses = []
+    for year in range(SCOTT_ERA_FROM, SEASON + 1):
+        if year == SEASON:
+            games = query("games", year=year, team=club_id)
+        else:
+            games = cached_query(
+                os.path.join(CACHE, f"games-{club}-{year}.json"),
+                "games", year=year, team=club_id)
+        for game in games:
+            if not (game.get("is_final") and game.get("complete") == 100):
+                continue
+            if game.get("winner") == club:
+                continue
+            at_home = game["hteam"] == club
+            opponent = game["ateam"] if at_home else game["hteam"]
+            losses.append({
+                "year": game["year"],
+                "opponent": opponent,
+                "margin": abs(game["hscore"] - game["ascore"]),
+                "at_home": at_home,
+                "to_eventual_premier": premiers.get(game["year"]) == opponent,
+            })
+
+    if not losses:
+        return None
+
+    to_premier = [l for l in losses if l["to_eventual_premier"]]
+    away = [l for l in losses if not l["at_home"]]
+    close = [l for l in losses if l["margin"] <= 12]
+    covered = [l for l in losses if l["to_eventual_premier"] or l["margin"] <= 12]
+
+    return {
+        "from_year": SCOTT_ERA_FROM,
+        "losses": len(losses),
+        "to_eventual_premier": len(to_premier),
+        "away_from_home": len(away),
+        "within_two_goals": len(close),
+        "premier_bound_or_close": len(covered),
+        "no_team_news": (
+            "Injuries and late outs are not in this data, so they are not "
+            "claimed here. Everything above is."),
+    }
+
+
+def finals_head_to_head(club, club_id, order, premiers):
     """Every final we have played against the sides still standing.
 
     Deliberately wider than the Chris Scott era: a 69-point semi-final win over
@@ -294,6 +352,7 @@ def finals_head_to_head(club, club_id, order):
             meetings[opponent].append({
                 "year": game["year"],
                 "unixtime": game.get("unixtime") or 0,
+                "opponent_won_flag": premiers.get(game["year"]) == opponent,
                 "stage": game.get("roundname"),
                 "venue": model.canonical_venue(game.get("venue")),
                 "at_home": at_home,
@@ -863,6 +922,8 @@ def collect():
     }
     case_cards = case.build_case(case_context)
 
+    premiers = premiers_by_year()
+
     # Next opponent first, then who we could meet in a prelim, then the rest.
     head_to_head_order = []
     if next_fixture:
@@ -911,7 +972,8 @@ def collect():
         "bracket": display_bracket,
         "field": field,
         "finals_head_to_head": finals_head_to_head(
-            CLUB, team_ids[CLUB], head_to_head_order),
+            CLUB, team_ids[CLUB], head_to_head_order, premiers),
+        "in_our_defence": in_our_defence(CLUB, team_ids[CLUB], premiers),
         "scott_era": era,
         "dominance": dominance_since(SCOTT_ERA_FROM, CLUB),
         "precedent": precedent_for_our_position(

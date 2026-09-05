@@ -567,6 +567,7 @@
     "biggest_win": {
      "at_home": true,
      "margin": 69,
+     "opponent_won_flag": false,
      "scott_era": false,
      "stage": "Semi-Finals",
      "unixtime": 1284111900,
@@ -579,6 +580,7 @@
      {
       "at_home": true,
       "margin": -15,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Finals Week 1",
       "unixtime": 1378527600,
@@ -589,6 +591,7 @@
      {
       "at_home": true,
       "margin": -16,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Finals Week 1",
       "unixtime": 1347097500,
@@ -599,6 +602,7 @@
      {
       "at_home": true,
       "margin": 69,
+      "opponent_won_flag": false,
       "scott_era": false,
       "stage": "Semi-Finals",
       "unixtime": 1284111900,
@@ -610,6 +614,7 @@
     "most_recent": {
      "at_home": true,
      "margin": -15,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Finals Week 1",
      "unixtime": 1378527600,
@@ -626,6 +631,7 @@
     "biggest_win": {
      "at_home": true,
      "margin": 81,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Grand Final",
      "unixtime": 1663993800,
@@ -638,6 +644,7 @@
      {
       "at_home": true,
       "margin": 81,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Grand Final",
       "unixtime": 1663993800,
@@ -648,6 +655,7 @@
      {
       "at_home": true,
       "margin": 59,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Semi-Finals",
       "unixtime": 1505469000,
@@ -658,6 +666,7 @@
      {
       "at_home": true,
       "margin": -37,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1474620600,
@@ -668,6 +677,7 @@
      {
       "at_home": false,
       "margin": -3,
+      "opponent_won_flag": true,
       "scott_era": false,
       "stage": "Semi-Finals",
       "unixtime": 1126260000,
@@ -679,6 +689,7 @@
     "most_recent": {
      "at_home": true,
      "margin": 81,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Grand Final",
      "unixtime": 1663993800,
@@ -695,6 +706,7 @@
     "biggest_win": {
      "at_home": true,
      "margin": 71,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Preliminary Finals",
      "unixtime": 1663321800,
@@ -707,6 +719,7 @@
      {
       "at_home": true,
       "margin": -47,
+      "opponent_won_flag": true,
       "scott_era": true,
       "stage": "Grand Final",
       "unixtime": 1758947400,
@@ -717,6 +730,7 @@
      {
       "at_home": true,
       "margin": 38,
+      "opponent_won_flag": true,
       "scott_era": true,
       "stage": "Finals Week 1",
       "unixtime": 1757065200,
@@ -727,6 +741,7 @@
      {
       "at_home": true,
       "margin": -10,
+      "opponent_won_flag": true,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1726902900,
@@ -737,6 +752,7 @@
      {
       "at_home": true,
       "margin": 71,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1663321800,
@@ -747,6 +763,7 @@
      {
       "at_home": false,
       "margin": 40,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1602924000,
@@ -757,6 +774,7 @@
      {
       "at_home": false,
       "margin": -9,
+      "opponent_won_flag": false,
       "scott_era": false,
       "stage": "Preliminary Finals",
       "unixtime": 1095499800,
@@ -768,6 +786,7 @@
     "most_recent": {
      "at_home": true,
      "margin": -47,
+     "opponent_won_flag": true,
      "scott_era": true,
      "stage": "Grand Final",
      "unixtime": 1758947400,
@@ -784,6 +803,7 @@
     "biggest_win": {
      "at_home": true,
      "margin": 31,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Finals Week 1",
      "unixtime": 1315561500,
@@ -796,6 +816,7 @@
      {
       "at_home": true,
       "margin": 30,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1758274800,
@@ -806,6 +827,7 @@
      {
       "at_home": true,
       "margin": 2,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Finals Week 1",
       "unixtime": 1473411000,
@@ -816,6 +838,7 @@
      {
       "at_home": false,
       "margin": -36,
+      "opponent_won_flag": true,
       "scott_era": true,
       "stage": "Finals Week 1",
       "unixtime": 1409910600,
@@ -826,6 +849,7 @@
      {
       "at_home": false,
       "margin": -5,
+      "opponent_won_flag": true,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1379670600,
@@ -836,6 +860,7 @@
      {
       "at_home": true,
       "margin": 31,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Finals Week 1",
       "unixtime": 1315561500,
@@ -846,6 +871,7 @@
      {
       "at_home": true,
       "margin": -26,
+      "opponent_won_flag": true,
       "scott_era": false,
       "stage": "Grand Final",
       "unixtime": 1222489800,
@@ -856,6 +882,7 @@
      {
       "at_home": true,
       "margin": -9,
+      "opponent_won_flag": false,
       "scott_era": false,
       "stage": "Finals Week 1",
       "unixtime": 965987100,
@@ -867,6 +894,7 @@
     "most_recent": {
      "at_home": true,
      "margin": 30,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Preliminary Finals",
      "unixtime": 1758274800,
@@ -886,6 +914,7 @@
      {
       "at_home": false,
       "margin": -61,
+      "opponent_won_flag": false,
       "scott_era": true,
       "stage": "Preliminary Finals",
       "unixtime": 1506073800,
@@ -897,6 +926,7 @@
     "most_recent": {
      "at_home": false,
      "margin": -61,
+     "opponent_won_flag": false,
      "scott_era": true,
      "stage": "Preliminary Finals",
      "unixtime": 1506073800,
@@ -913,6 +943,7 @@
     "biggest_win": {
      "at_home": true,
      "margin": 29,
+     "opponent_won_flag": false,
      "scott_era": false,
      "stage": "Preliminary Finals",
      "unixtime": 1221817200,
@@ -925,6 +956,7 @@
      {
       "at_home": true,
       "margin": 14,
+      "opponent_won_flag": false,
       "scott_era": false,
       "stage": "Finals Week 1",
       "unixtime": 1252125000,
@@ -935,6 +967,7 @@
      {
       "at_home": true,
       "margin": 29,
+      "opponent_won_flag": false,
       "scott_era": false,
       "stage": "Preliminary Finals",
       "unixtime": 1221817200,
@@ -946,6 +979,7 @@
     "most_recent": {
      "at_home": true,
      "margin": 14,
+     "opponent_won_flag": false,
      "scott_era": false,
      "stage": "Finals Week 1",
      "unixtime": 1252125000,
@@ -961,7 +995,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T07:28:22+00:00",
+ "generated_at": "2026-09-05T07:30:48+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1121,6 +1155,15 @@
    }
   ],
   "team": "Geelong"
+ },
+ "in_our_defence": {
+  "away_from_home": 9,
+  "from_year": 2011,
+  "losses": 17,
+  "no_team_news": "Injuries and late outs are not in this data, so they are not claimed here. Everything above is.",
+  "premier_bound_or_close": 10,
+  "to_eventual_premier": 8,
+  "within_two_goals": 4
  },
  "ladder": [
   {

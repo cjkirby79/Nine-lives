@@ -39,6 +39,14 @@ because the point of the page is Saturday.
 lands harder than 5–1, and the won–lost sits underneath it in small type so
 nothing is lost.
 
+**"In our defence"** is the generous read on the finals we lost, and all of it
+comes from the results rather than from wishful thinking: 8 of our 17 defeats
+since 2011 were to the side that went on to win the premiership, 9 were away
+from home, and 4 were by two goals or less. Individual defeats in the
+head-to-head lists carry the same context as a tag. Team news is the one
+excuse the page does not make — injuries and late outs are not in this data
+source, so it says so instead of guessing.
+
 **"September, and this lot"** is our finals record against every side still
 standing, back to 2000 rather than just the Scott era — a 69-point semi-final
 win over Fremantle in 2010 still happened. Ordered by when we could meet them,

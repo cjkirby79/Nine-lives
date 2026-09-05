@@ -365,6 +365,8 @@
                  note: recordDetail(row), row: row };
       });
 
+    renderDefence(state);
+
     var recent = field("scott-recent");
     recent.textContent = "";
     (era.recent || []).forEach(function (game) {
@@ -377,6 +379,50 @@
       recent.appendChild(item);
     });
     if (!(era.recent || []).length) recent.appendChild(el("li", null, "—"));
+  }
+
+  /* Bare records are unkind. This is the rest of what the scoreboard doesn't
+     say about the finals we lost -- all of it from the results themselves. */
+  function renderDefence(state) {
+    var d = state.in_our_defence;
+    var list = field("defence");
+    if (!list) return;
+    list.textContent = "";
+
+    if (!d || !d.losses) {
+      field("defence-note").textContent = "";
+      return;
+    }
+
+    [
+      // Noun phrases, so the row reads left to right: label, then count.
+      { label: "Losses to the side that won the flag that year",
+        count: d.to_eventual_premier,
+        note: "you can only lose to the best team in the competition so often "
+              + "before it stops being a flaw" },
+      { label: "Losses away from home",
+        count: d.away_from_home,
+        note: "September on the road is a different sport" },
+      { label: "Losses by two goals or less",
+        count: d.within_two_goals,
+        note: "a kick here or there and this page reads very differently" }
+    ].forEach(function (row) {
+      if (!row.count) return;
+      var item = document.createElement("li");
+      var left = el("span", null, row.label);
+      left.appendChild(document.createTextNode(" "));
+      left.appendChild(el("span", "record-note", row.note));
+      item.appendChild(left);
+      var value = el("span", "record-value", row.count + " of " + d.losses);
+      value.setAttribute("data-tone", "level");
+      item.appendChild(value);
+      list.appendChild(item);
+    });
+
+    field("defence-note").textContent =
+      d.premier_bound_or_close + " of our " + d.losses + " finals defeats since " +
+      d.from_year + " came against the eventual premier or by less than two " +
+      "goals. " + (d.no_team_news || "");
   }
 
   function fillRecordList(list, rows, shape) {
@@ -489,11 +535,22 @@
         var item = document.createElement("li");
         item.setAttribute("data-won", String(game.won));
         item.appendChild(el("span", "m-year", game.year));
-        item.appendChild(el("span", null,
+        var where = el("span", null,
           (game.stage || "").replace("Finals Week 1", "Week 1 final")
             .replace("Preliminary Finals", "Preliminary final")
             .replace("Semi-Finals", "Semi-final") +
-          " · " + game.venue));
+          " · " + game.venue);
+        // Say what the scoreboard leaves out about a defeat.
+        if (!game.won) {
+          if (game.opponent_won_flag) {
+            where.appendChild(document.createTextNode(" "));
+            where.appendChild(el("span", "tag tag-warn", "they won the flag"));
+          } else if (!game.at_home) {
+            where.appendChild(document.createTextNode(" "));
+            where.appendChild(el("span", "tag tag-warn", "away"));
+          }
+        }
+        item.appendChild(where);
         item.appendChild(el("span", "m-margin",
           (game.margin > 0 ? "+" : "") + game.margin));
         list.appendChild(item);
