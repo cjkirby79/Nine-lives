@@ -21,7 +21,7 @@ BASE = "https://api.squiggle.com.au/"
 # Squiggle asks for a UserAgent identifying the app and carrying a contact address.
 USER_AGENT = (
     "Nine-Lives/1.0 "
-    "(+https://github.com/cjkirby79/nine-lives; clark.kirby@proton.me)"
+    "(+https://github.com/cjkirby79/Nine-lives; clark.kirby@proton.me)"
 )
 
 MIN_INTERVAL_SECONDS = 1.5

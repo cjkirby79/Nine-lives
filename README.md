@@ -2,7 +2,7 @@
 
 Geelong's chances of winning the 2026 AFL Grand Final, refreshed every half hour.
 
-**Live site:** https://cjkirby79.github.io/nine-lives/
+**Live site:** https://cjkirby79.github.io/Nine-lives/
 
 This is phase one: a working pipeline showing a small amount of real data, not the
 full feature set. What's deliberately left out is listed at the bottom.

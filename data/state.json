@@ -48,7 +48,7 @@
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 39,
+   "home_score": 40,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -161,7 +161,7 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T05:38:05+00:00",
+ "generated_at": "2026-09-05T05:40:35+00:00",
  "headline": {
   "probability": 0.083431,
   "reaches_grand_final": 0.165874,
