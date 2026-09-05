@@ -589,7 +589,8 @@
 
     var note = $('[data-field="live-note"]');
     if (path.live_disclaimer) {
-      note.textContent = path.live_disclaimer;
+      note.textContent = "Football is on right now. These prices were set "
+        + "before the bounce, so they don't know what's happening out there yet.";
       note.hidden = false;
     } else {
       note.hidden = true;
@@ -614,6 +615,10 @@
         : "If we win";
     renderScenarios(field("if-win"), next, club,
       "Nothing after this — it's the last game.");
+    if (next) {
+      field("if-win-note").textContent =
+        "Both are on the road, and we would take either of them.";
+    }
 
     var last = path.final_step;
     renderScenarios(field("final-scenarios"),
@@ -694,21 +699,21 @@
       if (typeof fixture.club_if_home_wins === "number") {
         var impact = el("div", "fx-impact");
         if (fixture.involves_club) {
-          var ifWeWin = fixture.home === club
-            ? fixture.club_if_home_wins : fixture.club_if_away_wins;
-          impact.appendChild(document.createTextNode("Win this and we are "));
-          impact.appendChild(el("b", null, percent(ifWeWin)));
+          impact.appendChild(document.createTextNode("This is the one. Win it "));
+          impact.appendChild(el("b", null, "and we are into a preliminary final"));
           impact.appendChild(document.createTextNode(
-            " for the flag. Everything is still in front of us."));
+            ", with everything still in front of us."));
+        } else if (fixture.we_want) {
+          // What a supporter actually wants to know: who are we barracking for?
+          impact.appendChild(document.createTextNode("Get on "));
+          impact.appendChild(el("b", null, fixture.we_want));
+          impact.appendChild(document.createTextNode(
+            ". Their win is the one that helps us — worth " +
+            (fixture.club_swing * 100).toFixed(1) +
+            " points to our chances."));
         } else {
           impact.appendChild(document.createTextNode(
-            fixture.home + " win → " + club + " " +
-            percent(fixture.club_if_home_wins) + "  ·  " +
-            fixture.away + " win → " + percent(fixture.club_if_away_wins) + "  "));
-          var swing = fixture.club_swing * 100;
-          // "0.0pp swing" reads like a broken number rather than a small one.
-          impact.appendChild(el("b", null,
-            swing < 0.1 ? "barely moves us" : swing.toFixed(1) + "pp swing"));
+            "Doesn't matter a jot to us. Put your feet up and enjoy it."));
         }
         item.appendChild(impact);
       }
@@ -734,9 +739,18 @@
       var meta = el("div", "sc-meta");
       meta.appendChild(document.createTextNode(
         (scenario.venue || "venue unknown") + " · " +
-        (scenario.neutral ? "neutral"
-          : scenario.club_is_home ? "home" : "away") + " · we'd be "));
-      meta.appendChild(el("b", null, percent(scenario.club_win_probability)));
+        (scenario.neutral ? "neutral deck"
+          : scenario.club_is_home ? "at home" : "on the road") + " · "));
+      // Say it the way a supporter would: what we make of our chances.
+      var ours = scenario.club_win_probability;
+      meta.appendChild(document.createTextNode(
+        ours >= 0.55 ? "and we'd start favourite, "
+          : ours >= 0.45 ? "and it's a coin toss, "
+          : "and we'd go in as underdogs at "));
+      meta.appendChild(el("b", null, percent(ours)));
+      if (ours < 0.45) {
+        meta.appendChild(document.createTextNode(" — which suits us fine"));
+      }
       item.appendChild(meta);
 
       list.appendChild(item);
@@ -777,12 +791,14 @@
           meta.appendChild(document.createTextNode(" "));
           meta.appendChild(el("span", "tag tag-warn", "provisional"));
         }
+      } else if (typeof row.club_wins_away === "number") {
+        meta.appendChild(document.createTextNode(
+          row.club_wins_away === 0
+            ? "This is ours to win"
+            : plural(row.club_wins_away, "win") + " away"));
       } else if (typeof row.club_appearance_probability === "number") {
         meta.appendChild(document.createTextNode(
-          row.club_appearance_probability < 1e-9
-            ? "not on " + state.club + "'s side of the draw"
-            : state.club + " reach this " +
-              percent(row.club_appearance_probability) + " of the time"));
+          "not on " + state.club + "'s side of the draw"));
       }
       item.appendChild(meta);
       list.appendChild(item);

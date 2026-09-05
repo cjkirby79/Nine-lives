@@ -25,6 +25,14 @@ not appear. If the betting market rated us below the models, the market card
 would vanish rather than spin it. If a rival is on a longer winning run, the
 page does not claim our form is the best left in the draw — it checks first.
 
+**Everything is written from the point of view of someone who wants Geelong to
+win.** Not just the case panel — the whole page. Other finals are framed as who
+to barrack for rather than as a swing table ("Get on Sydney, their win is worth
+1.2 points to us"). The bracket counts wins away rather than quoting
+probabilities. Head-to-head records lead with the sides we have beaten. And the
+Grand Final scenarios are folded away behind a "Dare to look further?" toggle,
+because the point of the page is Saturday.
+
 **One game at a time.** The page leads with the bookmakers' price for the next
 match and then argues that it is light. It deliberately does not put a
 premiership probability anywhere near the top — a number describing five weeks

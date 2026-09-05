@@ -44,11 +44,11 @@
   },
   {
    "away": "Brisbane Lions",
-   "away_score": 38,
+   "away_score": 45,
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 68,
+   "home_score": 75,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -104,6 +104,7 @@
   {
    "away": null,
    "club_appearance_probability": 0.0,
+   "club_wins_away": null,
    "home": null,
    "node": "SF2",
    "stage": "Semi-final"
@@ -111,6 +112,7 @@
   {
    "away": null,
    "club_appearance_probability": 0.0,
+   "club_wins_away": null,
    "home": null,
    "node": "PF1",
    "stage": "Preliminary final"
@@ -118,6 +120,7 @@
   {
    "away": null,
    "club_appearance_probability": 0.3804,
+   "club_wins_away": 1,
    "home": null,
    "node": "PF2",
    "stage": "Preliminary final"
@@ -125,6 +128,7 @@
   {
    "away": null,
    "club_appearance_probability": 0.165595,
+   "club_wins_away": 2,
    "home": null,
    "node": "GF",
    "stage": "Grand Final"
@@ -235,7 +239,7 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T06:50:39+00:00",
+ "generated_at": "2026-09-05T06:54:59+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -682,16 +686,16 @@
    {
     "away": "Brisbane Lions",
     "away_probability": 0.4939,
-    "away_score": 38,
+    "away_score": 45,
     "club_if_away_wins": 0.077093,
     "club_if_home_wins": 0.089485,
     "club_swing": 0.012392,
-    "complete_percent": 51,
+    "complete_percent": 55,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
     "home_probability": 0.5061,
-    "home_score": 68,
+    "home_score": 75,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 15:15:00",
@@ -701,9 +705,10 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "Q3  1:35",
+    "time_string": "Q3  6:53",
     "timezone": "+10:00",
-    "venue": "S.C.G."
+    "venue": "S.C.G.",
+    "we_want": "Sydney"
    },
    {
     "away": "Western Bulldogs",
@@ -729,7 +734,8 @@
     "start_utc": "2026-09-05T09:35:00Z",
     "time_string": null,
     "timezone": "+10:00",
-    "venue": "Adelaide Oval"
+    "venue": "Adelaide Oval",
+    "we_want": null
    },
    {
     "away": "Geelong",
@@ -758,7 +764,8 @@
     "start_utc": "2026-09-12T09:20:00Z",
     "time_string": null,
     "timezone": "+10:00",
-    "venue": "M.C.G."
+    "venue": "M.C.G.",
+    "we_want": "Geelong"
    }
   ],
   "games_in_progress": 1,
@@ -854,9 +861,9 @@
     "won": 2
    },
    {
-    "lost": 2,
-    "played": 2,
-    "team": "Fremantle",
+    "lost": 0,
+    "played": 0,
+    "team": "Western Bulldogs",
     "won": 0
    },
    {
@@ -866,9 +873,9 @@
     "won": 0
    },
    {
-    "lost": 0,
-    "played": 0,
-    "team": "Western Bulldogs",
+    "lost": 2,
+    "played": 2,
+    "team": "Fremantle",
     "won": 0
    }
   ],

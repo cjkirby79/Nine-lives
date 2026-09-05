@@ -879,6 +879,25 @@ main { margin-top: 1rem; }
 .sc-meta { font-size: .73rem; color: var(--dimmer); }
 .sc-meta b { color: var(--dim); font-weight: 700; }
 
+/* Tucked away, because the point of the page is Saturday. */
+.further { margin: .4rem 0 1.4rem; }
+.further > summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-block;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--dim);
+  padding: .5rem .9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.further > summary::-webkit-details-marker { display: none; }
+.further > summary:hover { color: var(--white); border-color: var(--cat); }
+.further[open] > summary { margin-bottom: .6rem; }
+
 /* --- bracket ----------------------------------------------------------- */
 
 .bracket { list-style: none; margin: 0; padding: 0; }

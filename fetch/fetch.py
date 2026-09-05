@@ -138,10 +138,17 @@ def scott_era_record(club, club_id, live_teams):
             for venue, rows in sorted(by_venue.items(), key=lambda kv: -len(kv[1]))
         ],
         # Only clubs still alive in this year's series -- the ones that matter.
-        "against_live_teams": [
-            {"team": team, **tally(by_opponent.get(team, []))}
-            for team in live_teams if team != club
-        ],
+        # Ordered by how we have gone against them rather than by how good they
+        # are: a supporter leads with the scalps, not with the bogey side.
+        "against_live_teams": sorted(
+            ({"team": team, **tally(by_opponent.get(team, []))}
+             for team in live_teams if team != club),
+            key=lambda row: (
+                0 if row["won"] > row["lost"] else (1 if not row["played"] else 2),
+                -(row["won"] - row["lost"]),
+                -row["won"],
+            ),
+        ),
         "recent": [
             {
                 "year": g["year"],
@@ -377,6 +384,17 @@ def collect():
                 pass
         row.pop("unixtime", None)
 
+        # Which way we want it to go. Below about a tenth of a point the
+        # honest answer is that it makes no difference to us.
+        if row["involves_club"]:
+            row["we_want"] = CLUB
+        elif row["club_swing"] * 100 < 0.1:
+            row["we_want"] = None
+        else:
+            row["we_want"] = (row["home"]
+                              if row["club_if_home_wins"] > row["club_if_away_wins"]
+                              else row["away"])
+
     steps = report["steps"]
     live_now = [f for f in fixtures if f.get("in_progress")]
     path_to_glory = {
@@ -416,10 +434,15 @@ def collect():
                 "provisional_reasons": fixture_provisionality(game, finals_games) if game and game.get("complete") != 100 else [],
             })
         else:
+            # How many more wins until we are in this one. Reads better than a
+            # probability to anyone who just wants to know what has to happen.
+            step_nodes = [step["node"] for step in steps]
             entry.update({
                 "home": None, "away": None,
                 "club_appearance_probability": round(
                     outcomes["appear"][node].get(CLUB, 0.0), 6),
+                "club_wins_away": (
+                    step_nodes.index(node) if node in step_nodes else None),
             })
         if node in known:
             state[node] = known[node]
