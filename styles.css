@@ -786,6 +786,49 @@ main { margin-top: 1rem; }
 
 .experts li[data-market="true"] .expert-value { color: var(--warn); }
 
+/* --- comparison boards --------------------------------------------------- */
+
+.boards { display: grid; gap: 1rem; }
+@media (min-width: 620px) {
+  .boards { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+}
+
+.board {
+  padding: .85rem .9rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: rgba(255, 255, 255, .025);
+}
+.board-title {
+  margin: 0 0 .1rem;
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+.board-verdict {
+  margin: 0 0 .55rem;
+  font-size: .74rem;
+  font-weight: 700;
+  color: var(--good);
+}
+.board-verdict[data-top="false"] { color: var(--dim); }
+
+.board ol { list-style: none; margin: 0; padding: 0; }
+.board li {
+  display: grid;
+  grid-template-columns: 1.8rem 1fr auto;
+  gap: .5rem;
+  padding: .3rem 0;
+  font-size: .82rem;
+  color: var(--dim);
+}
+.board li[data-club="true"] { color: var(--cat); font-weight: 800; }
+.board .board-pos { font-size: .7rem; color: var(--dimmer); font-variant-numeric: tabular-nums; }
+.board li[data-club="true"] .board-pos { color: var(--cat); }
+.board .board-value { font-variant-numeric: tabular-nums; font-weight: 700; }
+
 /* --- the case ------------------------------------------------------------ */
 
 .case { list-style: none; margin: 0; padding: 0; counter-reset: case; }

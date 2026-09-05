@@ -48,7 +48,7 @@
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 82,
+   "home_score": 83,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -154,10 +154,10 @@
   {
    "detail": "Six times he has taken a side into a semi-final. Five times he has walked off with it. This is the game Chris Scott does not lose — and it is exactly the game sitting in front of us.",
    "id": "semi_final_pedigree",
-   "label": "in semi-finals under Chris Scott",
+   "label": "win rate in semi-finals under Chris Scott",
    "priority": 95,
    "source": "Every final Geelong have played since 2011, from match records",
-   "stat": "5–1"
+   "stat": "83%"
   },
   {
    "detail": "Beaten by Hawthorn in their own backyard at Perth Stadium. The minor premiers come into this bruised, doubting, one loss from the off-season. We come into it off a win, with the handbrake off.",
@@ -202,10 +202,10 @@
   {
    "detail": "We have met these sides in September before and walked off winners more often than not. None of them are ghosts. None of them frighten us.",
    "id": "finals_form_against_the_field",
-   "label": "in finals against Hawthorn, Brisbane Lions and Sydney",
+   "label": "win rate in finals against Hawthorn, Brisbane Lions and Sydney",
    "priority": 60,
    "source": "Geelong finals results since 2011, from match records",
-   "stat": "8–5"
+   "stat": "62%"
   }
  ],
  "club": "Geelong",
@@ -213,6 +213,8 @@
   "club": {
    "finals": 34,
    "finals_series": 14,
+   "finals_win_rate": 0.5,
+   "finals_won": 17,
    "flags": 2,
    "grand_finals": 4,
    "lost": 120,
@@ -223,9 +225,109 @@
   },
   "clubs_compared": 18,
   "from_year": 2011,
+  "leaderboards": [
+   {
+    "key": "finals_series",
+    "label": "Finals campaigns",
+    "our_rank": 1,
+    "rows": [
+     {
+      "position": 1,
+      "shared": false,
+      "team": "Geelong",
+      "value": 14
+     },
+     {
+      "position": 2,
+      "shared": false,
+      "team": "Sydney",
+      "value": 12
+     },
+     {
+      "position": 3,
+      "shared": true,
+      "team": "Collingwood",
+      "value": 10
+     },
+     {
+      "position": 3,
+      "shared": true,
+      "team": "Hawthorn",
+      "value": 10
+     }
+    ],
+    "unit": "seasons"
+   },
+   {
+    "key": "finals_won",
+    "label": "Finals won",
+    "our_rank": 1,
+    "rows": [
+     {
+      "position": 1,
+      "shared": false,
+      "team": "Geelong",
+      "value": 17
+     },
+     {
+      "position": 2,
+      "shared": false,
+      "team": "Hawthorn",
+      "value": 16
+     },
+     {
+      "position": 3,
+      "shared": false,
+      "team": "Sydney",
+      "value": 14
+     },
+     {
+      "position": 4,
+      "shared": true,
+      "team": "Brisbane Lions",
+      "value": 12
+     }
+    ],
+    "unit": "wins"
+   },
+   {
+    "key": "flags",
+    "label": "Premierships",
+    "our_rank": 3,
+    "rows": [
+     {
+      "position": 1,
+      "shared": true,
+      "team": "Hawthorn",
+      "value": 3
+     },
+     {
+      "position": 1,
+      "shared": true,
+      "team": "Richmond",
+      "value": 3
+     },
+     {
+      "position": 3,
+      "shared": true,
+      "team": "Brisbane Lions",
+      "value": 2
+     },
+     {
+      "position": 3,
+      "shared": true,
+      "team": "Geelong",
+      "value": 2
+     }
+    ],
+    "unit": "flags"
+   }
+  ],
   "next_best": {
    "finals": 28,
    "finals_series": 12,
+   "finals_win_rate": 0.5,
+   "finals_won": 14,
    "flags": 1,
    "grand_finals": 5,
    "lost": 138,
@@ -237,6 +339,7 @@
   "ranks": {
    "finals": 1,
    "finals_series": 1,
+   "finals_won": 1,
    "flags": 3,
    "grand_finals": 2,
    "win_rate": 1
@@ -245,6 +348,8 @@
    {
     "finals": 34,
     "finals_series": 14,
+    "finals_win_rate": 0.5,
+    "finals_won": 17,
     "flags": 2,
     "grand_finals": 4,
     "lost": 120,
@@ -256,6 +361,8 @@
    {
     "finals": 28,
     "finals_series": 12,
+    "finals_win_rate": 0.5,
+    "finals_won": 14,
     "flags": 1,
     "grand_finals": 5,
     "lost": 138,
@@ -267,6 +374,8 @@
    {
     "finals": 26,
     "finals_series": 10,
+    "finals_win_rate": 0.6154,
+    "finals_won": 16,
     "flags": 3,
     "grand_finals": 4,
     "lost": 145,
@@ -278,6 +387,8 @@
    {
     "finals": 24,
     "finals_series": 10,
+    "finals_win_rate": 0.5,
+    "finals_won": 12,
     "flags": 1,
     "grand_finals": 3,
     "lost": 149,
@@ -289,6 +400,8 @@
    {
     "finals": 13,
     "finals_series": 7,
+    "finals_win_rate": 0.3846,
+    "finals_won": 5,
     "flags": 0,
     "grand_finals": 1,
     "lost": 166,
@@ -300,6 +413,8 @@
    {
     "finals": 15,
     "finals_series": 7,
+    "finals_win_rate": 0.4,
+    "finals_won": 6,
     "flags": 0,
     "grand_finals": 0,
     "lost": 176,
@@ -311,6 +426,8 @@
    {
     "finals": 12,
     "finals_series": 5,
+    "finals_win_rate": 0.4167,
+    "finals_won": 5,
     "flags": 0,
     "grand_finals": 1,
     "lost": 174,
@@ -322,6 +439,8 @@
    {
     "finals": 14,
     "finals_series": 8,
+    "finals_win_rate": 0.5714,
+    "finals_won": 8,
     "flags": 1,
     "grand_finals": 2,
     "lost": 177,
@@ -423,7 +542,7 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T07:05:24+00:00",
+ "generated_at": "2026-09-05T07:09:05+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -874,12 +993,12 @@
     "club_if_away_wins": 0.077093,
     "club_if_home_wins": 0.089485,
     "club_swing": 0.012392,
-    "complete_percent": 63,
+    "complete_percent": 67,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
     "home_probability": 0.5061,
-    "home_score": 82,
+    "home_score": 83,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 15:15:00",
@@ -889,7 +1008,7 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "Q3 16:38",
+    "time_string": "Q3 20:53",
     "timezone": "+10:00",
     "venue": "S.C.G.",
     "we_want": "Sydney"

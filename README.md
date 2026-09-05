@@ -35,6 +35,10 @@ probabilities. Head-to-head records lead with the sides we have beaten. And the
 Grand Final scenarios are folded away behind a "Dare to look further?" toggle,
 because the point of the page is Saturday.
 
+**Records are shown as win rates, not won–lost lines.** 83% in semi-finals
+lands harder than 5–1, and the won–lost sits underneath it in small type so
+nothing is lost.
+
 **Not a betting site.** The headline is the tipping panel's consensus, not a
 bookmaker price. The market gets one line, last, in a panel of expert opinion,
 and there are no bookmaker links anywhere. The weight sits on history and form.

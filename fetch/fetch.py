@@ -224,7 +224,7 @@ def _season_summary(year):
     per club. Completed seasons never change, so the summary is derived once and
     kept; the current season is recomputed every run.
     """
-    path = os.path.join(CACHE, f"summary-{year}.json")
+    path = os.path.join(CACHE, f"summary-v2-{year}.json")
     if year < SEASON and os.path.exists(path):
         cached = read_json(path, None)
         if cached:
@@ -235,7 +235,7 @@ def _season_summary(year):
 
     def row(team):
         return summary.setdefault(team, {
-            "played": 0, "won": 0, "finals": 0,
+            "played": 0, "won": 0, "finals": 0, "finals_won": 0,
             "grand_finals": 0, "flags": 0, "played_finals": 0,
         })
 
@@ -251,6 +251,8 @@ def _season_summary(year):
             if game.get("is_grand_final"):
                 entry["grand_finals"] += 1
         row(game["winner"])["won"] += 1
+        if game.get("is_final"):
+            row(game["winner"])["finals_won"] += 1
         if game.get("is_grand_final"):
             row(game["winner"])["flags"] += 1
 
@@ -269,10 +271,11 @@ def dominance_since(from_year, club):
     for year in range(from_year, SEASON + 1):
         for team, counters in _season_summary(year).items():
             entry = totals.setdefault(team, {
-                "played": 0, "won": 0, "finals": 0,
+                "played": 0, "won": 0, "finals": 0, "finals_won": 0,
                 "grand_finals": 0, "flags": 0, "finals_series": 0,
             })
-            for key in ("played", "won", "finals", "grand_finals", "flags"):
+            for key in ("played", "won", "finals", "finals_won",
+                        "grand_finals", "flags"):
                 entry[key] += counters.get(key, 0)
             entry["finals_series"] += counters.get("played_finals", 0)
 
@@ -287,21 +290,55 @@ def dominance_since(from_year, club):
             "lost": entry["played"] - entry["won"],
             "win_rate": round(entry["won"] / entry["played"], 4),
             "finals": entry["finals"],
+            "finals_won": entry["finals_won"],
+            "finals_win_rate": round(
+                entry["finals_won"] / entry["finals"], 4) if entry["finals"] else 0.0,
             "finals_series": entry["finals_series"],
             "grand_finals": entry["grand_finals"],
             "flags": entry["flags"],
         })
     table.sort(key=lambda row: -row["win_rate"])
 
+    def position_of(value, key):
+        """Competition ranking: clubs level on a count share the better place.
+
+        Two clubs on three premierships are both third, not third and fourth,
+        and a rank computed one way while the list is ordered another is how
+        you end up telling someone they are third in a table that shows them
+        fourth.
+        """
+        return 1 + sum(1 for row in table if row[key] > value)
+
     def rank_by(key):
-        ordered = sorted(table, key=lambda row: -row[key])
-        for position, row in enumerate(ordered, 1):
-            if row["team"] == club:
-                return position
-        return None
+        us_row = next((row for row in table if row["team"] == club), None)
+        return position_of(us_row[key], key) if us_row else None
 
     us = next((row for row in table if row["team"] == club), None)
     runner_up = next((row for row in table if row["team"] != club), None)
+
+    def leaderboard(key, label, unit):
+        ordered = sorted(table, key=lambda row: (-row[key], row["team"]))
+        top = ordered[:4]
+        if not any(row["team"] == club for row in top):
+            us_row = next((r for r in ordered if r["team"] == club), None)
+            if us_row:
+                top = top[:3] + [us_row]
+        return {
+            "key": key,
+            "label": label,
+            "unit": unit,
+            "our_rank": rank_by(key),
+            "rows": [
+                {
+                    "team": row["team"],
+                    "value": row[key],
+                    "position": position_of(row[key], key),
+                    "shared": sum(1 for other in table
+                                  if other[key] == row[key]) > 1,
+                }
+                for row in top
+            ],
+        }
 
     return {
         "from_year": from_year,
@@ -312,10 +349,16 @@ def dominance_since(from_year, club):
         "ranks": {
             "win_rate": rank_by("win_rate"),
             "finals": rank_by("finals"),
+            "finals_won": rank_by("finals_won"),
             "finals_series": rank_by("finals_series"),
             "grand_finals": rank_by("grand_finals"),
             "flags": rank_by("flags"),
         },
+        "leaderboards": [
+            leaderboard("finals_series", "Finals campaigns", "seasons"),
+            leaderboard("finals_won", "Finals won", "wins"),
+            leaderboard("flags", "Premierships", "flags"),
+        ],
         "clubs_compared": len(table),
     }
 

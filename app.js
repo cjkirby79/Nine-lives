@@ -36,8 +36,14 @@
     return (value * 100).toFixed(places === undefined ? 1 : places) + "%";
   }
 
+  /** A win rate reads harder than a won-lost line: 83% beats 5–1. */
   function record(row) {
-    if (!row || !row.played) return "0–0";
+    if (!row || !row.played) return "—";
+    return Math.round((row.won / row.played) * 100) + "%";
+  }
+
+  function recordDetail(row) {
+    if (!row || !row.played) return null;
     return row.won + "–" + row.lost;
   }
 
@@ -334,7 +340,7 @@
 
     var stats = [
       { value: flags ? flags.won : null, label: "Premierships", tone: "stat-strong" },
-      { value: semis ? record(semis) : null, label: "In semi-finals", tone: "stat-strong" },
+      { value: semis ? record(semis) : null, label: "Semi-finals won", tone: "stat-strong" },
       { value: era.grand_finals_reached, label: "Grand Finals", tone: "" },
       { value: era.seasons_playing_finals, label: "Finals series", tone: "" }
     ];
@@ -355,14 +361,15 @@
              lost: overall.lost, played: overall.played }]
         : []),
       function (row) {
-        return { label: row.stage, value: record(row), row: row };
+        return { label: row.stage, value: record(row),
+                 note: recordDetail(row), row: row };
       });
 
     fillRecordList(field("scott-opponents"), era.against_live_teams, function (row) {
       return {
         label: row.team,
         value: row.played ? record(row) : "—",
-        note: row.played ? null : "never met in finals",
+        note: row.played ? recordDetail(row) : "never met in finals",
         row: row
       };
     });
@@ -463,6 +470,51 @@
         " points back over fifteen years. That is not a hot streak. " +
         "That is a dynasty, and it has not finished yet.";
     }
+
+    renderBoards(d, state.club);
+  }
+
+  function renderBoards(dominance, club) {
+    var host = field("greatest-boards");
+    host.textContent = "";
+
+    (dominance.leaderboards || []).forEach(function (board) {
+      var box = el("div", "board");
+      box.appendChild(el("p", "board-title", board.label));
+
+      // "Number 3 in the league" undersells being level on the count and one
+      // off the lead. Say how close it actually is.
+      var ourRow = board.rows.filter(function (r) { return r.team === club; })[0];
+      var leader = board.rows[0];
+      var text;
+      if (board.our_rank === 1) {
+        text = "No club has more";
+      } else if (ourRow && leader) {
+        var place = ordinal(board.our_rank);
+        var behind = plural(leader.value - ourRow.value,
+                            board.unit.replace(/s$/, ""));
+        text = (ourRow.shared ? "Equal " + place : place) +
+          " — " + behind + " off the lead";
+      } else {
+        text = "Number " + board.our_rank + " in the league";
+      }
+      var verdict = el("p", "board-verdict", text);
+      verdict.setAttribute("data-top", String(board.our_rank === 1));
+      box.appendChild(verdict);
+
+      var list = document.createElement("ol");
+      board.rows.forEach(function (row) {
+        var item = document.createElement("li");
+        item.setAttribute("data-club", String(row.team === club));
+        item.appendChild(el("span", "board-pos",
+          (row.shared ? "=" : "") + row.position));
+        item.appendChild(el("span", null, row.team));
+        item.appendChild(el("span", "board-value", row.value));
+        list.appendChild(item);
+      });
+      box.appendChild(list);
+      host.appendChild(box);
+    });
   }
 
   // ---- what the tipsters make of it -------------------------------------

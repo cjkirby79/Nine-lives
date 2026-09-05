@@ -29,7 +29,10 @@ def _the(venue):
 
 
 def _record(row):
-    return f"{row['won']}–{row['lost']}"
+    """A win rate rather than a won-lost line -- 83% lands harder than 5–1."""
+    if not row.get("played"):
+        return "—"
+    return f"{round(row['won'] / row['played'] * 100)}%"
 
 
 def semi_final_pedigree(ctx):
@@ -43,7 +46,7 @@ def semi_final_pedigree(ctx):
     return {
         "id": "semi_final_pedigree",
         "stat": _record(row),
-        "label": "in semi-finals under Chris Scott",
+        "label": "win rate in semi-finals under Chris Scott",
         "detail": f"Six times he has taken a side into a semi-final. "
                   f"Five times he has walked off with it. This is the game "
                   "Chris Scott does not lose — and it is exactly the game "
@@ -153,11 +156,11 @@ def finals_form_against_the_field(ctx):
     names = [row["team"] for row in winning]
     listed = ", ".join(names[:-1]) + " and " + names[-1]
     combined_won = sum(row["won"] for row in winning)
-    combined_lost = sum(row["lost"] for row in winning)
+    combined_played = sum(row["played"] for row in winning)
     return {
         "id": "finals_form_against_the_field",
-        "stat": f"{combined_won}–{combined_lost}",
-        "label": f"in finals against {listed}",
+        "stat": f"{round(combined_won / combined_played * 100)}%",
+        "label": f"win rate in finals against {listed}",
         "detail": "We have met these sides in September before and walked off "
                   "winners more often than not. None of them are ghosts. None "
                   "of them frighten us.",
@@ -246,7 +249,7 @@ def finals_at_this_ground(ctx):
     return {
         "id": "finals_at_this_ground",
         "stat": _record(row),
-        "label": f"in finals at {_the(venue)} under Chris Scott",
+        "label": f"win rate in finals at {_the(venue)} under Chris Scott",
         "detail": "We have been here in September plenty of times, and walked "
                   "off happy more often than not. The ground holds no fear.",
         "source": "Geelong finals results since 2011, from match records",
