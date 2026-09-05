@@ -39,10 +39,12 @@ because the point of the page is Saturday.
 lands harder than 5–1, and the won–lost sits underneath it in small type so
 nothing is lost.
 
-**"Word from the club"** is team news, pulled from AFL.com.au's public RSS feed
-(`https://www.afl.com.au/rss`) — the one thing in the original brief that
-Squiggle cannot provide. Items are matched to clubs still in the finals and
-tagged as team news by keyword.
+**"Word from the club"** is Geelong news, pulled from AFL.com.au's public RSS
+feed (`https://www.afl.com.au/rss`) — the one thing in the original brief that
+Squiggle cannot provide. Only stories about us: no club-specific feed exists
+(the club site refuses us and afl.com.au ignores a `?club=` parameter), so this
+filters the league-wide feed of the twenty latest stories. Some days that is
+several items, some days one.
 
 Two things matter about how it is built. It is **isolated**: a public RSS
 endpoint on a marketing site is the least reliable thing here and the most

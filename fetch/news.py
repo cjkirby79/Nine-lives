@@ -124,8 +124,15 @@ class NewsUnavailable(RuntimeError):
     """The feed could not be read. Never fatal to the rest of the site."""
 
 
-def fetch(user_agent, club, next_opponent, live_teams, limit=8):
-    """Return items relevant to our campaign, most relevant first.
+def fetch(user_agent, club, next_opponent, live_teams, limit=10):
+    """Return items about our club, most relevant first.
+
+    Geelong only. There is no club-specific feed to use -- the club site
+    refuses us and afl.com.au ignores a ?club= parameter -- so this is the
+    league-wide feed of the twenty latest stories, filtered down. That means
+    the number of items varies with how much has been written about us lately,
+    and some days it will be thin. Better thin and about us than padded out
+    with other people's news.
 
     Raises on any network or parsing failure. The caller decides what to do
     about that -- which here means keeping the last good list and carrying on.
@@ -172,17 +179,20 @@ def fetch(user_agent, club, next_opponent, live_teams, limit=8):
         if any(word in haystack for word in OTHER_COMPETITIONS):
             continue
 
-        score, tags, about = 0, [], []
+        # If it isn't about us, we aren't interested.
+        if not _mentions(haystack, club_words):
+            continue
 
-        if _mentions(haystack, club_words):
-            score += 10
-            about.append(club)
+        score, tags, about = 10, [], [club]
+
+        # A story that also names who we are playing is worth more than one
+        # that doesn't.
         if opponent_words and _mentions(haystack, opponent_words):
             score += 8
             about.append(next_opponent)
         for team, words in others.items():
             if _mentions(haystack, words):
-                score += 3
+                score += 2
                 about.append(team)
 
         if _mentions(haystack, SELECTION_WORDS):
@@ -191,11 +201,6 @@ def fetch(user_agent, club, next_opponent, live_teams, limit=8):
         if _mentions(haystack, FINALS_WORDS):
             score += 2
             tags.append("finals")
-
-        # Must actually be about a club still in it. Without this a match
-        # review of an eliminated side scores well on keywords alone.
-        if not about:
-            continue
 
         published = _published(entry)
         if published:

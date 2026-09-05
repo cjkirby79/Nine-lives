@@ -48,7 +48,7 @@
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 121,
+   "home_score": 122,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -995,7 +995,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T07:39:47+00:00",
+ "generated_at": "2026-09-05T07:44:08+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1355,7 +1355,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T07:39:46+00:00",
+  "fetched_at": "2026-09-05T07:44:07+00:00",
   "items": [
    {
     "about": [
@@ -1370,21 +1370,6 @@
      "finals"
     ],
     "title": "The ACL gamble that's got Gryan flyin' against all odds"
-   },
-   {
-    "about": [
-     "Brisbane Lions",
-     "Sydney"
-    ],
-    "is_team_news": true,
-    "link": "https://www.afl.com.au/news/1601466/live-swans-tackle-lions-for-place-in-a-preliminary-final",
-    "published_utc": "2026-09-05T07:10:00Z",
-    "score": 18,
-    "tags": [
-     "team news",
-     "finals"
-    ],
-    "title": "LIVE: Papley has five against Lions as injured Swans skipper watches on"
    },
    {
     "about": [
@@ -1411,58 +1396,6 @@
      "finals"
     ],
     "title": "Scott confident Holmes will benefit from the run after risky EF call"
-   },
-   {
-    "about": [
-     "Sydney"
-    ],
-    "is_team_news": true,
-    "link": "https://www.afl.com.au/news/1601482/how-the-swans-have-reshaped-their-game-without-banned-stars",
-    "published_utc": "2026-09-04T20:00:00Z",
-    "score": 15,
-    "tags": [
-     "team news",
-     "finals"
-    ],
-    "title": "'Our system holds up': How Swans reshaped their game without banned stars"
-   },
-   {
-    "about": [
-     "Brisbane Lions",
-     "Sydney"
-    ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1600530/the-disruption-undermanned-sydney-swans-can-cause-to-brisbane-lions",
-    "published_utc": "2026-09-04T20:00:00Z",
-    "score": 10,
-    "tags": [],
-    "title": "The 'disruption' the undermanned Swans can cause to Lions"
-   },
-   {
-    "about": [
-     "Adelaide"
-    ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1601479/how-the-painful-lessons-of-last-september-are-shaping-adelaide-crows-finals-charge",
-    "published_utc": "2026-09-04T20:00:00Z",
-    "score": 9,
-    "tags": [
-     "finals"
-    ],
-    "title": "The ghosts of last September still haunt Crows. Now they're done hiding"
-   },
-   {
-    "about": [
-     "Brisbane Lions"
-    ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1600809/amid-a-year-like-no-other-lachie-neale-is-readying-himself-for-another-september-charge-for-the-brisbane-lions",
-    "published_utc": "2026-09-04T20:00:00Z",
-    "score": 9,
-    "tags": [
-     "finals"
-    ],
-    "title": "Amid a year like no other, Neale is readying himself for another September charge"
    }
   ],
   "source": "AFL.com.au",
@@ -1571,12 +1504,12 @@
     "club_if_away_wins": 0.080137,
     "club_if_home_wins": 0.092339,
     "club_swing": 0.012202,
-    "complete_percent": 83,
+    "complete_percent": 86,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
     "home_probability": 0.5061,
-    "home_score": 121,
+    "home_score": 122,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 15:15:00",
@@ -1586,7 +1519,7 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "Q4  9:49",
+    "time_string": "Q4 14:07",
     "timezone": "+10:00",
     "venue": "S.C.G.",
     "we_want": "Sydney"

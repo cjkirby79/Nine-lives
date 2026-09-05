@@ -477,7 +477,7 @@
       var empty = document.createElement("li");
       empty.appendChild(gap(feed.error
         ? "the AFL feed is not answering right now"
-        : "nothing about our campaign in the feed yet"));
+        : "nothing new about us in the feed just now"));
       list.appendChild(empty);
       field("news-sub").textContent = "";
       field("news-note").textContent = feed.error
@@ -487,12 +487,10 @@
       return;
     }
 
-    var ours = items.filter(function (i) {
-      return (i.about || []).indexOf(state.club) !== -1;
-    }).length;
+    var teamNews = items.filter(function (i) { return i.is_team_news; }).length;
     field("news-sub").textContent =
-      plural(items.length, "story") + " worth knowing about" +
-      (ours ? ", " + ours + " of them about us" : "") + ".";
+      plural(items.length, "story") + " about us" +
+      (teamNews ? ", " + teamNews + " of them team news" : "") + ".";
 
     items.forEach(function (item) {
       var entry = document.createElement("li");
@@ -513,8 +511,11 @@
 
       var meta = el("div", "news-meta");
       if (item.is_team_news) meta.appendChild(el("span", "tag tag-warn", "team news"));
+      // Everything here is about us, so only tag the other club when a story
+      // involves one -- that is the part worth pointing out.
       (item.about || []).forEach(function (team) {
-        meta.appendChild(el("span", "tag tag-published", team));
+        if (team === state.club) return;
+        meta.appendChild(el("span", "tag tag-published", "v " + team));
       });
       if (item.published_utc) {
         var age = (Date.now() - new Date(item.published_utc).getTime()) / 1000;
@@ -524,7 +525,8 @@
       list.appendChild(entry);
     });
 
-    var note = "Headlines from AFL.com.au, picked out by who they mention. ";
+    var note = "Geelong stories only, pulled out of AFL.com.au's league-wide " +
+      "feed of the twenty latest. Some days that is a lot, some days it is one. ";
     if (feed.stale) {
       note += "The feed is not answering at the moment, so these are the last " +
         "ones that came through. ";
