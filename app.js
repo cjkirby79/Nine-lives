@@ -47,8 +47,12 @@
     return row.won + "–" + row.lost;
   }
 
+  // Just enough English to avoid "8 storys".
+  var IRREGULAR_PLURALS = { story: "stories", flag: "flags", win: "wins" };
+
   function plural(count, word) {
-    return count + " " + word + (count === 1 ? "" : "s");
+    if (count === 1) return count + " " + word;
+    return count + " " + (IRREGULAR_PLURALS[word] || word + "s");
   }
 
   /** A bare duration for "in the past ___" — no "ago", no leading 1. */
@@ -451,6 +455,78 @@
       item.appendChild(value);
       list.appendChild(item);
     });
+  }
+
+  // ---- word from the club -----------------------------------------------
+
+  /* Headlines here are written by somebody else. They go in as text, never as
+     markup, and the link is only rendered if the fetch script kept one -- it
+     drops anything that doesn't point at afl.com.au. */
+  function renderNews(state) {
+    var feed = state.news || {};
+    var list = field("news");
+    if (!list) return;
+    list.textContent = "";
+
+    var items = feed.items || [];
+    if (!items.length) {
+      var empty = document.createElement("li");
+      empty.appendChild(gap(feed.error
+        ? "the AFL feed is not answering right now"
+        : "nothing about our campaign in the feed yet"));
+      list.appendChild(empty);
+      field("news-sub").textContent = "";
+      field("news-note").textContent = feed.error
+        ? "Everything else on this page is unaffected — the news feed is kept "
+          + "separate so it cannot take the football down with it."
+        : "";
+      return;
+    }
+
+    var ours = items.filter(function (i) {
+      return (i.about || []).indexOf(state.club) !== -1;
+    }).length;
+    field("news-sub").textContent =
+      plural(items.length, "story") + " worth knowing about" +
+      (ours ? ", " + ours + " of them about us" : "") + ".";
+
+    items.forEach(function (item) {
+      var entry = document.createElement("li");
+      entry.setAttribute("data-club",
+        String((item.about || []).indexOf(state.club) !== -1));
+
+      var headline;
+      if (item.link) {
+        headline = document.createElement("a");
+        headline.href = item.link;
+        headline.rel = "noopener noreferrer";
+        headline.target = "_blank";
+        headline.textContent = item.title;
+      } else {
+        headline = el("div", "news-title", item.title);
+      }
+      entry.appendChild(headline);
+
+      var meta = el("div", "news-meta");
+      if (item.is_team_news) meta.appendChild(el("span", "tag tag-warn", "team news"));
+      (item.about || []).forEach(function (team) {
+        meta.appendChild(el("span", "tag tag-published", team));
+      });
+      if (item.published_utc) {
+        var age = (Date.now() - new Date(item.published_utc).getTime()) / 1000;
+        meta.appendChild(el("span", null, describeAge(age)));
+      }
+      entry.appendChild(meta);
+      list.appendChild(entry);
+    });
+
+    var note = "Headlines from AFL.com.au, picked out by who they mention. ";
+    if (feed.stale) {
+      note += "The feed is not answering at the moment, so these are the last " +
+        "ones that came through. ";
+    }
+    field("news-note").textContent = note +
+      "Tagging is done by keyword, so the odd stray will slip in.";
   }
 
   // ---- September, and this lot ------------------------------------------
@@ -1387,6 +1463,7 @@
     renderHeadline(state, history);
     renderScottEra(state);
     renderNextFixture(state);
+    renderNews(state);
     renderHeadToHead(state);
     renderPrecedent(state);
     renderGreatest(state);

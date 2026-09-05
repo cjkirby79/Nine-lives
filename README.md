@@ -39,6 +39,20 @@ because the point of the page is Saturday.
 lands harder than 5–1, and the won–lost sits underneath it in small type so
 nothing is lost.
 
+**"Word from the club"** is team news, pulled from AFL.com.au's public RSS feed
+(`https://www.afl.com.au/rss`) — the one thing in the original brief that
+Squiggle cannot provide. Items are matched to clubs still in the finals and
+tagged as team news by keyword.
+
+Two things matter about how it is built. It is **isolated**: a public RSS
+endpoint on a marketing site is the least reliable thing here and the most
+likely to change shape, so a failure keeps the last good headlines, marks them
+stale, and cannot stop the football numbers updating. Test it with
+`NINE_LIVES_NEWS_FAIL=1 python3 fetch/fetch.py` and watch `state.json` refresh
+anyway. And it is **untrusted**: headlines are written by somebody else, so they
+are rendered as text rather than markup, and a link is dropped unless it
+genuinely points at afl.com.au.
+
 **"In our defence"** is the generous read on the finals we lost, and all of it
 comes from the results rather than from wishful thinking: 8 of our 17 defeats
 since 2011 were to the side that went on to win the premiership, 9 were away
@@ -377,6 +391,7 @@ install, for the site or the fetch script.
 | `fetch/squiggle.py` | Squiggle client: UserAgent, throttling, retries, disk cache |
 | `fetch/model.py` | Calibration fits and the bracket enumeration |
 | `fetch/case.py` | The case for Geelong — one rule per claim, each self-checking |
+| `fetch/news.py` | AFL.com.au RSS: matching, tagging, and link safety |
 | `data/cache/summary-YYYY.json` | Per-club counters per season, derived once and kept |
 | `fetch/fetch.py` | Pulls everything, writes `data/` |
 | `fetch/test_model.py` | Tests for the maths |

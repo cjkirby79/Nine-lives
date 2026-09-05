@@ -20,7 +20,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import case
 import model
-from squiggle import SquiggleError, cached_query, query
+import news as afl_news
+from squiggle import USER_AGENT, SquiggleError, cached_query, query
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -650,7 +651,7 @@ def last_defeat(games, team):
     }
 
 
-def collect():
+def collect(previous_news=None):
     teams = query("teams", year=SEASON)
     team_ids = {t["name"]: t["id"] for t in teams}
     if CLUB not in team_ids:
@@ -767,6 +768,34 @@ def collect():
         "consensus": next((t for t in expert_tips if t["is_consensus"]), None),
         "market": next((t for t in expert_tips if t["is_market"]), None),
     }
+
+    # --- team news ---
+    # Deliberately isolated. This is a public RSS feed on a marketing site: it
+    # is the least reliable thing we touch and the most likely to change shape.
+    # It must never be able to stop the football numbers updating, so a failure
+    # keeps the last good items and says how old they are.
+    news_block = {
+        "source": "AFL.com.au",
+        "source_url": afl_news.FEED_URL,
+        "fetched_at": None,
+        "items": [],
+        "error": None,
+        "stale": False,
+    }
+    try:
+        news_block["items"] = afl_news.fetch(
+            USER_AGENT, CLUB,
+            (next_fixture or {}).get("opponent"),
+            live_teams,
+        )
+        news_block["fetched_at"] = now_iso()
+    except Exception as exc:                       # noqa: BLE001
+        print(f"team news unavailable: {type(exc).__name__}: {exc}", file=sys.stderr)
+        news_block["error"] = f"{type(exc).__name__}: {exc}"
+        if previous_news and previous_news.get("items"):
+            news_block["items"] = previous_news["items"]
+            news_block["fetched_at"] = previous_news.get("fetched_at")
+            news_block["stale"] = True
 
     # --- the last Saturday in September ---
     decider = next((g for g in finals_games if g.get("is_grand_final")), None)
@@ -966,6 +995,7 @@ def collect():
         },
         "next_fixture": next_fixture,
         "grand_final": grand_final,
+        "news": news_block,
         "experts": expert_panel,
         "path_to_glory": path_to_glory,
         "market": market,
@@ -1018,8 +1048,9 @@ def main():
     status["last_attempt"] = now_iso()
     status["runs"] = status.get("runs", 0) + 1
 
+    previous = read_json(STATE_PATH, {}) or {}
     try:
-        state = collect()
+        state = collect(previous.get("news"))
     except Exception as exc:                      # noqa: BLE001 - any failure is a stale-data event
         status["consecutive_failures"] = status.get("consecutive_failures", 0) + 1
         status["last_error"] = f"{type(exc).__name__}: {exc}"
