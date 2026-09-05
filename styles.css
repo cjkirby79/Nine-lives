@@ -143,6 +143,74 @@ body {
     linear-gradient(90deg, rgba(5, 18, 43, .7) 0%, rgba(5, 18, 43, .05) 100%);
 }
 
+/* --- crest -------------------------------------------------------------- */
+/* The club crest is flat artwork, not a photograph, so it is deliberately
+   exempt from the grading above -- it stays crisp and full-strength.
+   The supplied PNG has no transparency and its own white is load-bearing
+   (the cat, the lettering), so it can't be keyed out. It sits on a white
+   badge instead, which is how a crest appears on a broadcast graphic anyway. */
+
+.crest-badge {
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto .6rem;
+  padding: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(3, 13, 32, .55);
+}
+.crest-badge[hidden] { display: none; }
+.crest-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* --- full-width band ---------------------------------------------------- */
+/* For photographs too wide to crop into a panel -- a team shot cropped to a
+   phone-height masthead is four torsos. The band keeps the image's own
+   proportions and shows all of it. */
+
+.band {
+  position: relative;
+  margin: 0 var(--pad);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  background: var(--navy-900);
+}
+.band[hidden] { display: none; }
+
+.band img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(.82) contrast(1.05) brightness(.97);
+}
+
+.band figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1.6rem .9rem .6rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: linear-gradient(180deg, transparent, rgba(3, 13, 32, .88));
+}
+.band figcaption .credit {
+  display: block;
+  font-size: .62rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--dim);
+  margin-top: .15rem;
+}
+
 /* --- gallery rail ------------------------------------------------------- */
 
 .gallery {

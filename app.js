@@ -532,7 +532,7 @@
      manifest, an unknown role, a filename typo -- degrades to no image rather
      than a broken layout or a broken-image icon. */
 
-  function mountImage(container, spec, decorative) {
+  function mountImage(container, spec, decorative, onFail) {
     if (!container || !spec || !spec.file) return null;
 
     var image = new Image();
@@ -543,10 +543,13 @@
     image.decoding = "async";
     if (spec.focus) image.style.objectPosition = spec.focus;
 
-    // A photo that 404s should leave no trace.
+    // A photo that 404s should leave no trace. The caller decides what "no
+    // trace" means -- hiding a backdrop is enough, but a gallery item has a
+    // caption and a box of its own that have to go with it.
     image.addEventListener("error", function () {
       if (image.parentNode) image.parentNode.removeChild(image);
-      if (!container.querySelector("img")) container.hidden = true;
+      if (onFail) onFail();
+      else container.hidden = true;
     });
 
     container.appendChild(image);
@@ -580,6 +583,29 @@
       }
     });
 
+    // The crest. Artwork rather than a photograph, so it is never decorative
+    // and never graded.
+    var crest = byRole("crest")[0];
+    if (crest) {
+      var badge = field("crest");
+      if (mountImage(badge, crest, false)) badge.hidden = false;
+    }
+
+    // A full-width band for photographs too wide to crop into a panel.
+    var band = byRole("band")[0];
+    if (band) {
+      var figure = field("band");
+      if (mountImage(figure, band, false)) {
+        figure.hidden = false;
+        if (band.caption || band.credit) {
+          var bandCaption = document.createElement("figcaption");
+          if (band.caption) bandCaption.appendChild(document.createTextNode(band.caption));
+          if (band.credit) bandCaption.appendChild(el("span", "credit", band.credit));
+          figure.appendChild(bandCaption);
+        }
+      }
+    }
+
     var gallery = byRole("gallery");
     if (!gallery.length) return;
 
@@ -588,11 +614,12 @@
     gallery.forEach(function (spec) {
       var item = document.createElement("li");
       var figure = document.createElement("figure");
-      var holder = document.createElement("div");
 
-      if (!mountImage(holder, spec, false)) return;
-      var image = holder.querySelector("img");
-      figure.appendChild(image);
+      // Take the whole item away if the photo never arrives, caption and all.
+      if (!mountImage(figure, spec, false, function () {
+        if (item.parentNode) item.parentNode.removeChild(item);
+        if (!rail.children.length) field("gallery-panel").hidden = true;
+      })) return;
 
       if (spec.caption || spec.credit) {
         var caption = document.createElement("figcaption");

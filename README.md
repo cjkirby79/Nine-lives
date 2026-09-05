@@ -187,9 +187,22 @@ Photos are driven by `images/manifest.json`. To add one: drop the file into
 
 | role | where it lands |
 |---|---|
+| `crest` | the club badge in the masthead |
 | `hero` | behind the masthead. First one wins, the rest are ignored |
+| `band` | full width, keeping its own proportions |
 | `panel` | behind a panel — set `target` to one of the names below |
 | `gallery` | the scrolling rail near the foot of the page |
+
+Use `band` for anything too panoramic to crop into a panel — a team photo
+cropped to a phone-height masthead is four torsos. The band keeps the image's
+own aspect ratio and shows all of it.
+
+`crest` is for flat artwork and is deliberately exempt from the grading every
+photograph gets, so it stays crisp. The supplied crest PNG has no transparency
+and its own white is load-bearing — the cat and the lettering are white — so
+it can't be keyed out onto navy. It sits on a white badge instead, which is how
+a crest appears on a broadcast graphic anyway. A transparent PNG or an SVG
+would drop straight in over it.
 
 Any section on the page can take a photograph behind it. The `target` names are
 `headline`, `scott`, `next`, `market` and `bracket`. The same file can appear
@@ -212,6 +225,9 @@ You don't need to edit anything before dropping it in.
 Nothing here can break the page. An unknown role is ignored, a filename typo is
 dropped silently, and if the manifest is missing entirely the site renders
 exactly as it did before there were any photos.
+
+Order matters in the gallery — the rail renders the entries left to right, so
+put the best one first.
 
 Two practical notes. Keep files under a few hundred KB — they're committed to
 the repo and served on phones, and there's no image pipeline. And the photos

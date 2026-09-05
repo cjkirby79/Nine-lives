@@ -1,20 +1,36 @@
 {
   "_readme": [
-    "Photos on the site. To add one: drop the file in images/, add an entry here.",
-    "role   — 'hero' sits behind the masthead (one only; the first wins).",
-    "         'panel' fills the background of the panel named in 'target'.",
-    "         'gallery' joins the scrolling rail near the foot of the page.",
-    "target — for role 'panel'. Any section with a data-panel attribute:",
-    "         headline, scott, next, market, bracket.",
-    "         Panels carrying dense numbers are best left clean.",
-    "focus  — CSS object-position. Nudge if a crop cuts someone's head off.",
-    "         '50% 20%' pulls the crop up, '20% 50%' shifts the subject right.",
-    "alt    — read aloud by screen readers. Describe it, don't caption it.",
-    "credit — shown small under gallery photos. Leave empty to hide.",
-    "Unknown roles and targets are ignored, and a file that fails to load is",
-    "dropped silently, so nothing here can break the page."
+    "Photos and artwork on the site. To add one: drop the file in images/,",
+    "add an entry here. Nothing else needs touching.",
+    "",
+    "role    — 'crest'   the club badge in the masthead. Artwork, not graded.",
+    "          'hero'    behind the masthead. First one wins.",
+    "          'band'    full width, keeps its own proportions. For wide shots",
+    "                    too panoramic to crop into a panel.",
+    "          'panel'   behind the panel named in 'target'.",
+    "          'gallery' the scrolling rail near the foot of the page.",
+    "target  — for role 'panel'. Any section with a data-panel attribute:",
+    "          headline, scott, next, market, bracket. Panels that are mostly",
+    "          small numbers read better left clean.",
+    "focus   — CSS object-position. Nudge if a crop cuts someone's head off.",
+    "          '50% 20%' pulls the crop up, '20% 50%' shifts the subject right.",
+    "          Has no effect where the image already fits without cropping.",
+    "alt     — read aloud by screen readers. Describe it, don't caption it.",
+    "credit  — shown small under gallery and band photos. Empty hides it.",
+    "",
+    "Order matters in the gallery: the rail shows these left to right.",
+    "Unknown roles and targets are ignored, and any file that fails to load",
+    "takes itself out cleanly, so nothing here can break the page."
   ],
   "images": [
+    {
+      "file": "geelong-crest.png",
+      "role": "crest",
+      "alt": "The Geelong Cats club crest",
+      "caption": "",
+      "credit": "",
+      "focus": ""
+    },
     {
       "file": "kardinia-park-night.jpg",
       "role": "hero",
@@ -39,7 +55,23 @@
       "alt": "Patrick Dangerfield pumping his fist after a goal, a bandage above his eye",
       "caption": "",
       "credit": "",
-      "focus": "50% 22%"
+      "focus": "50% 18%"
+    },
+    {
+      "file": "team-photo.webp",
+      "role": "band",
+      "alt": "The full Geelong squad posed together on the ground at Kardinia Park after a match",
+      "caption": "The squad",
+      "credit": "",
+      "focus": "50% 50%"
+    },
+    {
+      "file": "mob-celebration.jpg",
+      "role": "gallery",
+      "alt": "Geelong players mobbing a teammate after a goal, one lifted above the pack",
+      "caption": "The mob",
+      "credit": "",
+      "focus": "50% 30%"
     },
     {
       "file": "dangerfield-fist-pump.jpg",
@@ -58,12 +90,28 @@
       "focus": "50% 30%"
     },
     {
-      "file": "contest-tackle.jpg",
+      "file": "smith-profile.jpg",
       "role": "gallery",
-      "alt": "A Geelong player caught in a tackle in heavy traffic, arms wrapped around the ball",
-      "caption": "In the contest",
+      "alt": "Bailey Smith in the Geelong hoops, headband on, during a match",
+      "caption": "Bailey Smith",
       "credit": "",
-      "focus": "48% 45%"
+      "focus": "50% 40%"
+    },
+    {
+      "file": "arms-out.jpg",
+      "role": "gallery",
+      "alt": "A Geelong player standing with both arms flung wide, appealing to the umpire",
+      "caption": "Arms wide",
+      "credit": "",
+      "focus": "50% 35%"
+    },
+    {
+      "file": "young-fist-pump.jpg",
+      "role": "gallery",
+      "alt": "A young Geelong player clenching his fist after a goal",
+      "caption": "Fist clenched",
+      "credit": "",
+      "focus": "50% 35%"
     },
     {
       "file": "smith-v-hawthorn.jpg",
@@ -74,12 +122,12 @@
       "focus": "45% 30%"
     },
     {
-      "file": "smith-profile.jpg",
+      "file": "contest-tackle.jpg",
       "role": "gallery",
-      "alt": "Bailey Smith in the Geelong hoops, headband on, during a match",
-      "caption": "Bailey Smith",
+      "alt": "A Geelong player caught in a tackle in heavy traffic, arms wrapped around the ball",
+      "caption": "In the contest",
       "credit": "",
-      "focus": "50% 40%"
+      "focus": "48% 45%"
     },
     {
       "file": "smith-celebration.jpg",
