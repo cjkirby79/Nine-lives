@@ -8,7 +8,8 @@
     "          'band'    full width, keeps its own proportions. For wide shots",
     "                    too panoramic to crop into a panel.",
     "          'panel'   behind the panel named in 'target'.",
-    "          'gallery' the scrolling rail near the foot of the page.",
+    "          'gallery' the 'The campaign' rail at the foot. This season.",
+    "          'history' the 'Silverware' rail under the Chris Scott panel.",
     "target  — for role 'panel'. Any section with a data-panel attribute:",
     "          headline, scott, next, market, bracket. Panels that are mostly",
     "          small numbers read better left clean.",
@@ -16,9 +17,10 @@
     "          '50% 20%' pulls the crop up, '20% 50%' shifts the subject right.",
     "          Has no effect where the image already fits without cropping.",
     "alt     — read aloud by screen readers. Describe it, don't caption it.",
-    "credit  — shown small under gallery and band photos. Empty hides it.",
+    "credit  — shown small under rail and band photos. Empty hides it.",
     "",
-    "Order matters in the gallery: the rail shows these left to right.",
+    "Order matters in both rails: they render left to right, best first.",
+    "The same file can appear more than once under different roles.",
     "Unknown roles and targets are ignored, and any file that fails to load",
     "takes itself out cleanly, so nothing here can break the page."
   ],
@@ -40,13 +42,22 @@
       "focus": "50% 45%"
     },
     {
-      "file": "huddle.jpg",
+      "file": "scott-premiership.jpg",
       "role": "panel",
       "target": "scott",
-      "alt": "Geelong players gathered in a huddle around a coach during a match",
+      "alt": "Chris Scott roaring with both fists clenched, a premiership medal round his neck",
       "caption": "",
       "credit": "",
-      "focus": "52% 18%"
+      "focus": "50% 30%"
+    },
+    {
+      "file": "cup-lift.jpg",
+      "role": "panel",
+      "target": "headline",
+      "alt": "The premiership cup held aloft in a storm of confetti",
+      "caption": "",
+      "credit": "",
+      "focus": "50% 34%"
     },
     {
       "file": "dangerfield-fist-pump.jpg",
@@ -152,6 +163,46 @@
       "caption": "The next ones in",
       "credit": "",
       "focus": "50% 40%"
+    },
+    {
+      "file": "cup-lift.jpg",
+      "role": "history",
+      "alt": "The premiership cup held aloft in a storm of confetti",
+      "caption": "The cup",
+      "credit": "",
+      "focus": "50% 30%"
+    },
+    {
+      "file": "selwood-2022.jpg",
+      "role": "history",
+      "alt": "Joel Selwood with his hands behind his head and a premiership medal round his neck",
+      "caption": "Joel Selwood, 2022",
+      "credit": "",
+      "focus": "50% 30%"
+    },
+    {
+      "file": "cup-2007.jpg",
+      "role": "history",
+      "alt": "Two Geelong players kissing the 2007 premiership cup",
+      "caption": "2007",
+      "credit": "",
+      "focus": "50% 40%"
+    },
+    {
+      "file": "team-with-cup.jpg",
+      "role": "history",
+      "alt": "The Geelong team gathered around the premiership cup amid confetti",
+      "caption": "Premiership day",
+      "credit": "",
+      "focus": "50% 40%"
+    },
+    {
+      "file": "scott-premiership.jpg",
+      "role": "history",
+      "alt": "Chris Scott roaring with both fists clenched, a premiership medal round his neck",
+      "caption": "Chris Scott",
+      "credit": "",
+      "focus": "50% 35%"
     }
   ]
 }

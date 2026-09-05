@@ -125,6 +125,18 @@ body {
   overflow: hidden;
   background: var(--navy-900);
 }
+/* Cap the layer at the distance the fade covers, rather than letting it
+   stretch to the panel. object-fit: cover scales to the taller box, so a
+   738x414 photograph behind the 1690px Chris Scott panel was being magnified
+   four times over -- a recognisable picture of a coach turned into a murky
+   smear. Bounded to the fade distance, it crops horizontally instead and the
+   subject survives. Everything below is solid navy anyway. */
+.panel.has-media .media-layer {
+  height: 420px;
+  bottom: auto;
+}
+.panel.has-media[data-panel="headline"] .media-layer { height: 600px; }
+
 .panel.has-media .media-layer img {
   filter: saturate(.7) contrast(1.05) brightness(1);
 }
@@ -141,6 +153,28 @@ body {
       rgba(5, 18, 43, .96) 290px,
       var(--navy-900) 400px),
     linear-gradient(90deg, rgba(5, 18, 43, .7) 0%, rgba(5, 18, 43, .05) 100%);
+}
+
+/* The headline panel is the exception. It carries the one number the whole
+   site exists for, and a confetti photograph is exactly the kind of
+   high-frequency detail that eats small text. So the image is pushed further
+   back and a dark pool is laid behind the centre -- the way a broadcast
+   graphic seats a score over a crowd -- leaving the photo reading at the
+   edges where nothing has to be legible. */
+.panel.has-media[data-panel="headline"] .media-layer img {
+  filter: saturate(.5) contrast(1) brightness(.75);
+}
+.panel.has-media[data-panel="headline"] .media-layer::after {
+  background:
+    radial-gradient(115% 62% at 50% 34%,
+      rgba(3, 13, 32, .93) 0%,
+      rgba(3, 13, 32, .78) 55%,
+      rgba(3, 13, 32, .55) 100%),
+    linear-gradient(180deg,
+      rgba(5, 18, 43, .45) 0px,
+      rgba(5, 18, 43, .72) 300px,
+      rgba(5, 18, 43, .94) 480px,
+      var(--navy-900) 580px);
 }
 
 /* --- crest -------------------------------------------------------------- */
@@ -383,6 +417,11 @@ main { margin-top: 1rem; }
   margin: .7rem 0 0;
   color: var(--dim);
   font-size: .85rem;
+}
+
+.has-media .figure-note,
+.has-media .figure-delta {
+  text-shadow: 0 1px 10px rgba(3, 13, 32, .95);
 }
 
 /* --- method disclosure -------------------------------------------------- */

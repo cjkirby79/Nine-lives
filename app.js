@@ -606,19 +606,28 @@
       }
     }
 
-    var gallery = byRole("gallery");
-    if (!gallery.length) return;
+    renderRail(byRole("gallery"), "gallery", "gallery-panel");
+    renderRail(byRole("history"), "history", "history-panel");
+  }
 
-    var rail = field("gallery");
+  /** One scrolling rail of photographs, plus the section that wraps it. */
+  function renderRail(specs, railName, panelName) {
+    if (!specs.length) return;
+
+    var rail = field(railName);
+    var panel = field(panelName);
+    if (!rail || !panel) return;
     rail.textContent = "";
-    gallery.forEach(function (spec) {
+
+    specs.forEach(function (spec) {
       var item = document.createElement("li");
       var figure = document.createElement("figure");
 
-      // Take the whole item away if the photo never arrives, caption and all.
+      // Take the whole item away if the photo never arrives, caption and all,
+      // and fold the section away if that empties the rail.
       if (!mountImage(figure, spec, false, function () {
         if (item.parentNode) item.parentNode.removeChild(item);
-        if (!rail.children.length) field("gallery-panel").hidden = true;
+        if (!rail.children.length) panel.hidden = true;
       })) return;
 
       if (spec.caption || spec.credit) {
@@ -631,7 +640,7 @@
       rail.appendChild(item);
     });
 
-    if (rail.children.length) field("gallery-panel").hidden = false;
+    if (rail.children.length) panel.hidden = false;
   }
 
   // ---- 6. provenance and staleness -------------------------------------

@@ -191,7 +191,8 @@ Photos are driven by `images/manifest.json`. To add one: drop the file into
 | `hero` | behind the masthead. First one wins, the rest are ignored |
 | `band` | full width, keeping its own proportions |
 | `panel` | behind a panel — set `target` to one of the names below |
-| `gallery` | the scrolling rail near the foot of the page |
+| `gallery` | the "The campaign" rail at the foot — this season |
+| `history` | the "Silverware" rail under the Chris Scott panel — past flags |
 
 Use `band` for anything too panoramic to crop into a panel — a team photo
 cropped to a phone-height masthead is four torsos. The band keeps the image's
@@ -226,8 +227,18 @@ Nothing here can break the page. An unknown role is ignored, a filename typo is
 dropped silently, and if the manifest is missing entirely the site renders
 exactly as it did before there were any photos.
 
-Order matters in the gallery — the rail renders the entries left to right, so
-put the best one first.
+There are two rails, kept apart on purpose: `gallery` is this year's campaign,
+`history` is the premierships. Order matters in both — they render left to
+right, so put the best one first. The same file can appear more than once under
+different roles.
+
+One sizing note, learned the hard way. A photograph behind a panel is bounded
+to the depth of the fade rather than stretched to the panel, because
+`object-fit: cover` scales to whichever side is larger: a 738×414 photo behind
+the Chris Scott panel, which runs about 1700px tall, was being magnified four
+times over and turned into a smear. Bounded, it crops sideways instead and the
+subject survives. You don't have to do anything about this — it's just why tall
+panels don't ruin wide photos.
 
 Two practical notes. Keep files under a few hundred KB — they're committed to
 the repo and served on phones, and there's no image pipeline. And the photos
