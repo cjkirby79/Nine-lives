@@ -30,7 +30,7 @@
 <main>
 
   <!-- 1 — the number -->
-  <section class="panel headline" id="headline" aria-labelledby="headline-title">
+  <section class="panel headline" id="headline" data-panel="headline" aria-labelledby="headline-title">
     <h2 class="panel-title" id="headline-title">Premiership probability</h2>
     <p class="figure" data-field="probability" aria-live="polite">—</p>
     <p class="figure-delta" data-field="delta"></p>
@@ -54,7 +54,7 @@
   </section>
 
   <!-- 2 — the Chris Scott era -->
-  <section class="panel" aria-labelledby="scott-title">
+  <section class="panel" data-panel="scott" aria-labelledby="scott-title">
     <h2 class="panel-title" id="scott-title">The Chris Scott era</h2>
     <p class="panel-sub" data-field="scott-range">—</p>
 
@@ -76,14 +76,13 @@
   </section>
 
   <!-- 3 — next up -->
-  <section class="panel" aria-labelledby="next-title">
-    <div class="media-layer" data-field="panel-next"></div>
+  <section class="panel" data-panel="next" aria-labelledby="next-title">
     <h2 class="panel-title" id="next-title">Next up</h2>
     <div data-field="next-fixture"></div>
   </section>
 
   <!-- 4 — market against models -->
-  <section class="panel" aria-labelledby="market-title">
+  <section class="panel" data-panel="market" aria-labelledby="market-title">
     <h2 class="panel-title" id="market-title">What the public think</h2>
     <div data-field="market"></div>
     <p class="caveat">
@@ -93,7 +92,7 @@
   </section>
 
   <!-- 5 — the path -->
-  <section class="panel" aria-labelledby="bracket-title">
+  <section class="panel" data-panel="bracket" aria-labelledby="bracket-title">
     <h2 class="panel-title" id="bracket-title">The path</h2>
     <p class="panel-sub">
       2026 is the first top-ten finals series. Five weeks, wildcard round first.

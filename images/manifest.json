@@ -1,16 +1,18 @@
 {
   "_readme": [
     "Photos on the site. To add one: drop the file in images/, add an entry here.",
-    "role  — where it goes. 'hero' sits behind the masthead (one only; the first wins).",
-    "        'panel' fills the background of the panel named in 'target'.",
-    "        'gallery' joins the scrolling rail near the foot of the page.",
-    "target— for role 'panel' only. Currently supported: 'next' (the Next up panel).",
-    "focus — CSS object-position. Nudge this if a crop cuts someone's head off.",
-    "        e.g. '50% 20%' pulls the crop upwards. Default is '50% 50%'.",
-    "alt   — read aloud by screen readers. Describe it, don't caption it.",
-    "credit— shown small under gallery photos. Leave empty to hide.",
-    "Unknown roles are ignored, and a file that fails to load is dropped silently,",
-    "so a typo here can never break the page."
+    "role   — 'hero' sits behind the masthead (one only; the first wins).",
+    "         'panel' fills the background of the panel named in 'target'.",
+    "         'gallery' joins the scrolling rail near the foot of the page.",
+    "target — for role 'panel'. Any section with a data-panel attribute:",
+    "         headline, scott, next, market, bracket.",
+    "         Panels carrying dense numbers are best left clean.",
+    "focus  — CSS object-position. Nudge if a crop cuts someone's head off.",
+    "         '50% 20%' pulls the crop up, '20% 50%' shifts the subject right.",
+    "alt    — read aloud by screen readers. Describe it, don't caption it.",
+    "credit — shown small under gallery photos. Leave empty to hide.",
+    "Unknown roles and targets are ignored, and a file that fails to load is",
+    "dropped silently, so nothing here can break the page."
   ],
   "images": [
     {
@@ -22,13 +24,54 @@
       "focus": "50% 45%"
     },
     {
-      "file": "smith-v-hawthorn.jpg",
+      "file": "huddle.jpg",
       "role": "panel",
-      "target": "next",
-      "alt": "A Geelong player celebrating a goal as a Hawthorn opponent walks away",
+      "target": "scott",
+      "alt": "Geelong players gathered in a huddle around a coach during a match",
       "caption": "",
       "credit": "",
-      "focus": "20% 26%"
+      "focus": "52% 18%"
+    },
+    {
+      "file": "dangerfield-fist-pump.jpg",
+      "role": "panel",
+      "target": "next",
+      "alt": "Patrick Dangerfield pumping his fist after a goal, a bandage above his eye",
+      "caption": "",
+      "credit": "",
+      "focus": "50% 22%"
+    },
+    {
+      "file": "dangerfield-fist-pump.jpg",
+      "role": "gallery",
+      "alt": "Patrick Dangerfield pumping his fist after a goal, a bandage above his eye",
+      "caption": "Patrick Dangerfield",
+      "credit": "",
+      "focus": "50% 25%"
+    },
+    {
+      "file": "huddle.jpg",
+      "role": "gallery",
+      "alt": "Geelong players gathered in a huddle around a coach during a match",
+      "caption": "The huddle",
+      "credit": "",
+      "focus": "50% 30%"
+    },
+    {
+      "file": "contest-tackle.jpg",
+      "role": "gallery",
+      "alt": "A Geelong player caught in a tackle in heavy traffic, arms wrapped around the ball",
+      "caption": "In the contest",
+      "credit": "",
+      "focus": "48% 45%"
+    },
+    {
+      "file": "smith-v-hawthorn.jpg",
+      "role": "gallery",
+      "alt": "A Geelong player celebrating a goal as a Hawthorn opponent walks away",
+      "caption": "Against Hawthorn",
+      "credit": "",
+      "focus": "45% 30%"
     },
     {
       "file": "smith-profile.jpg",
@@ -47,12 +90,20 @@
       "focus": "50% 35%"
     },
     {
-      "file": "smith-v-hawthorn.jpg",
+      "file": "goal-celebration.jpg",
       "role": "gallery",
-      "alt": "A Geelong player celebrating a goal as a Hawthorn opponent walks away",
-      "caption": "Against Hawthorn",
+      "alt": "Two Geelong players leaping into each other to celebrate a goal",
+      "caption": "The celebration",
       "credit": "",
-      "focus": "45% 30%"
+      "focus": "50% 35%"
+    },
+    {
+      "file": "young-guns.jpg",
+      "role": "gallery",
+      "alt": "Two young Geelong players high-fiving after a goal",
+      "caption": "The next ones in",
+      "credit": "",
+      "focus": "50% 40%"
     }
   ]
 }

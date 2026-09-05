@@ -188,8 +188,18 @@ Photos are driven by `images/manifest.json`. To add one: drop the file into
 | role | where it lands |
 |---|---|
 | `hero` | behind the masthead. First one wins, the rest are ignored |
-| `panel` | behind a panel — add `"target": "next"` for the Next up panel |
+| `panel` | behind a panel — set `target` to one of the names below |
 | `gallery` | the scrolling rail near the foot of the page |
+
+Any section on the page can take a photograph behind it. The `target` names are
+`headline`, `scott`, `next`, `market` and `bracket`. The same file can appear
+more than once — a photo can be a panel backdrop and sit in the gallery too.
+
+A word on which panels to use: the fade behind a panel is measured in pixels,
+not percentages, so a photo reads across roughly the first 300px and everything
+below sits on solid navy however tall the panel grows. That works well for
+`scott` and `next`. Panels that are mostly small numbers — `bracket` especially
+— read better left clean, and the headline number is best on a plain ground.
 
 **`focus`** is a CSS `object-position`. Use it when a crop cuts someone's head
 off: `"50% 20%"` pulls the crop upwards, `"20% 50%"` shifts the subject right.

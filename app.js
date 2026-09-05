@@ -557,24 +557,28 @@
     var images = (manifest && Array.isArray(manifest.images)) ? manifest.images : [];
     if (!images.length) return;
 
-    function byRole(role, target) {
-      return images.filter(function (item) {
-        return item.role === role && (!target || item.target === target);
-      });
+    function byRole(role) {
+      return images.filter(function (item) { return item.role === role; });
     }
 
     // The masthead backdrop. First hero wins; the rest are ignored.
     var hero = byRole("hero")[0];
     if (hero) mountImage(field("hero"), hero, false);
 
-    // A photograph behind the Next up panel.
-    var next = byRole("panel", "next")[0];
-    if (next) {
-      var layer = field("panel-next");
-      if (mountImage(layer, next, true) && layer.parentNode) {
-        layer.parentNode.classList.add("has-media");
+    // Photographs behind panels. Any section carrying data-panel="<name>" can
+    // be targeted from the manifest, so a new backdrop needs no markup change.
+    byRole("panel").forEach(function (spec) {
+      var panel = document.querySelector('[data-panel="' + spec.target + '"]');
+      if (!panel || panel.querySelector(".media-layer")) return;
+
+      var layer = el("div", "media-layer");
+      panel.insertBefore(layer, panel.firstChild);
+      if (mountImage(layer, spec, true)) {
+        panel.classList.add("has-media");
+      } else {
+        panel.removeChild(layer);
       }
-    }
+    });
 
     var gallery = byRole("gallery");
     if (!gallery.length) return;

@@ -128,13 +128,19 @@ body {
 .panel.has-media .media-layer img {
   filter: saturate(.7) contrast(1.05) brightness(1);
 }
+/* Fixed pixel stops, not percentages. Panel heights vary with the data -- the
+   Chris Scott panel is three times the height of the fixture panel -- and a
+   percentage fade leaves a photograph washing through rows of small text on
+   the tall ones. In pixels, the image reads at the top of any panel and the
+   content below always sits on solid navy. */
 .panel.has-media .media-layer::after {
   background:
     linear-gradient(180deg,
-      rgba(5, 18, 43, .42) 0%,
-      rgba(5, 18, 43, .8) 55%,
-      rgba(5, 18, 43, .96) 100%),
-    linear-gradient(90deg, rgba(5, 18, 43, .75) 0%, rgba(5, 18, 43, .1) 100%);
+      rgba(5, 18, 43, .40) 0px,
+      rgba(5, 18, 43, .80) 150px,
+      rgba(5, 18, 43, .96) 290px,
+      var(--navy-900) 400px),
+    linear-gradient(90deg, rgba(5, 18, 43, .7) 0%, rgba(5, 18, 43, .05) 100%);
 }
 
 /* --- gallery rail ------------------------------------------------------- */
