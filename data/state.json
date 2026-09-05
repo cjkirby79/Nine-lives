@@ -44,11 +44,11 @@
   },
   {
    "away": "Brisbane Lions",
-   "away_score": 30,
+   "away_score": 38,
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 43,
+   "home_score": 68,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -124,47 +124,129 @@
   },
   {
    "away": null,
-   "club_appearance_probability": 0.165874,
+   "club_appearance_probability": 0.165595,
    "home": null,
    "node": "GF",
    "stage": "Grand Final"
   }
  ],
+ "case": [
+  {
+   "detail": "One win turns a long shot into a live chance. Everything below is the argument that we get it.",
+   "id": "one_win_away",
+   "label": "for the flag if we beat Fremantle",
+   "priority": 105,
+   "source": "Derived from the Squiggle consensus across the remaining bracket",
+   "stat": "21.9%"
+  },
+  {
+   "detail": "He has lost 1 of 6. A semi-final is exactly what is in front of us.",
+   "id": "semi_final_pedigree",
+   "label": "in semi-finals under Chris Scott",
+   "priority": 100,
+   "source": "Every final Geelong have played since 2011, from match records",
+   "stat": "5–1"
+  },
+  {
+   "detail": "And against Hawthorn, the side most likely to be there, we are rated 48% on neutral ground. Get to the last Saturday and it is a coin toss against anyone.",
+   "id": "favoured_in_the_decider",
+   "label": "possible Grand Final opponents we would start favourite against",
+   "priority": 90,
+   "source": "Squiggle model consensus, priced at a neutral M.C.G.",
+   "stat": "3 of 5"
+  },
+  {
+   "detail": "We finished 5th, but only 2 sides scored better relative to what they conceded. The ladder flatters the teams above us.",
+   "id": "better_than_our_ladder_position",
+   "label": "the 3rd best percentage in the competition",
+   "priority": 85,
+   "source": "Final 2026 home-and-away ladder",
+   "stat": "122.3%"
+  },
+  {
+   "detail": "We have beaten most of what is left in front of us before, in exactly this kind of game.",
+   "id": "finals_form_against_the_field",
+   "label": "in finals against Hawthorn, Brisbane Lions and Sydney",
+   "priority": 80,
+   "source": "Geelong finals results since 2011, from match records",
+   "stat": "8–5"
+  },
+  {
+   "detail": "The longest active run of anyone left in the draw. We have not been beaten since round 18 against Greater Western Sydney.",
+   "id": "winning_streak",
+   "label": "straight wins going into this week",
+   "priority": 75,
+   "source": "2026 results",
+   "stat": "7"
+  },
+  {
+   "detail": "Beaten by Hawthorn at Perth Stadium. They come into this off a defeat; we come into it off a win.",
+   "id": "opponent_is_wounded",
+   "label": "points — what Fremantle lost by last week",
+   "priority": 70,
+   "source": "2026 finals results",
+   "stat": "32"
+  },
+  {
+   "detail": "That is higher than the computer models rate us (38.0%). The people with money on it are more convinced than the machines.",
+   "id": "the_money_likes_us",
+   "label": "what the betting market gives us this week",
+   "priority": 65,
+   "source": "Squiggle's Punters source, derived from bookmaker pricing",
+   "stat": "39.1%"
+  },
+  {
+   "detail": "4 Grand Finals and 14 finals series in 16 seasons. He has been here before, and he has won it before.",
+   "id": "a_coach_who_has_done_it",
+   "label": "premierships under this coach",
+   "priority": 60,
+   "source": "Geelong finals results since 2011, from match records",
+   "stat": "2"
+  },
+  {
+   "detail": "The Grand Final is played there, and it is where we knocked over Carlton a week ago. We know the ground.",
+   "id": "september_at_the_mcg",
+   "label": "in finals at the M.C.G. under Chris Scott",
+   "priority": 55,
+   "source": "Geelong finals results since 2011, from match records",
+   "stat": "13–11"
+  }
+ ],
  "club": "Geelong",
  "field": [
   {
-   "probability": 0.324851,
+   "probability": 0.324763,
    "team": "Hawthorn"
   },
   {
-   "probability": 0.241621,
+   "probability": 0.238088,
    "team": "Brisbane Lions"
   },
   {
-   "probability": 0.176111,
+   "probability": 0.179999,
    "team": "Sydney"
   },
   {
-   "probability": 0.14203,
+   "probability": 0.141848,
    "team": "Fremantle"
   },
   {
-   "probability": 0.083431,
+   "probability": 0.083364,
    "team": "Geelong"
   },
   {
-   "probability": 0.025732,
+   "probability": 0.025722,
    "team": "Adelaide"
   },
   {
-   "probability": 0.006225,
+   "probability": 0.006216,
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T06:05:21+00:00",
+ "generated_at": "2026-09-05T06:40:05+00:00",
  "headline": {
-  "probability": 0.083431,
-  "reaches_grand_final": 0.165874,
+  "probability": 0.083364,
+  "reaches_grand_final": 0.165595,
   "steps": [
    {
     "conditional_probability": 0.3804,
@@ -195,8 +277,8 @@
     "venue": "M.C.G."
    },
    {
-    "conditional_probability": 0.436053,
-    "cumulative_probability": 0.165874,
+    "conditional_probability": 0.435319,
+    "cumulative_probability": 0.165595,
     "node": "PF2",
     "opponents": [
      {
@@ -215,7 +297,7 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.481679,
+      "club_win_probability": 0.475997,
       "neutral": false,
       "opponent": "Sydney",
       "probability": 0.506099,
@@ -223,7 +305,7 @@
      },
      {
       "club_is_home": false,
-      "club_win_probability": 0.3893,
+      "club_win_probability": 0.393636,
       "neutral": false,
       "opponent": "Brisbane Lions",
       "probability": 0.493901,
@@ -236,28 +318,28 @@
     "venue": "S.C.G."
    },
    {
-    "conditional_probability": 0.502974,
-    "cumulative_probability": 0.083431,
+    "conditional_probability": 0.503421,
+    "cumulative_probability": 0.083364,
     "node": "GF",
     "opponents": [
      {
-      "probability": 0.658454,
+      "probability": 0.658717,
       "team": "Hawthorn"
      },
      {
-      "probability": 0.167446,
+      "probability": 0.163495,
       "team": "Brisbane Lions"
      },
      {
-      "probability": 0.09279,
+      "probability": 0.096386,
       "team": "Sydney"
      },
      {
-      "probability": 0.062188,
+      "probability": 0.062277,
       "team": "Adelaide"
      },
      {
-      "probability": 0.019123,
+      "probability": 0.019125,
       "team": "Western Bulldogs"
      }
     ],
@@ -267,42 +349,42 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.481438,
+      "club_win_probability": 0.481432,
       "neutral": true,
       "opponent": "Hawthorn",
-      "probability": 0.658454,
+      "probability": 0.658711,
       "venue": "M.C.G."
      },
      {
       "club_is_home": false,
-      "club_win_probability": 0.482227,
+      "club_win_probability": 0.486367,
       "neutral": true,
       "opponent": "Brisbane Lions",
-      "probability": 0.167445,
+      "probability": 0.163497,
       "venue": "M.C.G."
      },
      {
       "club_is_home": false,
-      "club_win_probability": 0.575864,
+      "club_win_probability": 0.569895,
       "neutral": true,
       "opponent": "Sydney",
-      "probability": 0.092793,
+      "probability": 0.096387,
       "venue": "M.C.G."
      },
      {
       "club_is_home": true,
-      "club_win_probability": 0.616923,
+      "club_win_probability": 0.616963,
       "neutral": true,
       "opponent": "Adelaide",
-      "probability": 0.062185,
+      "probability": 0.062279,
       "venue": "M.C.G."
      },
      {
       "club_is_home": true,
-      "club_win_probability": 0.701951,
+      "club_win_probability": 0.70185,
       "neutral": true,
       "opponent": "Western Bulldogs",
-      "probability": 0.019123,
+      "probability": 0.019125,
       "venue": "M.C.G."
      }
     ],
@@ -488,17 +570,17 @@
   "calibration": {
    "diagnostics": {
     "finals_holdout_games": 7,
-    "finals_holdout_rmse_points": 8.34,
+    "finals_holdout_rmse_points": 8.36,
     "margin_fit_from_round": 17,
     "margin_fit_games": 79,
     "margin_fit_r_squared": 0.932,
-    "margin_fit_rmse_points": 6.5,
+    "margin_fit_rmse_points": 6.49,
     "probability_fit_games": 214
    },
-   "home_ground_points": 3.4969,
-   "interstate_travel_points": 4.5689,
+   "home_ground_points": 3.5188,
+   "interstate_travel_points": 4.5123,
    "logit_per_point": 0.04701,
-   "points_per_power_point": 1.6811
+   "points_per_power_point": 1.6817
   },
   "description": "Every remaining path through the finals bracket is enumerated exhaustively and the paths ending in a premiership are summed. Fixtures Squiggle has already tipped use its published consensus verbatim; the rest use a conversion fitted to Squiggle's own published margins and confidences this season."
  },
@@ -521,28 +603,28 @@
  },
  "path_to_glory": {
   "final_step": {
-   "conditional_probability": 0.502974,
-   "cumulative_probability": 0.083431,
+   "conditional_probability": 0.503421,
+   "cumulative_probability": 0.083364,
    "node": "GF",
    "opponents": [
     {
-     "probability": 0.658454,
+     "probability": 0.658717,
      "team": "Hawthorn"
     },
     {
-     "probability": 0.167446,
+     "probability": 0.163495,
      "team": "Brisbane Lions"
     },
     {
-     "probability": 0.09279,
+     "probability": 0.096386,
      "team": "Sydney"
     },
     {
-     "probability": 0.062188,
+     "probability": 0.062277,
      "team": "Adelaide"
     },
     {
-     "probability": 0.019123,
+     "probability": 0.019125,
      "team": "Western Bulldogs"
     }
    ],
@@ -552,42 +634,42 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.481438,
+     "club_win_probability": 0.481432,
      "neutral": true,
      "opponent": "Hawthorn",
-     "probability": 0.658454,
+     "probability": 0.658711,
      "venue": "M.C.G."
     },
     {
      "club_is_home": false,
-     "club_win_probability": 0.482227,
+     "club_win_probability": 0.486367,
      "neutral": true,
      "opponent": "Brisbane Lions",
-     "probability": 0.167445,
+     "probability": 0.163497,
      "venue": "M.C.G."
     },
     {
      "club_is_home": false,
-     "club_win_probability": 0.575864,
+     "club_win_probability": 0.569895,
      "neutral": true,
      "opponent": "Sydney",
-     "probability": 0.092793,
+     "probability": 0.096387,
      "venue": "M.C.G."
     },
     {
      "club_is_home": true,
-     "club_win_probability": 0.616923,
+     "club_win_probability": 0.616963,
      "neutral": true,
      "opponent": "Adelaide",
-     "probability": 0.062185,
+     "probability": 0.062279,
      "venue": "M.C.G."
     },
     {
      "club_is_home": true,
-     "club_win_probability": 0.701951,
+     "club_win_probability": 0.70185,
      "neutral": true,
      "opponent": "Western Bulldogs",
-     "probability": 0.019123,
+     "probability": 0.019125,
      "venue": "M.C.G."
     }
    ],
@@ -600,16 +682,16 @@
    {
     "away": "Brisbane Lions",
     "away_probability": 0.4939,
-    "away_score": 30,
-    "club_if_away_wins": 0.07639,
-    "club_if_home_wins": 0.090301,
-    "club_swing": 0.013911,
-    "complete_percent": 33,
+    "away_score": 38,
+    "club_if_away_wins": 0.077093,
+    "club_if_home_wins": 0.089485,
+    "club_swing": 0.012392,
+    "complete_percent": 50,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
     "home_probability": 0.5061,
-    "home_score": 43,
+    "home_score": 68,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 15:15:00",
@@ -619,7 +701,7 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "Q2 10:42",
+    "time_string": "1/2 Time",
     "timezone": "+10:00",
     "venue": "S.C.G."
    },
@@ -627,9 +709,9 @@
     "away": "Western Bulldogs",
     "away_probability": 0.3129,
     "away_score": null,
-    "club_if_away_wins": 0.083696,
-    "club_if_home_wins": 0.08331,
-    "club_swing": 0.000386,
+    "club_if_away_wins": 0.083628,
+    "club_if_home_wins": 0.083244,
+    "club_swing": 0.000384,
     "complete_percent": 0,
     "date": "2026-09-05 19:35:00",
     "game_id": 38722,
@@ -653,9 +735,9 @@
     "away": "Geelong",
     "away_probability": 0.3804,
     "away_score": null,
-    "club_if_away_wins": 0.219323,
+    "club_if_away_wins": 0.219149,
     "club_if_home_wins": 0.0,
-    "club_swing": 0.219323,
+    "club_swing": 0.219149,
     "complete_percent": 0,
     "date": "2026-09-12 19:20:00",
     "game_id": 38725,
@@ -681,8 +763,8 @@
   ],
   "games_in_progress": 1,
   "if_we_win": {
-   "conditional_probability": 0.436053,
-   "cumulative_probability": 0.165874,
+   "conditional_probability": 0.435319,
+   "cumulative_probability": 0.165595,
    "node": "PF2",
    "opponents": [
     {
@@ -701,7 +783,7 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.481679,
+     "club_win_probability": 0.475997,
      "neutral": false,
      "opponent": "Sydney",
      "probability": 0.506099,
@@ -709,7 +791,7 @@
     },
     {
      "club_is_home": false,
-     "club_win_probability": 0.3893,
+     "club_win_probability": 0.393636,
      "neutral": false,
      "opponent": "Brisbane Lions",
      "probability": 0.493901,

@@ -11,6 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import case
 import model
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -336,6 +337,125 @@ def test_a_finished_bracket_is_a_certainty():
     check(close(report["probability"], 1.0, 1e-9),
           "a side that has already won every final must sit at 100%")
     check(report["steps"] == [], "nothing is left to play")
+
+
+# --- the case engine ------------------------------------------------------
+# This site argues a case, so the one thing that must never break is that it
+# only argues things the data supports.
+
+def case_context(**overrides):
+    base = {
+        "season": 2026,
+        "next_stage": "Semi-Finals",
+        "next_opponent": "Fremantle",
+        "by_stage": {
+            "Semi-final": {"stage": "Semi-final", "played": 6, "won": 5, "lost": 1},
+            "Grand Final": {"stage": "Grand Final", "played": 4, "won": 2, "lost": 2},
+        },
+        "by_venue": {"M.C.G.": {"venue": "M.C.G.", "played": 24, "won": 13, "lost": 11}},
+        "against_live_teams": [
+            {"team": "Hawthorn", "played": 5, "won": 3, "lost": 2},
+            {"team": "Sydney", "played": 3, "won": 2, "lost": 1},
+        ],
+        "grand_finals_reached": 4,
+        "seasons_playing_finals": 14,
+        "seasons_coached": 16,
+        "flag_if_we_win": 0.219,
+        "grand_final_scenarios": [
+            {"opponent": "Hawthorn", "probability": 0.66, "club_win_probability": 0.481},
+            {"opponent": "Sydney", "probability": 0.09, "club_win_probability": 0.576},
+        ],
+        "ladder_rank": 5,
+        "percentage_rank": 3,
+        "percentage": 122.3,
+        "win_streak": 7,
+        "last_loss_note": "round 18 against Greater Western Sydney",
+        "rival_streaks": {"Hawthorn": 3, "Sydney": 2},
+        "opponent_last_loss": {"team": "Fremantle", "opponent": "Hawthorn",
+                               "margin": 32, "venue": "Perth Stadium"},
+        "market_probability": 0.391,
+        "model_probability": 0.380,
+    }
+    base.update(overrides)
+    return base
+
+
+def ids_for(**overrides):
+    return {card["id"] for card in case.build_case(case_context(**overrides))}
+
+
+def test_the_case_is_built_from_the_current_data():
+    cards = case.build_case(case_context())
+    check(len(cards) >= 8, f"expected a full case, got {len(cards)} cards")
+    check(cards[0]["id"] == "one_win_away",
+          "the reframed headline figure should lead")
+    for card in cards:
+        for key in ("id", "stat", "label", "detail", "source", "priority"):
+            check(key in card, f"{card.get('id')} is missing {key}")
+        check(card["source"], "every claim must carry where it came from")
+
+
+def test_a_losing_semi_final_record_is_not_advertised():
+    losing = {"stage": "Semi-final", "played": 6, "won": 1, "lost": 5}
+    check("semi_final_pedigree" not in
+          ids_for(by_stage={"Semi-final": losing}),
+          "a losing record must not be dressed up as a selling point")
+
+
+def test_the_semi_final_card_only_fires_for_a_semi_final():
+    check("semi_final_pedigree" not in ids_for(next_stage="Preliminary Finals"),
+          "the semi-final record is only the argument when a semi is next")
+
+
+def test_market_card_only_fires_when_the_market_agrees():
+    check("the_money_likes_us" in ids_for(),
+          "the market rates us above the models, so say so")
+    check("the_money_likes_us" not in
+          ids_for(market_probability=0.30, model_probability=0.38),
+          "when the market rates us BELOW the models, the card must vanish "
+          "rather than spin it")
+
+
+def test_no_grand_final_card_when_we_are_favoured_against_nobody():
+    check("favoured_in_the_decider" not in ids_for(grand_final_scenarios=[
+        {"opponent": "Hawthorn", "probability": 1.0, "club_win_probability": 0.2}]),
+          "there is no 'favoured against' card when we are favoured against none")
+
+
+def test_percentage_card_only_fires_when_it_flatters_us():
+    check("better_than_our_ladder_position" in ids_for(),
+          "3rd on percentage having finished 5th is a fair point to make")
+    check("better_than_our_ladder_position" not in
+          ids_for(ladder_rank=3, percentage_rank=5),
+          "if percentage is WORSE than where we finished, stay quiet")
+
+
+def test_streak_claim_is_checked_against_rivals():
+    strong = case.build_case(case_context())
+    streak = [c for c in strong if c["id"] == "winning_streak"][0]
+    check("longest active run" in streak["detail"],
+          "7 beats every rival here, so the claim is allowed")
+
+    outgunned = case.build_case(case_context(rival_streaks={"Hawthorn": 11}))
+    beaten = [c for c in outgunned if c["id"] == "winning_streak"][0]
+    check("longest active run" not in beaten["detail"],
+          "a side on a longer run means we must not claim the best form")
+
+
+def test_a_short_streak_is_not_spun_as_form():
+    check("winning_streak" not in ids_for(win_streak=1),
+          "one win is not a run of form")
+
+
+def test_an_unbeaten_opponent_gets_no_wounded_card():
+    check("opponent_is_wounded" not in ids_for(opponent_last_loss=None),
+          "if the opponent won last week, we don't get to say they're wounded")
+
+
+def test_a_coach_without_a_flag_is_not_credited_with_one():
+    check("a_coach_who_has_done_it" not in ids_for(by_stage={
+        "Grand Final": {"stage": "Grand Final", "played": 2, "won": 0, "lost": 2}}),
+          "no premierships means no premierships card")
 
 
 # --- the live data --------------------------------------------------------

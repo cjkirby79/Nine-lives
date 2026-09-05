@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import case
 import model
 from squiggle import SquiggleError, cached_query, query
 
@@ -184,6 +185,52 @@ def fixture_provisionality(game, finals_games):
     return reasons
 
 
+def current_win_streak(games, club):
+    """Consecutive wins running into this week, and when they last lost."""
+    played = sorted(
+        (g for g in games
+         if g.get("complete") == 100 and club in (g.get("hteam"), g.get("ateam"))),
+        key=lambda g: g.get("unixtime") or 0,
+        reverse=True,
+    )
+    streak = 0
+    last_loss = None
+    for game in played:
+        if game.get("winner") == club:
+            streak += 1
+        else:
+            last_loss = game
+            break
+    note = None
+    if last_loss:
+        opponent = (last_loss["ateam"] if last_loss["hteam"] == club
+                    else last_loss["hteam"])
+        note = f"round {last_loss['round']} against {opponent}"
+    return streak, note
+
+
+def last_defeat(games, team):
+    """That side's most recent match, if they lost it."""
+    played = sorted(
+        (g for g in games
+         if g.get("complete") == 100 and team in (g.get("hteam"), g.get("ateam"))),
+        key=lambda g: g.get("unixtime") or 0,
+        reverse=True,
+    )
+    if not played:
+        return None
+    game = played[0]
+    if game.get("winner") == team:
+        return None
+    at_home = game["hteam"] == team
+    return {
+        "team": team,
+        "opponent": game["ateam"] if at_home else game["hteam"],
+        "margin": abs(game["hscore"] - game["ascore"]),
+        "venue": model.canonical_venue(game.get("venue")),
+    }
+
+
 def collect():
     teams = query("teams", year=SEASON)
     team_ids = {t["name"]: t["id"] for t in teams}
@@ -337,6 +384,49 @@ def collect():
             state[node] = known[node]
         display_bracket.append(entry)
 
+    # --- the case for Geelong ---
+    # Which honest facts to lead with is an editorial choice; whether each one
+    # is true is not. Every card is a rule that fires only while it holds.
+    era = scott_era_record(CLUB, team_ids[CLUB], live_teams)
+    ranked_by_percentage = sorted(standings, key=lambda r: -r["percentage"])
+    club_row = next((r for r in standings if r["name"] == CLUB), None)
+    streak, last_loss_note = current_win_streak(games, CLUB)
+    club_semi = next((f for f in fixtures if f["involves_club"]), None)
+
+    case_context = {
+        "season": SEASON,
+        "next_stage": (next_fixture or {}).get("stage"),
+        "next_opponent": (next_fixture or {}).get("opponent"),
+        "by_stage": {row["stage"]: row for row in era["by_stage"]},
+        "by_venue": {row["venue"]: row for row in era["by_venue"]},
+        "against_live_teams": era["against_live_teams"],
+        "grand_finals_reached": era["grand_finals_reached"],
+        "seasons_playing_finals": era["seasons_playing_finals"],
+        "seasons_coached": SEASON - SCOTT_ERA_FROM + 1,
+        "flag_if_we_win": (
+            (club_semi["club_if_home_wins"] if club_semi["home"] == CLUB
+             else club_semi["club_if_away_wins"]) if club_semi else None
+        ),
+        "grand_final_scenarios": next(
+            (s["scenarios"] for s in steps if s["node"] == "GF"), []),
+        "ladder_rank": club_row["rank"] if club_row else None,
+        "percentage_rank": next(
+            (i for i, r in enumerate(ranked_by_percentage, 1) if r["name"] == CLUB),
+            None),
+        "percentage": club_row["percentage"] if club_row else None,
+        "win_streak": streak,
+        # Needed before we may claim the best run of form left in the draw.
+        "rival_streaks": {
+            team: current_win_streak(games, team)[0]
+            for team in live_teams if team != CLUB
+        },
+        "last_loss_note": last_loss_note,
+        "opponent_last_loss": last_defeat(games, (next_fixture or {}).get("opponent")),
+        "market_probability": (market or {}).get("club_win_probability"),
+        "model_probability": (next_fixture or {}).get("club_win_probability"),
+    }
+    case_cards = case.build_case(case_context)
+
     ladder = [
         {"rank": r["rank"], "team": r["name"], "wins": r["wins"], "losses": r["losses"],
          "draws": r["draws"], "percentage": round(r["percentage"], 1), "points": r["pts"]}
@@ -370,7 +460,8 @@ def collect():
         "market": market,
         "bracket": display_bracket,
         "field": field,
-        "scott_era": scott_era_record(CLUB, team_ids[CLUB], live_teams),
+        "scott_era": era,
+        "case": case_cards,
         "ladder": ladder,
     }
 
@@ -380,9 +471,16 @@ def update_history(state):
     if not isinstance(history, list):
         history = []
     probability = state["headline"]["probability"]
+    lead = (state.get("case") or [{}])[0]
     entry = {
         "at": state["generated_at"],
         "probability": probability,
+        # The page leads with the conditional figure, so track it too or the
+        # movement shown would belong to a different number than the headline.
+        "flag_if_we_win": (
+            float(lead["stat"].rstrip("%")) / 100
+            if lead.get("id") == "one_win_away" else None
+        ),
         "market_next_game": (state.get("market") or {}).get("club_win_probability"),
         "next_opponent": (state.get("next_fixture") or {}).get("opponent"),
     }

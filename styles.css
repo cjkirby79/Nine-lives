@@ -402,6 +402,15 @@ main { margin-top: 1rem; }
   color: transparent;
 }
 
+.figure-label {
+  margin: .45rem 0 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--white);
+}
+.has-media .figure-label { text-shadow: 0 1px 10px rgba(3, 13, 32, .95); }
+
 .figure-delta {
   margin: .5rem 0 0;
   font-size: .9rem;
@@ -683,6 +692,38 @@ main { margin-top: 1rem; }
   margin: .2rem 0 0;
   font-size: .8rem;
   color: var(--dim);
+}
+
+/* --- the case ------------------------------------------------------------ */
+
+.case { list-style: none; margin: 0; padding: 0; counter-reset: case; }
+
+.case li {
+  display: grid;
+  grid-template-columns: minmax(4.6rem, auto) 1fr;
+  gap: .1rem .9rem;
+  padding: .95rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.case-stat {
+  grid-row: span 3;
+  align-self: start;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  color: var(--cat);
+}
+
+.case-label { font-size: .92rem; font-weight: 700; line-height: 1.35; }
+.case-detail { font-size: .8rem; color: var(--dim); line-height: 1.5; margin-top: .2rem; }
+.case-source {
+  font-size: .66rem;
+  color: var(--dimmer);
+  margin-top: .35rem;
+  letter-spacing: .02em;
 }
 
 /* --- founded ------------------------------------------------------------ */

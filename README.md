@@ -9,6 +9,29 @@ full feature set. What's deliberately left out is listed at the bottom.
 
 ---
 
+## What this site is
+
+**Nine Lives argues a case.** It is not a neutral forecaster. It exists to lay
+out the argument that Geelong can win the flag, and it leads with the numbers
+that support that rather than the bleakest true way of stating the same data.
+
+That is a choice about emphasis, and it has a hard limit: **no figure is ever
+bent.** Every claim on the page is a rule in `fetch/case.py` that fires only
+while the thing it says is actually true of the current data, and stops firing
+the moment it isn't. If Geelong's semi-final record were 1–5, that card would
+not appear. If the betting market rated us below the models, the market card
+would vanish rather than spin it. If a rival is on a longer winning run, the
+page does not claim our form is the best left in the draw — it checks first.
+
+The unflattering number is still there. The compound probability of winning
+every remaining game sits in the method panel, stated plainly, because a site
+that hides its own arithmetic is no use to the person relying on it. It simply
+isn't what the page leads with.
+
+Ten tests exist for this alone. They feed the case engine a losing record, a
+market that disagrees, a coach with no premierships, a rival in better form,
+and check that each card goes quiet.
+
 ## How it works
 
 A browser can't call the Squiggle API directly — CORS blocks it, and a page that
@@ -285,6 +308,7 @@ install, for the site or the fetch script.
 |---|---|
 | `fetch/squiggle.py` | Squiggle client: UserAgent, throttling, retries, disk cache |
 | `fetch/model.py` | Calibration fits and the bracket enumeration |
+| `fetch/case.py` | The case for Geelong — one rule per claim, each self-checking |
 | `fetch/fetch.py` | Pulls everything, writes `data/` |
 | `fetch/test_model.py` | Tests for the maths |
 | `data/state.json` | Everything the page renders. Only written on success |

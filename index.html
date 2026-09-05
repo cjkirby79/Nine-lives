@@ -34,8 +34,9 @@
 
   <!-- 1 — the number -->
   <section class="panel headline" id="headline" data-panel="headline" aria-labelledby="headline-title">
-    <h2 class="panel-title" id="headline-title">Premiership probability</h2>
+    <h2 class="panel-title" id="headline-title">The case for Geelong</h2>
     <p class="figure" data-field="probability" aria-live="polite">—</p>
+    <p class="figure-label" data-field="hero-label"></p>
     <p class="figure-delta" data-field="delta"></p>
     <p class="figure-note" data-field="figure-note">—</p>
 
@@ -52,11 +53,29 @@
           own published margins this season — they are the least certain part of the number.
           The Grand Final is priced as a neutral ground.
         </p>
+        <p class="caveat">
+          <strong>This site argues a case.</strong> It leads with the numbers that
+          support Geelong rather than the bleakest way of stating the same data —
+          the compound probability of winning every remaining game is the figure
+          above, and it is smaller. What it will not do is bend one: every figure
+          on this page is the real one, computed from the source on each refresh,
+          and a claim that stops being true stops being shown.
+        </p>
       </div>
     </details>
   </section>
 
-  <!-- 2 — the Chris Scott era -->
+  <!-- 2 — why we can win -->
+  <section class="panel" data-panel="case" aria-labelledby="case-title">
+    <h2 class="panel-title" id="case-title">Why we can win this</h2>
+    <p class="panel-sub">
+      Every one of these is checked against the data on each refresh. A claim
+      that stops being true stops appearing.
+    </p>
+    <ol class="case" data-field="case"></ol>
+  </section>
+
+  <!-- 3 — the Chris Scott era -->
   <section class="panel" data-panel="scott" aria-labelledby="scott-title">
     <h2 class="panel-title" id="scott-title">The Chris Scott era</h2>
     <p class="panel-sub" data-field="scott-range">—</p>

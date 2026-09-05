@@ -79,35 +79,73 @@
 
   // ---- 1. the headline --------------------------------------------------
 
+  /* The page leads with the strongest case the data currently supports, not
+     with the compound probability of winning every remaining game. That is an
+     editorial choice about emphasis: the unconditional number is still shown,
+     in the method panel, and every figure here is the real one. */
   function renderHeadline(state, history) {
     var headline = state.headline || {};
-    var target = headline.probability;
+    var lead = (state.case || [])[0];
     var node = field("probability");
 
-    if (typeof target !== "number") {
-      node.textContent = "";
-      node.appendChild(gap("no figure"));
-      return;
+    if (!lead) {
+      // No case survived the checks -- fall back to the plain probability
+      // rather than showing nothing.
+      if (typeof headline.probability !== "number") {
+        node.textContent = "";
+        node.appendChild(gap("no figure"));
+        return;
+      }
+      countUp(node, headline.probability);
+      field("hero-label").textContent = "for the premiership";
+    } else if (/^[\d.]+%$/.test(lead.stat)) {
+      countUp(node, parseFloat(lead.stat) / 100);
+      field("hero-label").textContent = lead.label;
+    } else {
+      node.textContent = lead.stat;
+      field("hero-label").textContent = lead.label;
     }
 
-    countUp(node, target);
-
+    // The supporting line backs the case up rather than undercutting it.
+    // "Ranked 5th of 7" is true, and it is not what this page is for.
     var parts = [];
     var reach = percent(headline.reaches_grand_final);
     if (reach) parts.push(reach + " to reach the Grand Final");
 
-    var contenders = state.field || [];
-    for (var i = 0; i < contenders.length; i++) {
-      if (contenders[i].team === state.club) {
-        parts.push("ranked " + ordinal(i + 1) + " of " +
-          contenders.length + " sides left");
-        break;
+    var cards = state.case || [];
+    for (var i = 1; i < cards.length && parts.length < 2; i++) {
+      if (cards[i].id === "winning_streak") {
+        parts.push(cards[i].stat + " straight wins");
       }
     }
     field("figure-note").textContent = parts.join(" · ");
 
-    renderDelta(target, history);
+    renderDelta(state, history);
     renderMethod(state);
+    renderCase(state);
+  }
+
+  function renderCase(state) {
+    var list = field("case");
+    list.textContent = "";
+    // The lead card is the headline; the rest make up the argument.
+    var cards = (state.case || []).slice(1);
+
+    if (!cards.length) {
+      var empty = document.createElement("li");
+      empty.appendChild(gap("nothing in the data supports a case right now"));
+      list.appendChild(empty);
+      return;
+    }
+
+    cards.forEach(function (card) {
+      var item = document.createElement("li");
+      item.appendChild(el("div", "case-stat", card.stat));
+      item.appendChild(el("div", "case-label", card.label));
+      item.appendChild(el("div", "case-detail", card.detail));
+      item.appendChild(el("div", "case-source", card.source));
+      list.appendChild(item);
+    });
   }
 
   function ordinal(n) {
@@ -133,9 +171,17 @@
   }
 
   /** Movement since roughly a day ago, so the number has a direction. */
-  function renderDelta(current, history) {
+  function renderDelta(state, history) {
     var node = field("delta");
-    if (!Array.isArray(history) || history.length < 2) {
+    var lead = (state.case || [])[0];
+    // Track whatever the headline is actually showing, not a different number.
+    var tracking = lead && lead.id === "one_win_away"
+      ? "flag_if_we_win" : "probability";
+    var current = tracking === "flag_if_we_win"
+      ? parseFloat(lead.stat) / 100 : state.headline.probability;
+
+    if (!Array.isArray(history) || history.length < 2 ||
+        typeof current !== "number") {
       node.textContent = "no earlier reading to compare against yet";
       return;
     }
@@ -146,8 +192,9 @@
     for (var i = 0; i < history.length; i++) {
       var at = new Date(history[i].at).getTime();
       if (isNaN(at) || now - at < 3600 * 1000) continue;      // too recent to be a baseline
+      if (typeof history[i][tracking] !== "number") continue;
       if (!baseline || Math.abs(at - wanted) < Math.abs(baseline.time - wanted)) {
-        baseline = { time: at, probability: history[i].probability };
+        baseline = { time: at, probability: history[i][tracking] };
       }
     }
     if (!baseline || typeof baseline.probability !== "number") {
@@ -207,7 +254,8 @@
     });
 
     field("method-product").textContent = steps.length
-      ? product.join("  ×  ") + "  =  " + percent(state.headline.probability)
+      ? product.join("  ×  ") + "  =  " + percent(state.headline.probability) +
+        " to win every remaining game"
       : "";
 
     renderFit(method.calibration);
