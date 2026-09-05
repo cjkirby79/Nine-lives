@@ -44,11 +44,11 @@
   },
   {
    "away": "Brisbane Lions",
-   "away_score": 75,
+   "away_score": 81,
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 122,
+   "home_score": 129,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -995,7 +995,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T07:44:08+00:00",
+ "generated_at": "2026-09-05T07:53:25+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1355,7 +1355,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T07:44:07+00:00",
+  "fetched_at": "2026-09-05T07:53:24+00:00",
   "items": [
    {
     "about": [
@@ -1500,16 +1500,16 @@
    {
     "away": "Brisbane Lions",
     "away_probability": 0.4939,
-    "away_score": 75,
+    "away_score": 81,
     "club_if_away_wins": 0.080137,
     "club_if_home_wins": 0.092339,
     "club_swing": 0.012202,
-    "complete_percent": 86,
+    "complete_percent": 94,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
     "home_probability": 0.5061,
-    "home_score": 122,
+    "home_score": 129,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 15:15:00",
@@ -1519,7 +1519,7 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "Q4 14:07",
+    "time_string": "Q4 23:05",
     "timezone": "+10:00",
     "venue": "S.C.G.",
     "we_want": "Sydney"
