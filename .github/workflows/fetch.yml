@@ -10,7 +10,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write      # the fetch job commits the JSON it pulls
+  pages: write         # the deploy job publishes the site
+  id-token: write      # required by actions/deploy-pages
 
 # Never let two runs push at once.
 concurrency:
@@ -88,3 +90,33 @@ jobs:
           echo "::error::Squiggle has been unreachable for several runs."
           cat data/status.json
           exit 1
+
+  # Publish whatever the fetch job just committed.
+  deploy:
+    needs: fetch
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # main, not the SHA that triggered the run -- the fetch job has committed
+      # since then and the fresh data is the whole point.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # enablement: true switches Pages on if it is off, using the repository's
+      # own token. Saves anyone having to find the setting by hand.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
