@@ -72,11 +72,11 @@
   },
   {
    "away": "Western Bulldogs",
-   "away_score": 13,
+   "away_score": 31,
    "complete": false,
    "date": "2026-09-05 19:35:00",
    "home": "Adelaide",
-   "home_score": 19,
+   "home_score": 31,
    "involves_club": false,
    "node": "EF2",
    "provisional_reasons": [],
@@ -995,7 +995,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-05T10:06:50+00:00",
+ "generated_at": "2026-09-05T10:34:56+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1330,22 +1330,8 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-05T10:06:48+00:00",
+  "fetched_at": "2026-09-05T10:34:54+00:00",
   "items": [
-   {
-    "about": [
-     "Geelong"
-    ],
-    "is_team_news": true,
-    "link": "https://www.afl.com.au/news/1601411/the-acl-gamble-thats-got-geelong-cats-gryan-miers-flyin-against-all-odds",
-    "published_utc": "2026-09-04T14:39:00Z",
-    "score": 22,
-    "tags": [
-     "team news",
-     "finals"
-    ],
-    "title": "The ACL gamble that's got Gryan flyin' against all odds"
-   },
    {
     "about": [
      "Geelong"
@@ -1450,16 +1436,16 @@
    {
     "away": "Western Bulldogs",
     "away_probability": 0.314,
-    "away_score": 13,
+    "away_score": 31,
     "club_if_away_wins": 0.089487,
     "club_if_home_wins": 0.089293,
     "club_swing": 0.000194,
-    "complete_percent": 24,
+    "complete_percent": 43,
     "date": "2026-09-05 19:35:00",
     "game_id": 38722,
     "home": "Adelaide",
     "home_probability": 0.686,
-    "home_score": 19,
+    "home_score": 31,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 19:05:00",
@@ -1469,7 +1455,7 @@
     "source_kind": "published",
     "stage": "Elimination final",
     "start_utc": "2026-09-05T09:35:00Z",
-    "time_string": "Q1 30:18",
+    "time_string": "Q2 21:40",
     "timezone": "+10:00",
     "venue": "Adelaide Oval",
     "we_want": null
