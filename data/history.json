@@ -101,5 +101,12 @@
   "models_next_game": 0.4503,
   "next_opponent": "Fremantle",
   "probability": 0.074652
+ },
+ {
+  "at": "2026-09-05T23:06:07+00:00",
+  "market_next_game": 0.3905,
+  "models_next_game": 0.439,
+  "next_opponent": "Fremantle",
+  "probability": 0.076307
  }
 ]
