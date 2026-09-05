@@ -216,6 +216,110 @@ def current_win_streak(games, club):
     return streak, note
 
 
+def _season_summary(year):
+    """Per-club counters for one season, cached in a compact form.
+
+    Caching the raw fixture for sixteen seasons would put close to two megabytes
+    of JSON in the repository for numbers that reduce to a handful of counters
+    per club. Completed seasons never change, so the summary is derived once and
+    kept; the current season is recomputed every run.
+    """
+    path = os.path.join(CACHE, f"summary-{year}.json")
+    if year < SEASON and os.path.exists(path):
+        cached = read_json(path, None)
+        if cached:
+            return cached
+
+    games = query("games", year=year)
+    summary = {}
+
+    def row(team):
+        return summary.setdefault(team, {
+            "played": 0, "won": 0, "finals": 0,
+            "grand_finals": 0, "flags": 0, "played_finals": 0,
+        })
+
+    for game in games:
+        if game.get("complete") != 100 or not game.get("winner"):
+            continue
+        for team in (game["hteam"], game["ateam"]):
+            entry = row(team)
+            entry["played"] += 1
+            if game.get("is_final"):
+                entry["finals"] += 1
+                entry["played_finals"] = 1
+            if game.get("is_grand_final"):
+                entry["grand_finals"] += 1
+        row(game["winner"])["won"] += 1
+        if game.get("is_grand_final"):
+            row(game["winner"])["flags"] += 1
+
+    if year < SEASON:
+        write_json(path, summary)
+    return summary
+
+
+def dominance_since(from_year, club):
+    """How the club stacks up against the whole competition since `from_year`.
+
+    The Chris Scott era in league-wide context: not just what Geelong have done,
+    but whether anybody has done it better.
+    """
+    totals = {}
+    for year in range(from_year, SEASON + 1):
+        for team, counters in _season_summary(year).items():
+            entry = totals.setdefault(team, {
+                "played": 0, "won": 0, "finals": 0,
+                "grand_finals": 0, "flags": 0, "finals_series": 0,
+            })
+            for key in ("played", "won", "finals", "grand_finals", "flags"):
+                entry[key] += counters.get(key, 0)
+            entry["finals_series"] += counters.get("played_finals", 0)
+
+    table = []
+    for team, entry in totals.items():
+        if not entry["played"]:
+            continue
+        table.append({
+            "team": team,
+            "played": entry["played"],
+            "won": entry["won"],
+            "lost": entry["played"] - entry["won"],
+            "win_rate": round(entry["won"] / entry["played"], 4),
+            "finals": entry["finals"],
+            "finals_series": entry["finals_series"],
+            "grand_finals": entry["grand_finals"],
+            "flags": entry["flags"],
+        })
+    table.sort(key=lambda row: -row["win_rate"])
+
+    def rank_by(key):
+        ordered = sorted(table, key=lambda row: -row[key])
+        for position, row in enumerate(ordered, 1):
+            if row["team"] == club:
+                return position
+        return None
+
+    us = next((row for row in table if row["team"] == club), None)
+    runner_up = next((row for row in table if row["team"] != club), None)
+
+    return {
+        "from_year": from_year,
+        "to_year": SEASON,
+        "club": us,
+        "next_best": runner_up,
+        "table": table[:8],
+        "ranks": {
+            "win_rate": rank_by("win_rate"),
+            "finals": rank_by("finals"),
+            "finals_series": rank_by("finals_series"),
+            "grand_finals": rank_by("grand_finals"),
+            "flags": rank_by("flags"),
+        },
+        "clubs_compared": len(table),
+    }
+
+
 def season_series(games, club, opponent):
     """This season's meetings between the two, most recent first."""
     if not opponent:
@@ -341,6 +445,44 @@ def collect():
                 }
             except (TypeError, ValueError, KeyError):
                 market = None
+
+    # --- what the tipping panel makes of it ---
+    # This is not a betting site. The bookmakers get one line among the experts,
+    # not the headline.
+    expert_tips = []
+    if next_fixture:
+        for tip in query("tips", game=next_fixture["game_id"]):
+            try:
+                home_confidence = float(tip["hconfidence"]) / 100.0
+                margin = float(tip["hmargin"])
+            except (TypeError, ValueError, KeyError):
+                continue
+            ours = home_confidence if next_fixture["club_is_home"] else 1 - home_confidence
+            expert_tips.append({
+                "source": tip.get("source"),
+                "club_probability": round(ours, 6),
+                "club_margin": round(margin * (1 if next_fixture["club_is_home"] else -1), 1),
+                "is_market": tip.get("sourceid") == SQUIGGLE_PUNTERS,
+                "is_consensus": tip.get("sourceid") == SQUIGGLE_AGGREGATE,
+                "tips_club": ours > 0.5,
+                "updated": tip.get("updated"),
+            })
+        # Consensus first, then the individual models, then the bookmakers
+        # last. Sorting purely on who rates us highest floated the betting line
+        # to the top of the page, which is the opposite of the intent.
+        expert_tips.sort(key=lambda row: (
+            0 if row["is_consensus"] else (2 if row["is_market"] else 1),
+            -row["club_probability"],
+        ))
+
+    expert_panel = {
+        "tips": expert_tips,
+        "counted": len(expert_tips),
+        "tipping_club": sum(1 for t in expert_tips if t["tips_club"]),
+        "best": expert_tips[0] if expert_tips else None,
+        "consensus": next((t for t in expert_tips if t["is_consensus"]), None),
+        "market": next((t for t in expert_tips if t["is_market"]), None),
+    }
 
     # --- the last Saturday in September ---
     decider = next((g for g in finals_games if g.get("is_grand_final")), None)
@@ -526,11 +668,13 @@ def collect():
         },
         "next_fixture": next_fixture,
         "grand_final": grand_final,
+        "experts": expert_panel,
         "path_to_glory": path_to_glory,
         "market": market,
         "bracket": display_bracket,
         "field": field,
         "scott_era": era,
+        "dominance": dominance_since(SCOTT_ERA_FROM, CLUB),
         "case": case_cards,
         "ladder": ladder,
     }
@@ -547,6 +691,7 @@ def update_history(state):
         # The page leads with this week's market price, so that is what the
         # movement shown underneath the headline has to be tracking.
         "market_next_game": (state.get("market") or {}).get("club_win_probability"),
+        "models_next_game": (state.get("next_fixture") or {}).get("club_win_probability"),
         "next_opponent": (state.get("next_fixture") or {}).get("opponent"),
     }
 

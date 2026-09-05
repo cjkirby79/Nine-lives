@@ -395,8 +395,8 @@ def ids_for(**overrides):
 def test_the_case_is_built_from_the_current_data():
     cards = case.build_case(case_context())
     check(len(cards) >= 8, f"expected a full case, got {len(cards)} cards")
-    check(cards[0]["id"] == "what_the_market_gives_us",
-          "this week's price leads -- one game at a time")
+    check(cards[0]["id"] == "what_the_experts_give_us",
+          "the tipping panel leads -- one game at a time, and not the bookies")
     for card in cards:
         for key in ("id", "stat", "label", "detail", "source", "priority"):
             check(key in card, f"{card.get('id')} is missing {key}")
@@ -428,18 +428,24 @@ def test_nothing_quotes_a_premiership_probability():
               f"{card['id']} still talks about winning the flag: {card['label']}")
 
 
-def test_the_price_leads_and_names_the_opponent():
+def test_the_experts_lead_not_the_bookmakers():
+    """This is a football page, not a betting one."""
     lead = case.build_case(case_context())[0]
-    check(lead["stat"] == "39.1%", f"the market price should lead, got {lead['stat']}")
+    check(lead["stat"] == "38.0%",
+          f"the model consensus should lead, got {lead['stat']}")
+    check("tipping panel" in lead["label"],
+          "and it should be framed as the tipsters, not the bookies")
     check("Fremantle" in lead["label"], "the lead card names who we are playing")
-    check("38.0%" in lead["detail"],
-          "and notes the models rate us lower still")
+    check("39.1%" in lead["detail"],
+          "the market is worth a mention, in the detail, and nowhere louder")
 
 
-def test_the_price_falls_back_to_the_models_without_a_market():
+def test_the_lead_survives_without_any_bookmaker_price():
     lead = case.build_case(case_context(market_probability=None))[0]
     check(lead["stat"] == "38.0%",
-          "with no bookmaker price, quote the model consensus rather than nothing")
+          "with no market at all the page still leads on the tipping panel")
+    check("bookmaker" not in lead["detail"].lower(),
+          "and does not mention a price that isn't there")
 
 
 def test_a_tight_season_series_is_the_argument():

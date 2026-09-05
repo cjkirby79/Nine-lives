@@ -35,6 +35,10 @@ probabilities. Head-to-head records lead with the sides we have beaten. And the
 Grand Final scenarios are folded away behind a "Dare to look further?" toggle,
 because the point of the page is Saturday.
 
+**Not a betting site.** The headline is the tipping panel's consensus, not a
+bookmaker price. The market gets one line, last, in a panel of expert opinion,
+and there are no bookmaker links anywhere. The weight sits on history and form.
+
 **One game at a time.** The page leads with the bookmakers' price for the next
 match and then argues that it is light. It deliberately does not put a
 premiership probability anywhere near the top — a number describing five weeks
@@ -337,6 +341,7 @@ install, for the site or the fetch script.
 | `fetch/squiggle.py` | Squiggle client: UserAgent, throttling, retries, disk cache |
 | `fetch/model.py` | Calibration fits and the bracket enumeration |
 | `fetch/case.py` | The case for Geelong — one rule per claim, each self-checking |
+| `data/cache/summary-YYYY.json` | Per-club counters per season, derived once and kept |
 | `fetch/fetch.py` | Pulls everything, writes `data/` |
 | `fetch/test_model.py` | Tests for the maths |
 | `data/state.json` | Everything the page renders. Only written on success |

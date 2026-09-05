@@ -53,26 +53,29 @@ def semi_final_pedigree(ctx):
     }
 
 
-def what_the_market_gives_us(ctx):
-    """This week's price. One game at a time -- this is the only number that
-    matters right now, and everything else on the page argues it is light."""
-    market, models = ctx["market_probability"], ctx["model_probability"]
-    price = market if market is not None else models
-    if price is None or not ctx["next_opponent"]:
+def what_the_experts_give_us(ctx):
+    """What the tipping panel makes of Saturday.
+
+    Deliberately the model consensus rather than the bookmakers: this is a
+    football site, not a betting one. The market gets a mention in the detail
+    and a line of its own further down the page, and that is all.
+    """
+    models, market = ctx["model_probability"], ctx["market_probability"]
+    if models is None or not ctx["next_opponent"]:
         return None
 
-    if market is not None and models is not None and market > models:
-        tail = (f"The computers have us lower still, at {models * 100:.1f}%. "
-                "The money is already braver than the machines.")
+    if market is not None and market > models:
+        tail = (f"The bookmakers are a shade braver at {market * 100:.1f}%, "
+                "for whatever that is worth.")
     else:
-        tail = "That is the number to beat. Here is why we think it is light."
+        tail = "History and form say otherwise, and both are below."
 
     return {
-        "id": "what_the_market_gives_us",
-        "stat": f"{price * 100:.1f}%",
-        "label": f"what the bookies give us against {ctx['next_opponent']}",
+        "id": "what_the_experts_give_us",
+        "stat": f"{models * 100:.1f}%",
+        "label": f"what the tipping panel gives us against {ctx['next_opponent']}",
         "detail": "One game. Nothing beyond it matters this week. " + tail,
-        "source": "Squiggle's Punters source, derived from bookmaker pricing",
+        "source": "Squiggle consensus of the public AFL models",
         "priority": 110,
     }
 
@@ -254,7 +257,7 @@ def finals_at_this_ground(ctx):
 # Ordered by what matters this week, not what matters in five weeks. Nothing
 # here quotes a probability of winning the Grand Final: one game at a time.
 RULES = [
-    what_the_market_gives_us,
+    what_the_experts_give_us,
     one_point_in_it,
     semi_final_pedigree,
     opponent_is_wounded,

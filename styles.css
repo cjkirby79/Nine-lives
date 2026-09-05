@@ -739,6 +739,53 @@ main { margin-top: 1rem; }
   color: var(--dim);
 }
 
+/* --- league table + expert panel ---------------------------------------- */
+
+.league, .experts { list-style: none; margin: 0; padding: 0; }
+
+.league li, .experts li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  align-items: baseline;
+  gap: .1rem .7rem;
+  padding: .55rem 0;
+  border-top: 1px solid var(--line-soft);
+  font-size: .9rem;
+}
+
+.league-pos, .expert-pos {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--dimmer);
+  font-variant-numeric: tabular-nums;
+}
+.league-team, .expert-name { font-weight: 600; }
+.league-value, .expert-value {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.league-sub, .expert-sub {
+  grid-column: 2 / -1;
+  font-size: .7rem;
+  color: var(--dimmer);
+  margin-top: .1rem;
+}
+
+/* Us, in the middle of the table we top. */
+.league li[data-club="true"] {
+  background: linear-gradient(90deg, rgba(77, 157, 255, .16), transparent 80%);
+  border-radius: 8px;
+  padding-left: .5rem;
+  margin-left: -.5rem;
+  border-top-color: transparent;
+}
+.league li[data-club="true"] .league-team,
+.league li[data-club="true"] .league-value { color: var(--cat); }
+.league li[data-club="true"] .league-pos { color: var(--cat); }
+
+.experts li[data-market="true"] .expert-value { color: var(--warn); }
+
 /* --- the case ------------------------------------------------------------ */
 
 .case { list-style: none; margin: 0; padding: 0; counter-reset: case; }

@@ -44,11 +44,11 @@
   },
   {
    "away": "Brisbane Lions",
-   "away_score": 45,
+   "away_score": 57,
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 75,
+   "home_score": 82,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -136,12 +136,12 @@
  ],
  "case": [
   {
-   "detail": "One game. Nothing beyond it matters this week. The computers have us lower still, at 38.0%. The money is already braver than the machines.",
-   "id": "what_the_market_gives_us",
-   "label": "what the bookies give us against Fremantle",
+   "detail": "One game. Nothing beyond it matters this week. The bookmakers are a shade braver at 39.1%, for whatever that is worth.",
+   "id": "what_the_experts_give_us",
+   "label": "what the tipping panel gives us against Fremantle",
    "priority": 110,
-   "source": "Squiggle's Punters source, derived from bookmaker pricing",
-   "stat": "39.1%"
+   "source": "Squiggle consensus of the public AFL models",
+   "stat": "38.0%"
   },
   {
    "detail": "2 games against Fremantle this season. 200 points to us, 199 to them — 1 to us across the whole year. There is nothing between these teams, and everyone except us seems to have forgotten it.",
@@ -209,6 +209,190 @@
   }
  ],
  "club": "Geelong",
+ "dominance": {
+  "club": {
+   "finals": 34,
+   "finals_series": 14,
+   "flags": 2,
+   "grand_finals": 4,
+   "lost": 120,
+   "played": 381,
+   "team": "Geelong",
+   "win_rate": 0.685,
+   "won": 261
+  },
+  "clubs_compared": 18,
+  "from_year": 2011,
+  "next_best": {
+   "finals": 28,
+   "finals_series": 12,
+   "flags": 1,
+   "grand_finals": 5,
+   "lost": 138,
+   "played": 376,
+   "team": "Sydney",
+   "win_rate": 0.633,
+   "won": 238
+  },
+  "ranks": {
+   "finals": 1,
+   "finals_series": 1,
+   "flags": 3,
+   "grand_finals": 2,
+   "win_rate": 1
+  },
+  "table": [
+   {
+    "finals": 34,
+    "finals_series": 14,
+    "flags": 2,
+    "grand_finals": 4,
+    "lost": 120,
+    "played": 381,
+    "team": "Geelong",
+    "win_rate": 0.685,
+    "won": 261
+   },
+   {
+    "finals": 28,
+    "finals_series": 12,
+    "flags": 1,
+    "grand_finals": 5,
+    "lost": 138,
+    "played": 376,
+    "team": "Sydney",
+    "win_rate": 0.633,
+    "won": 238
+   },
+   {
+    "finals": 26,
+    "finals_series": 10,
+    "flags": 3,
+    "grand_finals": 4,
+    "lost": 145,
+    "played": 372,
+    "team": "Hawthorn",
+    "win_rate": 0.6102,
+    "won": 227
+   },
+   {
+    "finals": 24,
+    "finals_series": 10,
+    "flags": 1,
+    "grand_finals": 3,
+    "lost": 149,
+    "played": 369,
+    "team": "Collingwood",
+    "win_rate": 0.5962,
+    "won": 220
+   },
+   {
+    "finals": 13,
+    "finals_series": 7,
+    "flags": 0,
+    "grand_finals": 1,
+    "lost": 166,
+    "played": 361,
+    "team": "Fremantle",
+    "win_rate": 0.5402,
+    "won": 195
+   },
+   {
+    "finals": 15,
+    "finals_series": 7,
+    "flags": 0,
+    "grand_finals": 0,
+    "lost": 176,
+    "played": 365,
+    "team": "Port Adelaide",
+    "win_rate": 0.5178,
+    "won": 189
+   },
+   {
+    "finals": 12,
+    "finals_series": 5,
+    "flags": 0,
+    "grand_finals": 1,
+    "lost": 174,
+    "played": 360,
+    "team": "Adelaide",
+    "win_rate": 0.5167,
+    "won": 186
+   },
+   {
+    "finals": 14,
+    "finals_series": 8,
+    "flags": 1,
+    "grand_finals": 2,
+    "lost": 177,
+    "played": 364,
+    "team": "Western Bulldogs",
+    "win_rate": 0.5137,
+    "won": 187
+   }
+  ],
+  "to_year": 2026
+ },
+ "experts": {
+  "best": {
+   "club_margin": -10.3,
+   "club_probability": 0.3804,
+   "is_consensus": true,
+   "is_market": false,
+   "source": "Aggregate",
+   "tips_club": false,
+   "updated": "2026-09-05 15:06:35"
+  },
+  "consensus": {
+   "club_margin": -10.3,
+   "club_probability": 0.3804,
+   "is_consensus": true,
+   "is_market": false,
+   "source": "Aggregate",
+   "tips_club": false,
+   "updated": "2026-09-05 15:06:35"
+  },
+  "counted": 3,
+  "market": {
+   "club_margin": -9.1,
+   "club_probability": 0.3906,
+   "is_consensus": false,
+   "is_market": true,
+   "source": "Punters",
+   "tips_club": false,
+   "updated": "2026-09-05 15:05:34"
+  },
+  "tipping_club": 0,
+  "tips": [
+   {
+    "club_margin": -10.3,
+    "club_probability": 0.3804,
+    "is_consensus": true,
+    "is_market": false,
+    "source": "Aggregate",
+    "tips_club": false,
+    "updated": "2026-09-05 15:06:35"
+   },
+   {
+    "club_margin": -11.4,
+    "club_probability": 0.3702,
+    "is_consensus": false,
+    "is_market": false,
+    "source": "Squiggle",
+    "tips_club": false,
+    "updated": "2026-09-04 22:28:23"
+   },
+   {
+    "club_margin": -9.1,
+    "club_probability": 0.3906,
+    "is_consensus": false,
+    "is_market": true,
+    "source": "Punters",
+    "tips_club": false,
+    "updated": "2026-09-05 15:05:34"
+   }
+  ]
+ },
  "field": [
   {
    "probability": 0.324763,
@@ -239,7 +423,7 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T06:54:59+00:00",
+ "generated_at": "2026-09-05T07:05:24+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -686,16 +870,16 @@
    {
     "away": "Brisbane Lions",
     "away_probability": 0.4939,
-    "away_score": 45,
+    "away_score": 57,
     "club_if_away_wins": 0.077093,
     "club_if_home_wins": 0.089485,
     "club_swing": 0.012392,
-    "complete_percent": 55,
+    "complete_percent": 63,
     "date": "2026-09-05 15:15:00",
     "game_id": 38724,
     "home": "Sydney",
     "home_probability": 0.5061,
-    "home_score": 75,
+    "home_score": 82,
     "in_progress": true,
     "involves_club": false,
     "local_time": "2026-09-05 15:15:00",
@@ -705,7 +889,7 @@
     "source_kind": "published",
     "stage": "Qualifying final",
     "start_utc": "2026-09-05T05:15:00Z",
-    "time_string": "Q3  6:53",
+    "time_string": "Q3 16:38",
     "timezone": "+10:00",
     "venue": "S.C.G.",
     "we_want": "Sydney"

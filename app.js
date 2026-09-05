@@ -194,9 +194,9 @@
     var node = field("delta");
     var lead = (state.case || [])[0];
     // Track whatever the headline is actually showing, not a different number.
-    var tracking = lead && lead.id === "what_the_market_gives_us"
-      ? "market_next_game" : "probability";
-    var current = tracking === "market_next_game"
+    var tracking = lead && lead.id === "what_the_experts_give_us"
+      ? "models_next_game" : "probability";
+    var current = tracking === "models_next_game"
       ? parseFloat(lead.stat) / 100 : state.headline.probability;
 
     if (!Array.isArray(history) || history.length < 2 ||
@@ -409,6 +409,106 @@
     });
   }
 
+  // ---- Geelong, the greatest team of all --------------------------------
+
+  function renderGreatest(state) {
+    var d = state.dominance;
+    var strip = field("greatest-strip");
+    var table = field("greatest-table");
+    strip.textContent = "";
+    table.textContent = "";
+
+    if (!d || !d.club) {
+      strip.appendChild(gap("league records not available"));
+      return;
+    }
+
+    var us = d.club, ranks = d.ranks || {}, next = d.next_best;
+
+    field("greatest-sub").textContent =
+      "Since " + d.from_year + ", across " + d.clubs_compared +
+      " clubs and " + us.played + " games, nobody has won more often than us.";
+
+    [
+      { value: percent(us.win_rate, 1), label: "Win rate since " + d.from_year,
+        rank: ranks.win_rate },
+      { value: us.won + "–" + us.lost, label: "Won–lost", rank: null },
+      { value: us.finals, label: "Finals played", rank: ranks.finals },
+      { value: us.finals_series, label: "Finals series", rank: ranks.finals_series }
+    ].forEach(function (stat) {
+      var box = el("div", "stat" + (stat.rank === 1 ? " stat-strong" : ""));
+      box.appendChild(el("span", "stat-value", stat.value));
+      box.appendChild(el("span", "stat-label",
+        stat.label + (stat.rank === 1 ? " · No.1" : "")));
+      strip.appendChild(box);
+    });
+
+    (d.table || []).forEach(function (row, index) {
+      var item = document.createElement("li");
+      var isUs = row.team === state.club;
+      item.setAttribute("data-club", String(isUs));
+      item.appendChild(el("span", "league-pos", index + 1));
+      item.appendChild(el("span", "league-team", row.team));
+      item.appendChild(el("span", "league-value", percent(row.win_rate, 1)));
+      item.appendChild(el("span", "league-sub",
+        row.won + "–" + row.lost + " · " + row.finals + " finals · " +
+        plural(row.flags, "flag")));
+      table.appendChild(item);
+    });
+
+    if (next) {
+      var gap_ = (us.win_rate - next.win_rate) * 100;
+      field("greatest-note").textContent =
+        next.team + " are next, " + gap_.toFixed(1) +
+        " points back over fifteen years. That is not a hot streak. " +
+        "That is a dynasty, and it has not finished yet.";
+    }
+  }
+
+  // ---- what the tipsters make of it -------------------------------------
+
+  function renderExperts(state) {
+    var panel = state.experts || {};
+    var list = field("experts");
+    list.textContent = "";
+
+    if (!panel.tips || !panel.tips.length) {
+      var empty = document.createElement("li");
+      empty.appendChild(gap("nobody has priced this game yet"));
+      list.appendChild(empty);
+      field("experts-sub").textContent =
+        "The tipsters publish once the fixture is confirmed. Check back.";
+      return;
+    }
+
+    var backing = panel.tipping_club;
+    field("experts-sub").textContent = backing
+      ? backing + " of " + panel.counted + " have us winning it — and the rest " +
+        "have not been to Kardinia Park on a Friday night."
+      : panel.counted + " have priced it so far, and not one of them is " +
+        "tipping us. Good. We have never gone better than when nobody fancies us.";
+
+    panel.tips.forEach(function (tip, index) {
+      var item = document.createElement("li");
+      item.setAttribute("data-market", String(Boolean(tip.is_market)));
+      item.appendChild(el("span", "expert-pos", index + 1));
+      var name = el("span", "expert-name", tip.source);
+      if (tip.is_market) {
+        name.appendChild(document.createTextNode(" "));
+        name.appendChild(el("span", "tag tag-warn", "the bookies"));
+      } else if (tip.is_consensus) {
+        name.appendChild(document.createTextNode(" "));
+        name.appendChild(el("span", "tag tag-published", "consensus"));
+      }
+      item.appendChild(name);
+      item.appendChild(el("span", "expert-value", percent(tip.club_probability)));
+      item.appendChild(el("span", "expert-sub",
+        (tip.club_margin >= 0 ? "has us by " + tip.club_margin
+          : "has us down by " + Math.abs(tip.club_margin)) + " points"));
+      list.appendChild(item);
+    });
+  }
+
   // ---- 3. next fixture --------------------------------------------------
 
   var clocks = [];
@@ -532,69 +632,6 @@
       host.appendChild(warning);
     }
 
-  }
-
-  // ---- 4. market against models ----------------------------------------
-
-  function renderMarket(state) {
-    var host = field("market");
-    host.textContent = "";
-
-    var fixture = state.next_fixture;
-    var market = state.market;
-    var models = fixture && fixture.club_win_probability;
-
-    if (!fixture || typeof models !== "number") {
-      host.appendChild(gap("no priced fixture to compare"));
-      return;
-    }
-
-    var wrap = el("div", "versus");
-    wrap.appendChild(bar("The models", models, "bar-models",
-      "Squiggle consensus of its public models"));
-
-    if (market && typeof market.club_win_probability === "number") {
-      wrap.appendChild(bar("The market", market.club_win_probability, "bar-market",
-        "Squiggle's Punters source, derived from bookmaker pricing"));
-    } else {
-      var missing = el("div", "versus-row");
-      missing.appendChild(gap("market pricing not published for this fixture"));
-      wrap.appendChild(missing);
-    }
-    host.appendChild(wrap);
-
-    if (market && typeof market.club_win_probability === "number") {
-      var difference = (market.club_win_probability - models) * 100;
-      var line = el("p", "versus-gap");
-      if (Math.abs(difference) < 0.5) {
-        line.textContent = "Punters and machines, dead level on " + state.club +
-          " v " + fixture.opponent + ". Nobody can split it.";
-      } else {
-        line.textContent = difference > 0
-          ? "The punters rate us " + difference.toFixed(1) +
-            " percentage points higher than the computers do. Somebody out " +
-            "there fancies us."
-          : "The punters have us " + Math.abs(difference).toFixed(1) +
-            " percentage points under the computers. Suits us — nobody wins " +
-            "anything in September being everyone's favourite.";
-      }
-      host.appendChild(line);
-    }
-  }
-
-  function bar(label, value, className, note) {
-    var row = el("div", "versus-row");
-    var head = el("div", "versus-head");
-    head.appendChild(el("span", null, label));
-    head.appendChild(el("span", "versus-value", percent(value)));
-    row.appendChild(head);
-    var track = el("div", "bar " + className);
-    var fill = document.createElement("i");
-    fill.style.width = Math.max(0, Math.min(100, value * 100)) + "%";
-    track.appendChild(fill);
-    row.appendChild(track);
-    row.appendChild(el("div", "record-note", note));
-    return row;
   }
 
   // ---- 5. path to glory -------------------------------------------------
@@ -1017,7 +1054,8 @@
     renderHeadline(state, history);
     renderScottEra(state);
     renderNextFixture(state);
-    renderMarket(state);
+    renderGreatest(state);
+    renderExperts(state);
     renderPathToGlory(state);
     renderBracket(state);
     renderFooter(state, status);

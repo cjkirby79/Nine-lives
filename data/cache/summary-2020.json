@@ -1,0 +1,146 @@
+{
+ "Adelaide": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 3
+ },
+ "Brisbane Lions": {
+  "finals": 2,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 19,
+  "played_finals": 1,
+  "won": 15
+ },
+ "Carlton": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 7
+ },
+ "Collingwood": {
+  "finals": 2,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 18,
+  "played_finals": 1,
+  "won": 10
+ },
+ "Essendon": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 16,
+  "played_finals": 0,
+  "won": 6
+ },
+ "Fremantle": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 7
+ },
+ "Geelong": {
+  "finals": 4,
+  "flags": 0,
+  "grand_finals": 1,
+  "played": 21,
+  "played_finals": 1,
+  "won": 14
+ },
+ "Gold Coast": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 16,
+  "played_finals": 0,
+  "won": 5
+ },
+ "Greater Western Sydney": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 8
+ },
+ "Hawthorn": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 5
+ },
+ "Melbourne": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 9
+ },
+ "North Melbourne": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 3
+ },
+ "Port Adelaide": {
+  "finals": 2,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 19,
+  "played_finals": 1,
+  "won": 15
+ },
+ "Richmond": {
+  "finals": 4,
+  "flags": 1,
+  "grand_finals": 1,
+  "played": 20,
+  "played_finals": 1,
+  "won": 15
+ },
+ "St Kilda": {
+  "finals": 2,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 19,
+  "played_finals": 1,
+  "won": 11
+ },
+ "Sydney": {
+  "finals": 0,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 17,
+  "played_finals": 0,
+  "won": 5
+ },
+ "West Coast": {
+  "finals": 1,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 18,
+  "played_finals": 1,
+  "won": 12
+ },
+ "Western Bulldogs": {
+  "finals": 1,
+  "flags": 0,
+  "grand_finals": 0,
+  "played": 18,
+  "played_finals": 1,
+  "won": 10
+ }
+}
