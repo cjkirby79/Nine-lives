@@ -1,0 +1,90 @@
+name: Nine Lives fetch
+
+on:
+  # Every half hour. GitHub's scheduler runs late under load -- sometimes a lot
+  # late -- so nothing downstream may assume this is punctual. The page shows
+  # the real age of the data rather than the schedule it was meant to keep.
+  schedule:
+    - cron: "*/30 * * * *"
+  # The "Run workflow" button. This is how you force a refresh from a phone.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Never let two runs push at once.
+concurrency:
+  group: nine-lives-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Guard rail: if the maths is broken, fail before writing anything.
+      # The fetch script uses only the standard library, so there is nothing
+      # to install.
+      - name: Check the model
+        run: python3 fetch/test_model.py
+
+      - name: Fetch from Squiggle
+        id: fetch
+        continue-on-error: true
+        run: python3 fetch/fetch.py
+
+      - name: Commit changed data
+        run: |
+          set -euo pipefail
+          git config user.name "nine-lives-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+
+          if git diff --staged --quiet; then
+            echo "Nothing changed since the last run."
+            exit 0
+          fi
+
+          SUMMARY=$(python3 - <<'PY'
+          import json
+          try:
+              state = json.load(open("data/state.json"))
+              headline = state["headline"]["probability"]
+              fixture = state.get("next_fixture") or {}
+              print(f"{headline:.1%} v {fixture.get('opponent', 'TBC')}")
+          except Exception:
+              print("status only")
+          PY
+          )
+          git commit -m "Data: ${SUMMARY}"
+
+          # Retry the push: a scheduled sibling or a manual run can land first,
+          # and transient network failures are common enough to plan for.
+          for attempt in 1 2 3 4; do
+            if git push origin HEAD; then
+              echo "Pushed on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Push failed (attempt ${attempt}); rebasing and retrying."
+            sleep $((2 ** attempt))
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "Could not push after 4 attempts." >&2
+          exit 1
+
+      # A single failed fetch is a blip and shouldn't redden the log -- the page
+      # keeps showing the last good data. The script only signals failure once
+      # Squiggle has been unreachable for roughly two hours.
+      - name: Surface a sustained outage
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "::error::Squiggle has been unreachable for several runs."
+          cat data/status.json
+          exit 1

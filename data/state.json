@@ -1,0 +1,633 @@
+{
+ "bracket": [
+  {
+   "away": "Carlton",
+   "away_score": 74,
+   "complete": true,
+   "date": "2026-08-29 19:35:00",
+   "home": "Melbourne",
+   "home_score": 55,
+   "involves_club": false,
+   "node": "WC1",
+   "provisional_reasons": [],
+   "stage": "Wildcard",
+   "venue": "M.C.G.",
+   "winner": "Carlton"
+  },
+  {
+   "away": "Collingwood",
+   "away_score": 93,
+   "complete": true,
+   "date": "2026-08-28 19:40:00",
+   "home": "Western Bulldogs",
+   "home_score": 96,
+   "involves_club": false,
+   "node": "WC2",
+   "provisional_reasons": [],
+   "stage": "Wildcard",
+   "venue": "M.C.G.",
+   "winner": "Western Bulldogs"
+  },
+  {
+   "away": "Hawthorn",
+   "away_score": 72,
+   "complete": true,
+   "date": "2026-09-03 20:10:00",
+   "home": "Fremantle",
+   "home_score": 40,
+   "involves_club": false,
+   "node": "QF1",
+   "provisional_reasons": [],
+   "stage": "Qualifying final",
+   "venue": "Perth Stadium",
+   "winner": "Hawthorn"
+  },
+  {
+   "away": "Brisbane Lions",
+   "away_score": 8,
+   "complete": false,
+   "date": "2026-09-05 15:15:00",
+   "home": "Sydney",
+   "home_score": 39,
+   "involves_club": false,
+   "node": "QF2",
+   "provisional_reasons": [],
+   "stage": "Qualifying final",
+   "venue": "S.C.G.",
+   "winner": null
+  },
+  {
+   "away": "Carlton",
+   "away_score": 74,
+   "complete": true,
+   "date": "2026-09-04 19:40:00",
+   "home": "Geelong",
+   "home_score": 107,
+   "involves_club": true,
+   "node": "EF1",
+   "provisional_reasons": [],
+   "stage": "Elimination final",
+   "venue": "M.C.G.",
+   "winner": "Geelong"
+  },
+  {
+   "away": "Western Bulldogs",
+   "away_score": 0,
+   "complete": false,
+   "date": "2026-09-05 19:35:00",
+   "home": "Adelaide",
+   "home_score": 0,
+   "involves_club": false,
+   "node": "EF2",
+   "provisional_reasons": [],
+   "stage": "Elimination final",
+   "venue": "Adelaide Oval",
+   "winner": null
+  },
+  {
+   "away": "Geelong",
+   "away_score": 0,
+   "complete": false,
+   "date": "2026-09-12 19:20:00",
+   "home": "Fremantle",
+   "home_score": 0,
+   "involves_club": true,
+   "node": "SF1",
+   "provisional_reasons": [
+    "venue shown is M.C.G., but Fremantle would host at Perth Stadium",
+    "another game in this round carries the identical kickoff time"
+   ],
+   "stage": "Semi-final",
+   "venue": "M.C.G.",
+   "winner": null
+  },
+  {
+   "away": null,
+   "club_appearance_probability": 0.0,
+   "home": null,
+   "node": "SF2",
+   "stage": "Semi-final"
+  },
+  {
+   "away": null,
+   "club_appearance_probability": 0.0,
+   "home": null,
+   "node": "PF1",
+   "stage": "Preliminary final"
+  },
+  {
+   "away": null,
+   "club_appearance_probability": 0.3804,
+   "home": null,
+   "node": "PF2",
+   "stage": "Preliminary final"
+  },
+  {
+   "away": null,
+   "club_appearance_probability": 0.165874,
+   "home": null,
+   "node": "GF",
+   "stage": "Grand Final"
+  }
+ ],
+ "club": "Geelong",
+ "field": [
+  {
+   "probability": 0.324851,
+   "team": "Hawthorn"
+  },
+  {
+   "probability": 0.241621,
+   "team": "Brisbane Lions"
+  },
+  {
+   "probability": 0.176111,
+   "team": "Sydney"
+  },
+  {
+   "probability": 0.14203,
+   "team": "Fremantle"
+  },
+  {
+   "probability": 0.083431,
+   "team": "Geelong"
+  },
+  {
+   "probability": 0.025732,
+   "team": "Adelaide"
+  },
+  {
+   "probability": 0.006225,
+   "team": "Western Bulldogs"
+  }
+ ],
+ "generated_at": "2026-09-05T05:38:05+00:00",
+ "headline": {
+  "probability": 0.083431,
+  "reaches_grand_final": 0.165874,
+  "steps": [
+   {
+    "conditional_probability": 0.3804,
+    "cumulative_probability": 0.3804,
+    "node": "SF1",
+    "opponents": [
+     {
+      "probability": 1.0,
+      "team": "Fremantle"
+     }
+    ],
+    "possible_venues": [
+     "M.C.G."
+    ],
+    "source": "Squiggle Aggregate consensus",
+    "source_kind": "published",
+    "stage": "Semi-final",
+    "venue": "M.C.G."
+   },
+   {
+    "conditional_probability": 0.436053,
+    "cumulative_probability": 0.165874,
+    "node": "PF2",
+    "opponents": [
+     {
+      "probability": 0.5061,
+      "team": "Sydney"
+     },
+     {
+      "probability": 0.4939,
+      "team": "Brisbane Lions"
+     }
+    ],
+    "possible_venues": [
+     "S.C.G.",
+     "Gabba"
+    ],
+    "source": "fitted from Squiggle power ratings",
+    "source_kind": "fitted",
+    "stage": "Preliminary final",
+    "venue": "S.C.G."
+   },
+   {
+    "conditional_probability": 0.502974,
+    "cumulative_probability": 0.083431,
+    "node": "GF",
+    "opponents": [
+     {
+      "probability": 0.658454,
+      "team": "Hawthorn"
+     },
+     {
+      "probability": 0.167446,
+      "team": "Brisbane Lions"
+     },
+     {
+      "probability": 0.09279,
+      "team": "Sydney"
+     },
+     {
+      "probability": 0.062188,
+      "team": "Adelaide"
+     },
+     {
+      "probability": 0.019123,
+      "team": "Western Bulldogs"
+     }
+    ],
+    "possible_venues": [
+     "M.C.G."
+    ],
+    "source": "fitted from Squiggle power ratings",
+    "source_kind": "fitted",
+    "stage": "Grand Final",
+    "venue": "M.C.G."
+   }
+  ],
+  "team": "Geelong"
+ },
+ "ladder": [
+  {
+   "draws": 0,
+   "losses": 4,
+   "percentage": 137.2,
+   "points": 76,
+   "rank": 1,
+   "team": "Fremantle",
+   "wins": 19
+  },
+  {
+   "draws": 0,
+   "losses": 5,
+   "percentage": 136.1,
+   "points": 72,
+   "rank": 2,
+   "team": "Sydney",
+   "wins": 18
+  },
+  {
+   "draws": 0,
+   "losses": 7,
+   "percentage": 121.7,
+   "points": 64,
+   "rank": 3,
+   "team": "Brisbane Lions",
+   "wins": 16
+  },
+  {
+   "draws": 2,
+   "losses": 6,
+   "percentage": 120.1,
+   "points": 64,
+   "rank": 4,
+   "team": "Hawthorn",
+   "wins": 15
+  },
+  {
+   "draws": 0,
+   "losses": 8,
+   "percentage": 122.3,
+   "points": 60,
+   "rank": 5,
+   "team": "Geelong",
+   "wins": 15
+  },
+  {
+   "draws": 0,
+   "losses": 8,
+   "percentage": 117.3,
+   "points": 60,
+   "rank": 6,
+   "team": "Adelaide",
+   "wins": 15
+  },
+  {
+   "draws": 0,
+   "losses": 8,
+   "percentage": 109.6,
+   "points": 60,
+   "rank": 7,
+   "team": "Melbourne",
+   "wins": 15
+  },
+  {
+   "draws": 1,
+   "losses": 9,
+   "percentage": 95.4,
+   "points": 54,
+   "rank": 8,
+   "team": "Western Bulldogs",
+   "wins": 13
+  },
+  {
+   "draws": 2,
+   "losses": 9,
+   "percentage": 102.4,
+   "points": 52,
+   "rank": 9,
+   "team": "Collingwood",
+   "wins": 12
+  },
+  {
+   "draws": 1,
+   "losses": 10,
+   "percentage": 101.5,
+   "points": 50,
+   "rank": 10,
+   "team": "Carlton",
+   "wins": 12
+  },
+  {
+   "draws": 0,
+   "losses": 13,
+   "percentage": 102.8,
+   "points": 40,
+   "rank": 11,
+   "team": "St Kilda",
+   "wins": 10
+  },
+  {
+   "draws": 0,
+   "losses": 13,
+   "percentage": 98.9,
+   "points": 40,
+   "rank": 12,
+   "team": "Greater Western Sydney",
+   "wins": 10
+  },
+  {
+   "draws": 0,
+   "losses": 14,
+   "percentage": 94.5,
+   "points": 36,
+   "rank": 13,
+   "team": "Gold Coast",
+   "wins": 9
+  },
+  {
+   "draws": 0,
+   "losses": 14,
+   "percentage": 88.8,
+   "points": 36,
+   "rank": 14,
+   "team": "North Melbourne",
+   "wins": 9
+  },
+  {
+   "draws": 0,
+   "losses": 16,
+   "percentage": 88.0,
+   "points": 28,
+   "rank": 15,
+   "team": "Port Adelaide",
+   "wins": 7
+  },
+  {
+   "draws": 0,
+   "losses": 19,
+   "percentage": 69.2,
+   "points": 16,
+   "rank": 16,
+   "team": "West Coast",
+   "wins": 4
+  },
+  {
+   "draws": 0,
+   "losses": 20,
+   "percentage": 62.5,
+   "points": 12,
+   "rank": 17,
+   "team": "Richmond",
+   "wins": 3
+  },
+  {
+   "draws": 0,
+   "losses": 21,
+   "percentage": 64.6,
+   "points": 8,
+   "rank": 18,
+   "team": "Essendon",
+   "wins": 2
+  }
+ ],
+ "market": {
+  "club_win_probability": 0.3906,
+  "expected_margin_to_club": -9.1,
+  "source": "Squiggle 'Punters' source, derived from bookmaker pricing",
+  "updated": "2026-09-05 15:05:34"
+ },
+ "method": {
+  "calibration": {
+   "diagnostics": {
+    "finals_holdout_games": 7,
+    "finals_holdout_rmse_points": 8.34,
+    "margin_fit_from_round": 17,
+    "margin_fit_games": 79,
+    "margin_fit_r_squared": 0.932,
+    "margin_fit_rmse_points": 6.5,
+    "probability_fit_games": 214
+   },
+   "home_ground_points": 3.4969,
+   "interstate_travel_points": 4.5689,
+   "logit_per_point": 0.04701,
+   "points_per_power_point": 1.6811
+  },
+  "description": "Every remaining path through the finals bracket is enumerated exhaustively and the paths ending in a premiership are summed. Fixtures Squiggle has already tipped use its published consensus verbatim; the rest use a conversion fitted to Squiggle's own published margins and confidences this season."
+ },
+ "next_fixture": {
+  "away": "Geelong",
+  "club_is_home": false,
+  "club_win_probability": 0.3804,
+  "game_id": 38725,
+  "home": "Fremantle",
+  "local_time": "2026-09-12 19:20:00",
+  "opponent": "Fremantle",
+  "provisional_reasons": [
+   "venue shown is M.C.G., but Fremantle would host at Perth Stadium",
+   "another game in this round carries the identical kickoff time"
+  ],
+  "stage": "Semi-Finals",
+  "start_utc": "2026-09-12T09:20:00Z",
+  "timezone": "+10:00",
+  "venue": "M.C.G."
+ },
+ "scott_era": {
+  "against_live_teams": [
+   {
+    "lost": 2,
+    "played": 5,
+    "team": "Hawthorn",
+    "won": 3
+   },
+   {
+    "lost": 2,
+    "played": 5,
+    "team": "Brisbane Lions",
+    "won": 3
+   },
+   {
+    "lost": 1,
+    "played": 3,
+    "team": "Sydney",
+    "won": 2
+   },
+   {
+    "lost": 2,
+    "played": 2,
+    "team": "Fremantle",
+    "won": 0
+   },
+   {
+    "lost": 1,
+    "played": 1,
+    "team": "Adelaide",
+    "won": 0
+   },
+   {
+    "lost": 0,
+    "played": 0,
+    "team": "Western Bulldogs",
+    "won": 0
+   }
+  ],
+  "average_margin": 5.4,
+  "by_stage": [
+   {
+    "lost": 8,
+    "played": 14,
+    "stage": "Week 1 final",
+    "won": 6
+   },
+   {
+    "lost": 6,
+    "played": 10,
+    "stage": "Preliminary final",
+    "won": 4
+   },
+   {
+    "lost": 1,
+    "played": 6,
+    "stage": "Semi-final",
+    "won": 5
+   },
+   {
+    "lost": 2,
+    "played": 4,
+    "stage": "Grand Final",
+    "won": 2
+   }
+  ],
+  "by_venue": [
+   {
+    "lost": 11,
+    "played": 24,
+    "venue": "M.C.G.",
+    "won": 13
+   },
+   {
+    "lost": 3,
+    "played": 4,
+    "venue": "Adelaide Oval",
+    "won": 1
+   },
+   {
+    "lost": 1,
+    "played": 3,
+    "venue": "Gabba",
+    "won": 2
+   },
+   {
+    "lost": 1,
+    "played": 2,
+    "venue": "Perth Stadium",
+    "won": 1
+   },
+   {
+    "lost": 1,
+    "played": 1,
+    "venue": "Kardinia Park",
+    "won": 0
+   }
+  ],
+  "from_year": 2011,
+  "grand_finals_reached": 4,
+  "overall": {
+   "lost": 17,
+   "played": 34,
+   "won": 17
+  },
+  "recent": [
+   {
+    "margin": 33,
+    "opponent": "Carlton",
+    "result": "W",
+    "stage": "Week 1 final",
+    "venue": "M.C.G.",
+    "year": 2026
+   },
+   {
+    "margin": -47,
+    "opponent": "Brisbane Lions",
+    "result": "L",
+    "stage": "Grand Final",
+    "venue": "M.C.G.",
+    "year": 2025
+   },
+   {
+    "margin": 30,
+    "opponent": "Hawthorn",
+    "result": "W",
+    "stage": "Preliminary final",
+    "venue": "M.C.G.",
+    "year": 2025
+   },
+   {
+    "margin": 38,
+    "opponent": "Brisbane Lions",
+    "result": "W",
+    "stage": "Week 1 final",
+    "venue": "M.C.G.",
+    "year": 2025
+   },
+   {
+    "margin": -10,
+    "opponent": "Brisbane Lions",
+    "result": "L",
+    "stage": "Preliminary final",
+    "venue": "M.C.G.",
+    "year": 2024
+   },
+   {
+    "margin": 84,
+    "opponent": "Port Adelaide",
+    "result": "W",
+    "stage": "Week 1 final",
+    "venue": "Adelaide Oval",
+    "year": 2024
+   },
+   {
+    "margin": 81,
+    "opponent": "Sydney",
+    "result": "W",
+    "stage": "Grand Final",
+    "venue": "M.C.G.",
+    "year": 2022
+   },
+   {
+    "margin": 71,
+    "opponent": "Brisbane Lions",
+    "result": "W",
+    "stage": "Preliminary final",
+    "venue": "M.C.G.",
+    "year": 2022
+   }
+  ],
+  "seasons_playing_finals": 14,
+  "to_year": 2026
+ },
+ "season": 2026,
+ "source": {
+  "models_aggregated": 41,
+  "name": "Squiggle API",
+  "note": "Squiggle publishes no premiership probability. The headline is derived -- see method.",
+  "url": "https://api.squiggle.com.au/"
+ }
+}

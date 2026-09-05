@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nine Lives — Geelong's 2026 premiership tracker</title>
+<meta name="description" content="Geelong's chances of winning the 2026 AFL Grand Final, derived from the Squiggle model consensus and updated every half hour.">
+<meta name="theme-color" content="#05122b">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2305122b'/><g fill='%23f5f8ff'><rect y='6' width='32' height='4'/><rect y='14' width='32' height='4'/><rect y='22' width='32' height='4'/></g></svg>">
+</head>
+<body>
+
+<a class="skip" href="#headline">Skip to the number</a>
+
+<header class="masthead">
+  <div class="hoops" aria-hidden="true"></div>
+  <div class="masthead-inner">
+    <h1>Nine&nbsp;Lives</h1>
+    <p class="masthead-sub">Geelong · <span data-field="season">2026</span> premiership tracker</p>
+  </div>
+  <div class="hoops" aria-hidden="true"></div>
+</header>
+
+<div id="staleness" class="staleness" hidden role="status"></div>
+
+<main>
+
+  <!-- 1 — the number -->
+  <section class="panel headline" id="headline" aria-labelledby="headline-title">
+    <h2 class="panel-title" id="headline-title">Premiership probability</h2>
+    <p class="figure" data-field="probability" aria-live="polite">—</p>
+    <p class="figure-delta" data-field="delta"></p>
+    <p class="figure-note" data-field="figure-note">—</p>
+
+    <details class="method">
+      <summary>How this is calculated</summary>
+      <div class="method-body">
+        <p class="method-lede" data-field="method-description"></p>
+        <ol class="legs" data-field="legs"></ol>
+        <p class="method-product" data-field="method-product"></p>
+        <dl class="fit" data-field="fit"></dl>
+        <p class="caveat">
+          Squiggle publishes no premiership probability, so this number is derived rather
+          than quoted. Legs marked <em>fitted</em> use a conversion trained on Squiggle's
+          own published margins this season — they are the least certain part of the number.
+          The Grand Final is priced as a neutral ground.
+        </p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 2 — the Chris Scott era -->
+  <section class="panel" aria-labelledby="scott-title">
+    <h2 class="panel-title" id="scott-title">The Chris Scott era</h2>
+    <p class="panel-sub" data-field="scott-range">—</p>
+
+    <div class="stat-strip" data-field="scott-strip"></div>
+
+    <div class="split">
+      <div>
+        <h3 class="sub-title">By stage</h3>
+        <ul class="record-list" data-field="scott-stages"></ul>
+      </div>
+      <div>
+        <h3 class="sub-title">Finals record v sides still alive</h3>
+        <ul class="record-list" data-field="scott-opponents"></ul>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Last eight finals</h3>
+    <ul class="form-line" data-field="scott-recent"></ul>
+  </section>
+
+  <!-- 3 — next up -->
+  <section class="panel" aria-labelledby="next-title">
+    <h2 class="panel-title" id="next-title">Next up</h2>
+    <div data-field="next-fixture"></div>
+  </section>
+
+  <!-- 4 — market against models -->
+  <section class="panel" aria-labelledby="market-title">
+    <h2 class="panel-title" id="market-title">What the public think</h2>
+    <div data-field="market"></div>
+    <p class="caveat">
+      Market pricing is shown for context only — it is what the betting public believe,
+      not a recommendation. There are no bookmaker links on this site.
+    </p>
+  </section>
+
+  <!-- 5 — the path -->
+  <section class="panel" aria-labelledby="bracket-title">
+    <h2 class="panel-title" id="bracket-title">The path</h2>
+    <p class="panel-sub">
+      2026 is the first top-ten finals series. Five weeks, wildcard round first.
+    </p>
+    <ol class="bracket" data-field="bracket"></ol>
+  </section>
+
+</main>
+
+<!-- 6 — provenance -->
+<footer class="panel footer" aria-labelledby="updated-title">
+  <h2 class="panel-title" id="updated-title">Last updated</h2>
+  <p class="updated" data-field="updated">—</p>
+  <p class="footer-note" data-field="fetch-status"></p>
+  <p class="footer-note">
+    Every figure on this page comes from the
+    <a href="https://api.squiggle.com.au/" rel="noopener">Squiggle API</a>,
+    which tracks <span data-field="model-count">a number of</span> public AFL models and
+    tipping sources.
+    Nothing here is hand-entered. Where a figure cannot be sourced, the page leaves a gap
+    rather than filling it in.
+  </p>
+</footer>
+
+<noscript>
+  <p class="panel caveat">
+    This page needs JavaScript to read its data files. The raw numbers are in
+    <code>data/state.json</code> in the repository.
+  </p>
+</noscript>
+
+<script src="app.js"></script>
+</body>
+</html>

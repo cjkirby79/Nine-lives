@@ -1,0 +1,303 @@
+#!/usr/bin/env python3
+"""Tests for the maths behind the headline number.
+
+Plain asserts, no pytest -- this runs in the same bare container as the fetch
+script. Run with: python3 fetch/test_model.py
+"""
+
+import json
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import model
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SEEDS = {
+    1: "Fremantle", 2: "Sydney", 3: "Brisbane Lions", 4: "Hawthorn",
+    5: "Geelong", 6: "Adelaide", 7: "Melbourne", 8: "Western Bulldogs",
+    9: "Collingwood", 10: "Carlton",
+}
+
+# Mirrors the real state of the 2026 series after week two: the Friday
+# elimination final is decided while the Saturday qualifying final is not.
+FINALS = [
+    {"id": 1, "hteam": "Melbourne", "ateam": "Carlton", "complete": 100,
+     "winner": "Carlton", "venue": "M.C.G.", "round": 25},
+    {"id": 2, "hteam": "Western Bulldogs", "ateam": "Collingwood", "complete": 100,
+     "winner": "Western Bulldogs", "venue": "M.C.G.", "round": 25},
+    {"id": 3, "hteam": "Fremantle", "ateam": "Hawthorn", "complete": 100,
+     "winner": "Hawthorn", "venue": "Perth Stadium", "round": 26},
+    {"id": 4, "hteam": "Sydney", "ateam": "Brisbane Lions", "complete": 0,
+     "winner": None, "venue": "S.C.G.", "round": 26},
+    {"id": 5, "hteam": "Geelong", "ateam": "Carlton", "complete": 100,
+     "winner": "Geelong", "venue": "M.C.G.", "round": 26},
+    {"id": 6, "hteam": "Adelaide", "ateam": "Western Bulldogs", "complete": 0,
+     "winner": None, "venue": "Adelaide Oval", "round": 26},
+    {"id": 7, "hteam": "Fremantle", "ateam": "Geelong", "complete": 0,
+     "winner": None, "venue": "M.C.G.", "round": 27},
+]
+
+TIPS = {7: {"hconfidence": "61.96", "hmargin": "10.26"}}
+
+POWERS = {name: 100.0 for name in SEEDS.values()}
+
+CALIBRATION = model.Calibration([1.5, 3.5, 4.5], 0.047, {})
+
+checks = 0
+
+
+def check(condition, description):
+    global checks
+    checks += 1
+    if not condition:
+        raise AssertionError(description)
+
+
+def close(a, b, tolerance=1e-9):
+    return abs(a - b) <= tolerance
+
+
+def bracket():
+    return model.Bracket(SEEDS, FINALS, TIPS)
+
+
+# --- linear algebra -------------------------------------------------------
+
+def test_ols_recovers_known_coefficients():
+    rows = [[1.0, 0.0, 2.0], [2.0, 1.0, 0.0], [3.0, 1.0, 1.0],
+            [0.0, 2.0, 1.0], [4.0, 0.0, 3.0], [1.0, 3.0, 1.0]]
+    truth = [2.0, -1.0, 0.5]
+    targets = [sum(c * v for c, v in zip(truth, row)) for row in rows]
+    fitted = model.solve_ols(rows, targets)
+    check(all(close(f, t, 1e-8) for f, t in zip(fitted, truth)),
+          f"OLS should recover exact coefficients, got {fitted}")
+
+
+def test_ols_rejects_collinear_input():
+    rows = [[1.0, 2.0], [2.0, 4.0], [3.0, 6.0]]
+    try:
+        model.solve_ols(rows, [1.0, 2.0, 3.0])
+    except ValueError:
+        return
+    raise AssertionError("collinear design matrix should raise, not return garbage")
+
+
+def test_logit_roundtrip():
+    for p in (0.05, 0.25, 0.5, 0.75, 0.95):
+        check(close(model.logistic(model.logit(p)), p, 1e-9), f"logit roundtrip at {p}")
+
+
+# --- bracket structure ----------------------------------------------------
+
+def test_wildcard_winners_feed_the_right_elimination_finals():
+    state = {"WC1": "Carlton", "WC2": "Western Bulldogs"}
+    # 5th hosts the LOWER-ranked wildcard winner, 6th the higher-ranked one.
+    check(bracket().participants("EF1", state) == ("Geelong", "Carlton"),
+          "5th should host the lower-ranked wildcard winner")
+    check(bracket().participants("EF2", state) == ("Adelaide", "Western Bulldogs"),
+          "6th should host the higher-ranked wildcard winner")
+
+
+def test_semi_final_pairs_qualifying_loser_with_elimination_winner():
+    state = {"WC1": "Carlton", "WC2": "Western Bulldogs",
+             "QF1": "Hawthorn", "EF1": "Geelong"}
+    check(bracket().participants("SF1", state) == ("Fremantle", "Geelong"),
+          "the beaten minor premier should host the elimination winner")
+
+
+def test_preliminary_finals_cross_over():
+    state = {"WC1": "Carlton", "WC2": "Western Bulldogs", "QF1": "Hawthorn",
+             "QF2": "Sydney", "EF1": "Geelong", "EF2": "Adelaide",
+             "SF1": "Geelong", "SF2": "Adelaide"}
+    check(bracket().participants("PF1", state) == ("Hawthorn", "Adelaide"),
+          "PF1 should pair the QF1 winner with the OTHER semi-final winner")
+    check(bracket().participants("PF2", state) == ("Sydney", "Geelong"),
+          "PF2 should pair the QF2 winner with the SF1 winner")
+
+
+def test_unresolved_upstream_leaves_participants_unknown():
+    check(bracket().participants("SF2", {"QF1": "Hawthorn"}) is None,
+          "a game whose feeders haven't been played should not resolve")
+
+
+def test_known_results_survives_an_unplayed_earlier_game():
+    """The regression this suite exists for.
+
+    Geelong's elimination final finished on the Friday; the qualifying final it
+    sits after in bracket order was still to be played on the Saturday. A
+    single ordered pass drops the Friday result on the floor.
+    """
+    known = bracket().known_results()
+    check(known.get("EF1") == "Geelong",
+          "a completed elimination final must be recorded even though a "
+          "lower-numbered node is still pending")
+    check("QF2" not in known, "an unplayed game must not be given a winner")
+    check(known.get("QF1") == "Hawthorn" and known.get("WC1") == "Carlton",
+          "completed games should all be picked up")
+
+
+# --- pricing --------------------------------------------------------------
+
+def test_published_tip_is_used_verbatim_and_oriented():
+    probability, _ = bracket().published_probability("Fremantle", "Geelong")
+    check(close(probability, 0.6196, 1e-9), "home side should get the tip as published")
+    flipped, _ = bracket().published_probability("Geelong", "Fremantle")
+    check(close(flipped, 1 - 0.6196, 1e-9), "reversing the fixture must flip the tip")
+
+
+def test_evenly_matched_sides_on_a_neutral_ground_are_a_coin_toss():
+    p = CALIBRATION.win_probability("Geelong", "Hawthorn", "M.C.G.", POWERS, neutral=True)
+    check(close(p, 0.5, 1e-9), f"neutral ground, equal ratings should be 0.5, got {p}")
+
+
+def test_home_ground_and_travel_both_help_the_home_side():
+    home_only = CALIBRATION.win_probability(
+        "Geelong", "Hawthorn", "M.C.G.", POWERS)          # both Victorian
+    plus_travel = CALIBRATION.win_probability(
+        "Fremantle", "Geelong", "Perth Stadium", POWERS)  # Geelong flying west
+    check(home_only > 0.5, "home ground alone should favour the host")
+    check(plus_travel > home_only,
+          "an interstate trip should cost the visitor more than a local one")
+
+
+# --- enumeration ----------------------------------------------------------
+
+def outcomes():
+    return model.enumerate_bracket(bracket(), CALIBRATION, POWERS)
+
+
+def test_exactly_one_team_wins_the_flag():
+    total = sum(row["probability"] for row in model.field_probabilities(outcomes()))
+    check(close(total, 1.0, 1e-9), f"premiership probabilities must sum to 1, got {total}")
+
+
+def test_every_game_has_exactly_one_winner():
+    result = outcomes()
+    for node in model.NODE_ORDER:
+        total = sum(result["win"][node].values())
+        check(close(total, 1.0, 1e-9),
+              f"win probabilities at {node} should sum to 1, got {total}")
+        appearing = sum(result["appear"][node].values())
+        check(close(appearing, 2.0, 1e-9),
+              f"exactly two teams contest {node}, got {appearing}")
+
+
+def test_eliminated_teams_cannot_win():
+    field = {row["team"]: row["probability"] for row in model.field_probabilities(outcomes())}
+    for team in ("Melbourne", "Collingwood", "Carlton"):
+        check(field.get(team, 0.0) == 0.0, f"{team} is out and must sit at zero")
+
+
+def test_leg_source_is_machine_readable():
+    """Guards a real bug: both source descriptions contain the word "Squiggle",
+    so sniffing the description marked the fitted legs as published."""
+    report = model.premiership_report(outcomes(), "Geelong")
+    kinds = {step["node"]: step["source_kind"] for step in report["steps"]}
+    check(kinds["SF1"] == "published",
+          "the semi-final has a Squiggle tip and must be marked published")
+    check(kinds["PF2"] == "fitted" and kinds["GF"] == "fitted",
+          "games with unknown opponents cannot be published, only fitted")
+    for step in report["steps"]:
+        check(step["source_kind"] in ("published", "fitted"),
+              "every leg needs a source kind the page can branch on")
+
+
+def test_conditionals_multiply_back_to_the_headline():
+    report = model.premiership_report(outcomes(), "Geelong")
+    product = 1.0
+    for step in report["steps"]:
+        product *= step["conditional_probability"]
+    check(close(product, report["probability"], 1e-6),
+          f"legs {product} should multiply to the headline {report['probability']}")
+    check([s["node"] for s in report["steps"]] == ["SF1", "PF2", "GF"],
+          "Geelong's remaining path is semi, prelim, grand final")
+
+
+def test_opponent_probabilities_are_conditional_not_marginal():
+    report = model.premiership_report(outcomes(), "Geelong")
+    for step in report["steps"]:
+        total = sum(o["probability"] for o in step["opponents"])
+        # The full list, not a truncated top-N -- a published breakdown that
+        # doesn't add up is worse than no breakdown.
+        check(close(total, 1.0, 1e-5),   # tolerance covers 6dp rounding only
+              f"{step['node']} opponents should sum to 1, got {total}")
+        for opponent in step["opponents"]:
+            check(0.0 <= opponent["probability"] <= 1.0,
+                  f"{opponent} is not a probability")
+
+
+def test_a_finished_bracket_is_a_certainty():
+    finished = [dict(g) for g in FINALS]
+    for game, winner in zip(finished[3:], ("Sydney", None, "Adelaide", "Geelong")):
+        if winner:
+            game.update(complete=100, winner=winner)
+    finished += [
+        {"id": 8, "hteam": "Brisbane Lions", "ateam": "Adelaide", "complete": 100,
+         "winner": "Adelaide", "venue": "Gabba", "round": 27},
+        {"id": 9, "hteam": "Hawthorn", "ateam": "Adelaide", "complete": 100,
+         "winner": "Hawthorn", "venue": "M.C.G.", "round": 28},
+        {"id": 10, "hteam": "Sydney", "ateam": "Geelong", "complete": 100,
+         "winner": "Geelong", "venue": "S.C.G.", "round": 28},
+        {"id": 11, "hteam": "Hawthorn", "ateam": "Geelong", "complete": 100,
+         "winner": "Geelong", "venue": "M.C.G.", "round": 29},
+    ]
+    result = model.enumerate_bracket(
+        model.Bracket(SEEDS, finished, {}), CALIBRATION, POWERS)
+    report = model.premiership_report(result, "Geelong")
+    check(close(report["probability"], 1.0, 1e-9),
+          "a side that has already won every final must sit at 100%")
+    check(report["steps"] == [], "nothing is left to play")
+
+
+# --- the live data --------------------------------------------------------
+
+def test_committed_state_is_internally_consistent():
+    path = os.path.join(ROOT, "data", "state.json")
+    if not os.path.exists(path):
+        print("  (skipped live-data checks: data/state.json not built yet)")
+        return
+    with open(path, encoding="utf-8") as handle:
+        state = json.load(handle)
+
+    total = sum(row["probability"] for row in state["field"])
+    check(close(total, 1.0, 1e-3), f"published field must sum to 1, got {total}")
+
+    headline = state["headline"]
+    product = 1.0
+    for step in headline["steps"]:
+        product *= step["conditional_probability"]
+    check(close(product, headline["probability"], 1e-4),
+          "published legs must multiply back to the published headline")
+    check(0.0 <= headline["probability"] <= 1.0, "headline is a probability")
+    check(headline["probability"] <= headline["reaches_grand_final"] + 1e-9,
+          "you cannot win the flag more often than you reach the grand final")
+
+    fit = state["method"]["calibration"]
+    check(fit["diagnostics"]["margin_fit_r_squared"] > 0.5,
+          "a fit this weak should not be driving the headline")
+    check(0 < fit["home_ground_points"] < 30 and 0 < fit["interstate_travel_points"] < 30,
+          "home-ground and travel effects should land in a plausible points range")
+    check(fit["logit_per_point"] > 0, "a bigger predicted margin must mean a better chance")
+
+
+def main():
+    tests = [value for name, value in sorted(globals().items())
+             if name.startswith("test_") and callable(value)]
+    failures = []
+    for test in tests:
+        try:
+            test()
+        except AssertionError as exc:
+            failures.append((test.__name__, exc))
+            print(f"FAIL {test.__name__}\n     {exc}")
+        else:
+            print(f"ok   {test.__name__}")
+    print(f"\n{len(tests) - len(failures)}/{len(tests)} tests passed, {checks} assertions")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
