@@ -427,13 +427,21 @@ class Bracket:
         return state
 
 
-def enumerate_bracket(bracket, calibration, powers):
+def enumerate_bracket(bracket, calibration, powers, forced=None):
     """Walk every remaining outcome and total up who wins the flag.
 
     Around 128 leaves at this stage of the series, so exhaustive enumeration is
     both fast and exact -- no sampling error to explain away.
+
+    `forced` pins the result of games that have not been played, which is how
+    the "what does tonight's other final do to us?" numbers are produced: run
+    it once per outcome and compare. Only pin a game whose two participants are
+    already decided -- pinning one whose teams still depend on earlier results
+    would be pinning a different match on different branches.
     """
-    known = bracket.known_results()
+    known = dict(bracket.known_results())
+    if forced:
+        known.update(forced)
 
     win = {node: {} for node in NODE_ORDER}     # P(team plays in node AND wins it)
     appear = {node: {} for node in NODE_ORDER}  # P(team plays in node at all)
@@ -495,7 +503,124 @@ def enumerate_bracket(bracket, calibration, powers):
 
     walk(0, {}, 1.0)
     return {"win": win, "appear": appear, "versus": versus,
-            "legs": legs, "known": known}
+            "legs": legs, "known": known,
+            "decided": bracket.known_results()}
+
+
+def club_scenarios(outcomes, node, team):
+    """Every way this game could line up for `team`: who, where, and our odds.
+
+    Answers the question a supporter actually asks -- "if we win this week, who
+    do we get and where?" -- by pairing each possible opponent with the ground
+    it would be played on, rather than listing opponents and venues separately
+    and leaving you to guess which goes with which.
+
+    Probabilities are conditional on the club being in the game at all, so they
+    sum to 1.
+    """
+    combinations = {}
+    for leg in outcomes["legs"].get(node, []):
+        if team not in leg["teams"]:
+            continue
+        at_home = leg["home"] == team
+        opponent = leg["away"] if at_home else leg["home"]
+        ours = leg["home_probability"] if at_home else 1.0 - leg["home_probability"]
+
+        # A Grand Final is played on neutral ground, so which side the bracket
+        # nominates as "home" is a formality. Saying "away" there would be
+        # inventing a disadvantage that doesn't exist.
+        key = (opponent, leg["venue"], at_home)
+        entry = combinations.setdefault(key, {"weight": 0.0, "weighted_win": 0.0})
+        entry["weight"] += leg["path_weight"]
+        entry["weighted_win"] += leg["path_weight"] * ours
+
+    total = sum(entry["weight"] for entry in combinations.values())
+    if total <= 0:
+        return []
+
+    return sorted(
+        (
+            {
+                "opponent": opponent,
+                "venue": venue,
+                "club_is_home": at_home,
+                "neutral": node == "GF",
+                "probability": round(entry["weight"] / total, 6),
+                "club_win_probability": round(entry["weighted_win"] / entry["weight"], 6),
+            }
+            for (opponent, venue, at_home), entry in combinations.items()
+        ),
+        key=lambda row: -row["probability"],
+    )
+
+
+def fixture_impact(bracket, calibration, powers, team="Geelong"):
+    """What every scheduled final still to be played does to our chances.
+
+    For each game whose two teams are already known, re-run the whole bracket
+    with that result pinned each way. The gap between the two answers is what
+    that game is worth to us -- which is the honest way to say whether a final
+    we are not playing in matters.
+    """
+    decided = bracket.known_results()
+    baseline = enumerate_bracket(bracket, calibration, powers)
+
+    rows = []
+    state = {}
+    for node in NODE_ORDER:
+        pair = bracket.participants(node, state)
+        if node in decided:
+            state[node] = decided[node]
+        if pair is None or node in decided:
+            continue
+
+        home, away = pair
+        game = bracket.game_for(home, away)
+        # Only games the fixture already names. Anything further out has
+        # different participants on different branches, so pinning a winner
+        # would be pinning a different match each time.
+        if game is None:
+            continue
+
+        published, _ = bracket.published_probability(home, away)
+        leg = (baseline["legs"].get(node) or [{}])[0]
+
+        outcomes = {}
+        for winner in (home, away):
+            pinned = enumerate_bracket(bracket, calibration, powers, forced={node: winner})
+            outcomes[winner] = pinned["win"]["GF"].get(team, 0.0)
+
+        # Squiggle reports a completion percentage, so a game in progress can be
+        # told apart from one yet to start. It matters: every probability here
+        # is the pre-match consensus, and presenting that beside a live score
+        # without saying so would be presenting a stale number as a current one.
+        completeness = game.get("complete") or 0
+        in_progress = 0 < completeness < 100
+
+        rows.append({
+            "node": node,
+            "stage": NODE_STAGE[node],
+            "home": home,
+            "away": away,
+            "in_progress": in_progress,
+            "complete_percent": completeness,
+            "home_score": game.get("hscore") if in_progress else None,
+            "away_score": game.get("ascore") if in_progress else None,
+            "time_string": game.get("timestr") if in_progress else None,
+            "venue": (game or {}).get("venue") or bracket.venue_for(node, home),
+            "date": (game or {}).get("date"),
+            "unixtime": (game or {}).get("unixtime"),
+            "game_id": (game or {}).get("id"),
+            "home_probability": round(leg.get("home_probability", published or 0.5), 6),
+            "source_kind": leg.get("source_kind"),
+            "involves_club": team in (home, away),
+            "club_if_home_wins": round(outcomes[home], 6),
+            "club_if_away_wins": round(outcomes[away], 6),
+            "club_swing": round(abs(outcomes[home] - outcomes[away]), 6),
+        })
+
+    rows.sort(key=lambda row: row["unixtime"] or 0)
+    return rows
 
 
 def premiership_report(outcomes, team="Geelong"):
@@ -508,8 +633,9 @@ def premiership_report(outcomes, team="Geelong"):
     win, appear, versus = outcomes["win"], outcomes["appear"], outcomes["versus"]
     flag = win["GF"].get(team, 0.0)
 
+    decided = outcomes.get("decided", outcomes["known"])
     remaining = [n for n in NODE_ORDER
-                 if n not in outcomes["known"] and appear[n].get(team, 0.0) > 1e-12]
+                 if n not in decided and appear[n].get(team, 0.0) > 1e-12]
 
     steps = []
     for node in remaining:
@@ -537,6 +663,7 @@ def premiership_report(outcomes, team="Geelong"):
         steps.append({
             "node": node,
             "stage": NODE_STAGE[node],
+            "scenarios": club_scenarios(outcomes, node, team),
             "conditional_probability": round(marginal / present, 6) if present else 0.0,
             "cumulative_probability": round(marginal, 6),
             "source": source,

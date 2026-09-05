@@ -229,6 +229,92 @@ def test_opponent_probabilities_are_conditional_not_marginal():
                   f"{opponent} is not a probability")
 
 
+# --- path to glory --------------------------------------------------------
+
+def test_forcing_a_result_pins_it():
+    pinned = model.enumerate_bracket(bracket(), CALIBRATION, POWERS,
+                                     forced={"QF2": "Sydney"})
+    check(close(pinned["win"]["QF2"].get("Sydney", 0.0), 1.0, 1e-9),
+          "a pinned winner should win that game in every branch")
+    check(pinned["win"]["QF2"].get("Brisbane Lions", 0.0) == 0.0,
+          "the pinned loser should not win it anywhere")
+    check("QF2" not in pinned["decided"],
+          "pinning must not be mistaken for a game actually having been played")
+
+
+def test_conditional_probabilities_obey_total_probability():
+    """The strongest check available on the swing numbers.
+
+    P(flag) must equal P(home win) x P(flag | home win)
+                     + P(away win) x P(flag | away win).
+    If the conditional runs and the baseline disagree, one of them is wrong.
+    """
+    baseline = model.enumerate_bracket(bracket(), CALIBRATION, POWERS)
+    flag = baseline["win"]["GF"].get("Geelong", 0.0)
+
+    rows = model.fixture_impact(bracket(), CALIBRATION, POWERS, "Geelong")
+    check(len(rows) > 0, "there should be scheduled games left to weigh up")
+
+    for row in rows:
+        recombined = (row["home_probability"] * row["club_if_home_wins"]
+                      + (1 - row["home_probability"]) * row["club_if_away_wins"])
+        check(close(recombined, flag, 1e-6),
+              f"{row['node']}: conditionals recombine to {recombined}, "
+              f"not the baseline {flag}")
+        check(row["club_swing"] >= 0, "a swing is a magnitude, never negative")
+
+
+def test_our_own_game_is_worth_the_whole_season():
+    rows = {r["node"]: r for r in
+            model.fixture_impact(bracket(), CALIBRATION, POWERS, "Geelong")}
+    semi = rows["SF1"]
+    check(semi["involves_club"], "SF1 is Geelong's game")
+    # Fremantle host, so Geelong winning is the away result.
+    check(close(semi["club_if_home_wins"], 0.0, 1e-12),
+          "losing the semi-final must end the season at zero")
+    check(semi["club_if_away_wins"] > 0.2,
+          "winning it should be worth a good deal more than the baseline")
+
+
+def test_only_scheduled_games_get_weighed_up():
+    nodes = {r["node"] for r in
+             model.fixture_impact(bracket(), CALIBRATION, POWERS, "Geelong")}
+    check(nodes == {"QF2", "EF2", "SF1"},
+          f"only games the fixture already names can be pinned, got {nodes}")
+    check("PF1" not in nodes and "GF" not in nodes,
+          "a game whose teams vary by branch must not be pinned -- that would "
+          "be pinning a different match on each branch")
+
+
+def test_scenarios_pair_each_opponent_with_its_ground():
+    report = model.premiership_report(outcomes(), "Geelong")
+    steps = {step["node"]: step for step in report["steps"]}
+
+    prelim = steps["PF2"]["scenarios"]
+    check(sum(s["probability"] for s in prelim) - 1.0 < 1e-6,
+          "opponent chances should sum to 1")
+    grounds = {s["opponent"]: s["venue"] for s in prelim}
+    check(grounds.get("Sydney") == "S.C.G.",
+          "a preliminary final against Sydney is played at the S.C.G.")
+    check(grounds.get("Brisbane Lions") == "Gabba",
+          "against Brisbane it is played at the Gabba")
+    for scenario in prelim:
+        check(not scenario["club_is_home"],
+              "Geelong travel to a preliminary final either way")
+        check(not scenario["neutral"], "a preliminary final is not neutral")
+
+
+def test_grand_final_scenarios_are_neutral():
+    report = model.premiership_report(outcomes(), "Geelong")
+    final = [s for s in report["steps"] if s["node"] == "GF"][0]
+    for scenario in final["scenarios"]:
+        check(scenario["neutral"],
+              "the Grand Final is neutral ground -- calling it home or away "
+              "invents an advantage that isn't there")
+        check(scenario["venue"] == model.GRAND_FINAL_VENUE,
+              "the Grand Final is at the M.C.G.")
+
+
 def test_a_finished_bracket_is_a_certainty():
     finished = [dict(g) for g in FINALS]
     for game, winner in zip(finished[3:], ("Sydney", None, "Adelaide", "Geelong")):

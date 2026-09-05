@@ -479,7 +479,168 @@
     return row;
   }
 
-  // ---- 5. the bracket ---------------------------------------------------
+  // ---- 5. path to glory -------------------------------------------------
+
+  function renderPathToGlory(state) {
+    var path = state.path_to_glory || {};
+    var club = state.club;
+
+    var note = $('[data-field="live-note"]');
+    if (path.live_disclaimer) {
+      note.textContent = path.live_disclaimer;
+      note.hidden = false;
+    } else {
+      note.hidden = true;
+    }
+
+    var playing = path.playing_now;
+    var remaining = (state.headline.steps || []).length;
+    field("path-sub").textContent = remaining
+      ? plural(remaining, "win") + " from the premiership, starting with " +
+        (playing && playing.scenarios && playing.scenarios[0]
+          ? playing.scenarios[0].opponent : "the next one") + "."
+      : "Nothing left to play.";
+
+    renderFixtures(path.fixtures || [], club);
+
+    // "If we win, who do we get?" -- the step after the one being played.
+    var next = path.if_we_win;
+    field("if-win-title").textContent = playing && playing.scenarios &&
+      playing.scenarios[0]
+        ? "If we beat " + playing.scenarios[0].opponent
+        : "If we win";
+    renderScenarios(field("if-win"), next, club,
+      "Nothing after this — it's the last game.");
+
+    var last = path.final_step;
+    renderScenarios(field("final-scenarios"),
+      last && last.node === "GF" ? last : null, club,
+      "Not applicable — this is the Grand Final.");
+  }
+
+  function renderFixtures(fixtures, club) {
+    var list = field("fixtures");
+    list.textContent = "";
+
+    if (!fixtures.length) {
+      var empty = document.createElement("li");
+      empty.appendChild(gap("no fixtures left to play"));
+      list.appendChild(empty);
+      return;
+    }
+
+    fixtures.forEach(function (fixture) {
+      var item = document.createElement("li");
+      item.setAttribute("data-club", String(Boolean(fixture.involves_club)));
+
+      var head = el("div", "fx-head");
+      head.appendChild(el("span", null, fixture.stage));
+      if (fixture.in_progress) {
+        head.appendChild(el("span", "fx-live",
+          fixture.time_string || "live"));
+      } else if (fixture.start_utc) {
+        head.appendChild(el("span", null, formatLocal(fixture.start_utc) || ""));
+      }
+      item.appendChild(head);
+
+      var teams = el("div", "fx-teams");
+      if (fixture.in_progress) {
+        teams.appendChild(document.createTextNode(fixture.home + " "));
+        teams.appendChild(el("b", "fx-score", fixture.home_score));
+        teams.appendChild(document.createTextNode("  v  " + fixture.away + " "));
+        teams.appendChild(el("b", "fx-score", fixture.away_score));
+      } else {
+        teams.textContent = fixture.home + " v " + fixture.away;
+      }
+      item.appendChild(teams);
+
+      var venue = el("div", "fx-venue", fixture.venue || "venue to be confirmed");
+      if (fixture.provisional_reasons && fixture.provisional_reasons.length) {
+        venue.appendChild(document.createTextNode(" "));
+        venue.appendChild(el("span", "tag tag-warn", "provisional"));
+      }
+      item.appendChild(venue);
+
+      var bar = el("div", "split-bar");
+      var home = el("i");
+      home.style.width = (fixture.home_probability * 100).toFixed(1) + "%";
+      var away = el("i");
+      away.style.width = (fixture.away_probability * 100).toFixed(1) + "%";
+      bar.appendChild(home);
+      bar.appendChild(away);
+      item.appendChild(bar);
+
+      var odds = el("div", "fx-odds");
+      odds.appendChild(document.createTextNode(
+        fixture.home + " " + percent(fixture.home_probability) + " · " +
+        fixture.away + " " + percent(fixture.away_probability)));
+      if (typeof fixture.market_home_probability === "number") {
+        odds.appendChild(document.createTextNode(
+          "  ·  market " + percent(fixture.market_home_probability) +
+          " " + fixture.home));
+      }
+      if (fixture.in_progress) {
+        odds.appendChild(document.createTextNode(" "));
+        odds.appendChild(el("span", "tag tag-warn", "pre-match"));
+      }
+      item.appendChild(odds);
+
+      // What this game is worth to us. For our own game that's the whole
+      // season; for one we're not in, it's the honest way to say whether it
+      // matters at all.
+      if (typeof fixture.club_if_home_wins === "number") {
+        var impact = el("div", "fx-impact");
+        if (fixture.involves_club) {
+          var ifWeWin = fixture.home === club
+            ? fixture.club_if_home_wins : fixture.club_if_away_wins;
+          impact.appendChild(document.createTextNode("Win and we're "));
+          impact.appendChild(el("b", null, percent(ifWeWin)));
+          impact.appendChild(document.createTextNode(
+            " for the flag. Lose and the season is over."));
+        } else {
+          impact.appendChild(document.createTextNode(
+            fixture.home + " win → " + club + " " +
+            percent(fixture.club_if_home_wins) + "  ·  " +
+            fixture.away + " win → " + percent(fixture.club_if_away_wins) + "  "));
+          var swing = fixture.club_swing * 100;
+          // "0.0pp swing" reads like a broken number rather than a small one.
+          impact.appendChild(el("b", null,
+            swing < 0.1 ? "barely moves us" : swing.toFixed(1) + "pp swing"));
+        }
+        item.appendChild(impact);
+      }
+
+      list.appendChild(item);
+    });
+  }
+
+  function renderScenarios(list, step, club, emptyMessage) {
+    list.textContent = "";
+    if (!step || !step.scenarios || !step.scenarios.length) {
+      var empty = document.createElement("li");
+      empty.appendChild(gap(emptyMessage));
+      list.appendChild(empty);
+      return;
+    }
+
+    step.scenarios.forEach(function (scenario) {
+      var item = document.createElement("li");
+      item.appendChild(el("div", "sc-opp", scenario.opponent));
+      item.appendChild(el("div", "sc-chance", percent(scenario.probability, 0)));
+
+      var meta = el("div", "sc-meta");
+      meta.appendChild(document.createTextNode(
+        (scenario.venue || "venue unknown") + " · " +
+        (scenario.neutral ? "neutral"
+          : scenario.club_is_home ? "home" : "away") + " · we'd be "));
+      meta.appendChild(el("b", null, percent(scenario.club_win_probability)));
+      item.appendChild(meta);
+
+      list.appendChild(item);
+    });
+  }
+
+  // ---- the bracket ------------------------------------------------------
 
   function renderBracket(state) {
     var list = field("bracket");
@@ -721,6 +882,7 @@
     renderScottEra(state);
     renderNextFixture(state);
     renderMarket(state);
+    renderPathToGlory(state);
     renderBracket(state);
     renderFooter(state, status);
   }).catch(function (error) {

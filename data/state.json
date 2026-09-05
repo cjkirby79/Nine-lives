@@ -44,11 +44,11 @@
   },
   {
    "away": "Brisbane Lions",
-   "away_score": 8,
+   "away_score": 30,
    "complete": false,
    "date": "2026-09-05 15:15:00",
    "home": "Sydney",
-   "home_score": 40,
+   "home_score": 43,
    "involves_club": false,
    "node": "QF2",
    "provisional_reasons": [],
@@ -161,7 +161,7 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T05:40:35+00:00",
+ "generated_at": "2026-09-05T06:05:21+00:00",
  "headline": {
   "probability": 0.083431,
   "reaches_grand_final": 0.165874,
@@ -178,6 +178,16 @@
     ],
     "possible_venues": [
      "M.C.G."
+    ],
+    "scenarios": [
+     {
+      "club_is_home": false,
+      "club_win_probability": 0.3804,
+      "neutral": false,
+      "opponent": "Fremantle",
+      "probability": 1.0,
+      "venue": "M.C.G."
+     }
     ],
     "source": "Squiggle Aggregate consensus",
     "source_kind": "published",
@@ -201,6 +211,24 @@
     "possible_venues": [
      "S.C.G.",
      "Gabba"
+    ],
+    "scenarios": [
+     {
+      "club_is_home": false,
+      "club_win_probability": 0.481679,
+      "neutral": false,
+      "opponent": "Sydney",
+      "probability": 0.506099,
+      "venue": "S.C.G."
+     },
+     {
+      "club_is_home": false,
+      "club_win_probability": 0.3893,
+      "neutral": false,
+      "opponent": "Brisbane Lions",
+      "probability": 0.493901,
+      "venue": "Gabba"
+     }
     ],
     "source": "fitted from Squiggle power ratings",
     "source_kind": "fitted",
@@ -235,6 +263,48 @@
     ],
     "possible_venues": [
      "M.C.G."
+    ],
+    "scenarios": [
+     {
+      "club_is_home": false,
+      "club_win_probability": 0.481438,
+      "neutral": true,
+      "opponent": "Hawthorn",
+      "probability": 0.658454,
+      "venue": "M.C.G."
+     },
+     {
+      "club_is_home": false,
+      "club_win_probability": 0.482227,
+      "neutral": true,
+      "opponent": "Brisbane Lions",
+      "probability": 0.167445,
+      "venue": "M.C.G."
+     },
+     {
+      "club_is_home": false,
+      "club_win_probability": 0.575864,
+      "neutral": true,
+      "opponent": "Sydney",
+      "probability": 0.092793,
+      "venue": "M.C.G."
+     },
+     {
+      "club_is_home": true,
+      "club_win_probability": 0.616923,
+      "neutral": true,
+      "opponent": "Adelaide",
+      "probability": 0.062185,
+      "venue": "M.C.G."
+     },
+     {
+      "club_is_home": true,
+      "club_win_probability": 0.701951,
+      "neutral": true,
+      "opponent": "Western Bulldogs",
+      "probability": 0.019123,
+      "venue": "M.C.G."
+     }
     ],
     "source": "fitted from Squiggle power ratings",
     "source_kind": "fitted",
@@ -448,6 +518,238 @@
   "start_utc": "2026-09-12T09:20:00Z",
   "timezone": "+10:00",
   "venue": "M.C.G."
+ },
+ "path_to_glory": {
+  "final_step": {
+   "conditional_probability": 0.502974,
+   "cumulative_probability": 0.083431,
+   "node": "GF",
+   "opponents": [
+    {
+     "probability": 0.658454,
+     "team": "Hawthorn"
+    },
+    {
+     "probability": 0.167446,
+     "team": "Brisbane Lions"
+    },
+    {
+     "probability": 0.09279,
+     "team": "Sydney"
+    },
+    {
+     "probability": 0.062188,
+     "team": "Adelaide"
+    },
+    {
+     "probability": 0.019123,
+     "team": "Western Bulldogs"
+    }
+   ],
+   "possible_venues": [
+    "M.C.G."
+   ],
+   "scenarios": [
+    {
+     "club_is_home": false,
+     "club_win_probability": 0.481438,
+     "neutral": true,
+     "opponent": "Hawthorn",
+     "probability": 0.658454,
+     "venue": "M.C.G."
+    },
+    {
+     "club_is_home": false,
+     "club_win_probability": 0.482227,
+     "neutral": true,
+     "opponent": "Brisbane Lions",
+     "probability": 0.167445,
+     "venue": "M.C.G."
+    },
+    {
+     "club_is_home": false,
+     "club_win_probability": 0.575864,
+     "neutral": true,
+     "opponent": "Sydney",
+     "probability": 0.092793,
+     "venue": "M.C.G."
+    },
+    {
+     "club_is_home": true,
+     "club_win_probability": 0.616923,
+     "neutral": true,
+     "opponent": "Adelaide",
+     "probability": 0.062185,
+     "venue": "M.C.G."
+    },
+    {
+     "club_is_home": true,
+     "club_win_probability": 0.701951,
+     "neutral": true,
+     "opponent": "Western Bulldogs",
+     "probability": 0.019123,
+     "venue": "M.C.G."
+    }
+   ],
+   "source": "fitted from Squiggle power ratings",
+   "source_kind": "fitted",
+   "stage": "Grand Final",
+   "venue": "M.C.G."
+  },
+  "fixtures": [
+   {
+    "away": "Brisbane Lions",
+    "away_probability": 0.4939,
+    "away_score": 30,
+    "club_if_away_wins": 0.07639,
+    "club_if_home_wins": 0.090301,
+    "club_swing": 0.013911,
+    "complete_percent": 33,
+    "date": "2026-09-05 15:15:00",
+    "game_id": 38724,
+    "home": "Sydney",
+    "home_probability": 0.5061,
+    "home_score": 43,
+    "in_progress": true,
+    "involves_club": false,
+    "local_time": "2026-09-05 15:15:00",
+    "market_home_probability": 0.2538,
+    "node": "QF2",
+    "provisional_reasons": [],
+    "source_kind": "published",
+    "stage": "Qualifying final",
+    "start_utc": "2026-09-05T05:15:00Z",
+    "time_string": "Q2 10:42",
+    "timezone": "+10:00",
+    "venue": "S.C.G."
+   },
+   {
+    "away": "Western Bulldogs",
+    "away_probability": 0.3129,
+    "away_score": null,
+    "club_if_away_wins": 0.083696,
+    "club_if_home_wins": 0.08331,
+    "club_swing": 0.000386,
+    "complete_percent": 0,
+    "date": "2026-09-05 19:35:00",
+    "game_id": 38722,
+    "home": "Adelaide",
+    "home_probability": 0.6871,
+    "home_score": null,
+    "in_progress": false,
+    "involves_club": false,
+    "local_time": "2026-09-05 19:05:00",
+    "market_home_probability": 0.7219,
+    "node": "EF2",
+    "provisional_reasons": [],
+    "source_kind": "published",
+    "stage": "Elimination final",
+    "start_utc": "2026-09-05T09:35:00Z",
+    "time_string": null,
+    "timezone": "+10:00",
+    "venue": "Adelaide Oval"
+   },
+   {
+    "away": "Geelong",
+    "away_probability": 0.3804,
+    "away_score": null,
+    "club_if_away_wins": 0.219323,
+    "club_if_home_wins": 0.0,
+    "club_swing": 0.219323,
+    "complete_percent": 0,
+    "date": "2026-09-12 19:20:00",
+    "game_id": 38725,
+    "home": "Fremantle",
+    "home_probability": 0.6196,
+    "home_score": null,
+    "in_progress": false,
+    "involves_club": true,
+    "local_time": "2026-09-12 19:20:00",
+    "market_home_probability": 0.6094,
+    "node": "SF1",
+    "provisional_reasons": [
+     "venue shown is M.C.G., but Fremantle would host at Perth Stadium",
+     "another game in this round carries the identical kickoff time"
+    ],
+    "source_kind": "published",
+    "stage": "Semi-final",
+    "start_utc": "2026-09-12T09:20:00Z",
+    "time_string": null,
+    "timezone": "+10:00",
+    "venue": "M.C.G."
+   }
+  ],
+  "games_in_progress": 1,
+  "if_we_win": {
+   "conditional_probability": 0.436053,
+   "cumulative_probability": 0.165874,
+   "node": "PF2",
+   "opponents": [
+    {
+     "probability": 0.5061,
+     "team": "Sydney"
+    },
+    {
+     "probability": 0.4939,
+     "team": "Brisbane Lions"
+    }
+   ],
+   "possible_venues": [
+    "S.C.G.",
+    "Gabba"
+   ],
+   "scenarios": [
+    {
+     "club_is_home": false,
+     "club_win_probability": 0.481679,
+     "neutral": false,
+     "opponent": "Sydney",
+     "probability": 0.506099,
+     "venue": "S.C.G."
+    },
+    {
+     "club_is_home": false,
+     "club_win_probability": 0.3893,
+     "neutral": false,
+     "opponent": "Brisbane Lions",
+     "probability": 0.493901,
+     "venue": "Gabba"
+    }
+   ],
+   "source": "fitted from Squiggle power ratings",
+   "source_kind": "fitted",
+   "stage": "Preliminary final",
+   "venue": "S.C.G."
+  },
+  "live_disclaimer": "A final is being played right now. Every probability here is the pre-match consensus and takes no account of the live score.",
+  "playing_now": {
+   "conditional_probability": 0.3804,
+   "cumulative_probability": 0.3804,
+   "node": "SF1",
+   "opponents": [
+    {
+     "probability": 1.0,
+     "team": "Fremantle"
+    }
+   ],
+   "possible_venues": [
+    "M.C.G."
+   ],
+   "scenarios": [
+    {
+     "club_is_home": false,
+     "club_win_probability": 0.3804,
+     "neutral": false,
+     "opponent": "Fremantle",
+     "probability": 1.0,
+     "venue": "M.C.G."
+    }
+   ],
+   "source": "Squiggle Aggregate consensus",
+   "source_kind": "published",
+   "stage": "Semi-final",
+   "venue": "M.C.G."
+  }
  },
  "scott_era": {
   "against_live_teams": [

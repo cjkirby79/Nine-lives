@@ -264,6 +264,48 @@ def collect():
             except (TypeError, ValueError, KeyError):
                 market = None
 
+    # --- path to glory ---
+    # Every scheduled final still to come, what it is worth to us, and -- if we
+    # win this week -- who we would get next and where.
+    games_by_id = {g["id"]: g for g in games}
+    fixtures = model.fixture_impact(bracket, calibration, powers, CLUB)
+    for row in fixtures:
+        game = games_by_id.get(row["game_id"]) or {}
+        row["start_utc"] = (
+            datetime.fromtimestamp(game["unixtime"], tz=timezone.utc)
+            .isoformat().replace("+00:00", "Z") if game.get("unixtime") else None
+        )
+        row["local_time"] = game.get("localtime")
+        row["timezone"] = game.get("tz")
+        row["provisional_reasons"] = fixture_provisionality(game, finals_games) if game else []
+        row["away_probability"] = round(1.0 - row["home_probability"], 6)
+
+        tip = market_by_game.get(row["game_id"])
+        row["market_home_probability"] = None
+        if tip:
+            try:
+                row["market_home_probability"] = round(float(tip["hconfidence"]) / 100.0, 6)
+            except (TypeError, ValueError, KeyError):
+                pass
+        row.pop("unixtime", None)
+
+    steps = report["steps"]
+    live_now = [f for f in fixtures if f.get("in_progress")]
+    path_to_glory = {
+        "fixtures": fixtures,
+        # Every probability on this page is a pre-match consensus. If a game is
+        # being played right now, the numbers can't know about it.
+        "games_in_progress": len(live_now),
+        "live_disclaimer": (
+            "A final is being played right now. Every probability here is the "
+            "pre-match consensus and takes no account of the live score."
+        ) if live_now else None,
+        # The step after the one we're playing now: who we'd meet if we win.
+        "if_we_win": steps[1] if len(steps) > 1 else None,
+        "final_step": steps[-1] if steps else None,
+        "playing_now": steps[0] if steps else None,
+    }
+
     # --- bracket for display ---
     known = outcomes["known"]
     display_bracket = []
@@ -324,6 +366,7 @@ def collect():
             "calibration": calibration.as_dict(),
         },
         "next_fixture": next_fixture,
+        "path_to_glory": path_to_glory,
         "market": market,
         "bracket": display_bracket,
         "field": field,

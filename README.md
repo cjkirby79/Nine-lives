@@ -80,9 +80,32 @@ Victorian side's advantage at the MCG. That's a deliberate choice: the size of
 that advantage isn't something Squiggle publishes, so inventing a number for it
 would break the rule this project runs on.
 
+### Path to glory
+
+The same enumeration answers three further questions without any new modelling:
+
+- **What is every other final worth to us?** Each scheduled game still to be
+  played is re-run with its result pinned each way, and the gap between the two
+  answers is what that game is worth. As of writing, Sydney beating Brisbane is
+  worth 1.4 percentage points to Geelong, while Adelaide against the Bulldogs
+  barely moves the needle. Only games whose two teams are already known can be
+  pinned — pinning one further out would be pinning a different match on each
+  branch.
+- **Who do we get next, and where?** Each possible opponent is paired with the
+  ground it would actually be played on, rather than listing opponents and
+  venues separately and leaving you to work out which goes with which. The
+  Grand Final is marked neutral rather than home or away, because calling it
+  either would invent an advantage that isn't there.
+- **Is a game in progress?** Squiggle reports a completion percentage, so a live
+  game is flagged, its score shown, and its odds labelled `pre-match`. Every
+  probability on this site is a pre-match consensus and cannot know about a
+  score happening right now.
+
 Run `python3 fetch/test_model.py` to check the maths. It asserts, among other
 things, that the field sums to 1, that the three legs multiply back to the
-headline exactly, and that a side which has already won everything sits at 100%.
+headline exactly, that a side which has already won everything sits at 100%,
+and that every conditional recombines to the baseline by the law of total
+probability — the strongest available check on the swing numbers.
 
 ---
 
