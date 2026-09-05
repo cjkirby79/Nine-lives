@@ -1,7 +1,9 @@
 """The case for Geelong.
 
-This site is not a neutral forecaster. It exists to lay out the argument that
-Geelong can win the flag, and it foregrounds the numbers that support it.
+This is a family site, built to get people up for the finals. It is not a
+neutral forecaster and does not pretend to be: it exists to lay out the
+argument that Geelong can win the flag, in the voice of someone who wants it
+to happen.
 
 That is a choice about *emphasis*, not about truth. Every card below is a rule
 that fires only when the thing it claims is actually true of the current data,
@@ -11,9 +13,10 @@ stale. Selecting which honest facts to lead with is what a club's own media
 team does; inventing them is something else, and it would make the whole site
 worthless the first time somebody checked one.
 
-Where the numbers are unflattering they are still reachable -- the unconditional
-premiership probability sits in the method panel -- they are simply not what the
-page leads with.
+The language is a supporter's. The arithmetic is not. Where the numbers are
+unflattering they are still reachable -- the unconditional premiership
+probability sits in the method panel -- they are simply not what the page
+leads with.
 """
 
 
@@ -33,8 +36,10 @@ def semi_final_pedigree(ctx):
         "id": "semi_final_pedigree",
         "stat": _record(row),
         "label": "in semi-finals under Chris Scott",
-        "detail": f"He has lost {row['lost']} of {row['played']}. "
-                  "A semi-final is exactly what is in front of us.",
+        "detail": f"Six times he has taken a side into a semi-final. "
+                  f"Five times he has walked off with it. This is the game "
+                  "Chris Scott does not lose — and it is exactly the game "
+                  "sitting in front of us.",
         "source": "Every final Geelong have played since 2011, from match records",
         "priority": 100,
     }
@@ -47,9 +52,11 @@ def one_win_away(ctx):
     return {
         "id": "one_win_away",
         "stat": f"{ctx['flag_if_we_win'] * 100:.1f}%",
-        "label": f"for the flag if we beat {ctx['next_opponent']}",
-        "detail": "One win turns a long shot into a live chance. "
-                  "Everything below is the argument that we get it.",
+        "label": f"for the flag the moment we beat {ctx['next_opponent']}",
+        "detail": "One win. That is the whole gap between a long shot and a "
+                  "live one. Win on Saturday and better than one side in five "
+                  "left standing is us — from fifth, with nothing to lose and "
+                  "everyone above us with everything to.",
         "source": "Derived from the Squiggle consensus across the remaining bracket",
         "priority": 105,
     }
@@ -73,11 +80,11 @@ def favoured_in_the_decider(ctx):
     return {
         "id": "favoured_in_the_decider",
         "stat": f"{len(favoured)} of {len(scenarios)}",
-        "label": "possible Grand Final opponents we would start favourite against",
-        "detail": f"And against {likeliest['opponent']}, the side most likely "
-                  f"to be there, we are rated {against_likeliest:.0f}% on "
-                  "neutral ground. Get to the last Saturday and it is a "
-                  "coin toss against anyone.",
+        "label": "sides in the Grand Final we would start favourite against",
+        "detail": f"And {likeliest['opponent']}, the most likely of the lot? "
+                  f"{against_likeliest:.0f}% — a coin toss. Get us to the last "
+                  "Saturday in September, on a neutral deck, and there is not "
+                  "a team left in this competition we are frightened of.",
         "source": "Squiggle model consensus, priced at a neutral M.C.G.",
         "priority": 90,
     }
@@ -92,9 +99,11 @@ def better_than_our_ladder_position(ctx):
         "id": "better_than_our_ladder_position",
         "stat": f"{ctx['percentage']:.1f}%",
         "label": f"the {_ordinal(by_percentage)} best percentage in the competition",
-        "detail": f"We finished {_ordinal(finished)}, but only "
-                  f"{by_percentage - 1} sides scored better relative to what they "
-                  "conceded. The ladder flatters the teams above us.",
+        "detail": f"{_ordinal(finished)} on the ladder is a lie. Only "
+                  f"{by_percentage - 1} sides in the entire competition scored "
+                  "more heavily against what they let in. We are a top-three "
+                  "team wearing a fifth-place jumper, and the draw is about to "
+                  "find that out.",
         "source": f"Final {ctx['season']} home-and-away ladder",
         "priority": 85,
     }
@@ -114,8 +123,9 @@ def finals_form_against_the_field(ctx):
         "id": "finals_form_against_the_field",
         "stat": f"{combined_won}–{combined_lost}",
         "label": f"in finals against {listed}",
-        "detail": "We have beaten most of what is left in front of us before, "
-                  "in exactly this kind of game.",
+        "detail": "We have met these sides in September before and walked off "
+                  "winners more often than not. None of them are ghosts. None "
+                  "of them frighten us.",
         "source": "Geelong finals results since 2011, from match records",
         "priority": 80,
     }
@@ -140,8 +150,9 @@ def winning_streak(ctx):
         "id": "winning_streak",
         "stat": str(streak),
         "label": "straight wins going into this week",
-        "detail": opener + "We have not been beaten since "
-                  + (ctx["last_loss_note"] or "mid-season") + ".",
+        "detail": opener + "Not beaten since "
+                  + (ctx["last_loss_note"] or "mid-season")
+                  + ", and in no mood to start now.",
         "source": f"{ctx['season']} results",
         "priority": 75,
     }
@@ -155,10 +166,11 @@ def opponent_is_wounded(ctx):
     return {
         "id": "opponent_is_wounded",
         "stat": f"{loss['margin']}",
-        "label": f"points — what {loss['team']} lost by last week",
-        "detail": f"Beaten by {loss['opponent']} at "
-                  f"{loss['venue']}. They come into this off a defeat; we come "
-                  "into it off a win.",
+        "label": f"points — what {loss['team']} were rolled by last week",
+        "detail": f"Beaten by {loss['opponent']} in their own backyard at "
+                  f"{loss['venue']}. The minor premiers come into this bruised, "
+                  "doubting, one loss from the off-season. We come into it off "
+                  "a win, with the handbrake off.",
         "source": f"{ctx['season']} finals results",
         "priority": 70,
     }
@@ -173,9 +185,9 @@ def the_money_likes_us(ctx):
         "id": "the_money_likes_us",
         "stat": f"{market * 100:.1f}%",
         "label": "what the betting market gives us this week",
-        "detail": "That is higher than the computer models rate us "
-                  f"({models * 100:.1f}%). The people with money on it are "
-                  "more convinced than the machines.",
+        "detail": f"Higher than the computers do ({models * 100:.1f}%). When "
+                  "real money and a machine disagree, back the money — it has "
+                  "skin in the game.",
         "source": "Squiggle's Punters source, derived from bookmaker pricing",
         "priority": 65,
     }
@@ -190,10 +202,11 @@ def a_coach_who_has_done_it(ctx):
         "id": "a_coach_who_has_done_it",
         "stat": f"{flags['won']}",
         "label": "premierships under this coach",
-        "detail": f"{ctx['grand_finals_reached']} Grand Finals and "
-                  f"{ctx['seasons_playing_finals']} finals series in "
-                  f"{ctx['seasons_coached']} seasons. He has been here before, "
-                  "and he has won it before.",
+        "detail": f"{ctx['grand_finals_reached']} Grand Finals, "
+                  f"{ctx['seasons_playing_finals']} finals campaigns, "
+                  f"{ctx['seasons_coached']} seasons. He has stood on that dais "
+                  "and held it above his head. He knows the road because he has "
+                  "walked it.",
         "source": "Geelong finals results since 2011, from match records",
         "priority": 60,
     }
@@ -208,8 +221,9 @@ def september_at_the_mcg(ctx):
         "id": "september_at_the_mcg",
         "stat": _record(row),
         "label": "in finals at the M.C.G. under Chris Scott",
-        "detail": "The Grand Final is played there, and it is where we "
-                  "knocked over Carlton a week ago. We know the ground.",
+        "detail": "It is our second home in September. It is where we ran over "
+                  "the top of Carlton a week ago. And it is where the Grand "
+                  "Final is played.",
         "source": "Geelong finals results since 2011, from match records",
         "priority": 55,
     }

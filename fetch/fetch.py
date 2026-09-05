@@ -311,6 +311,23 @@ def collect():
             except (TypeError, ValueError, KeyError):
                 market = None
 
+    # --- the last Saturday in September ---
+    decider = next((g for g in finals_games if g.get("is_grand_final")), None)
+    if decider is None:
+        decider = next((g for g in finals_games
+                        if "grand final" in (g.get("roundname") or "").lower()), None)
+    grand_final = None
+    if decider and decider.get("unixtime"):
+        grand_final = {
+            "venue": decider.get("venue"),
+            "start_utc": datetime.fromtimestamp(
+                decider["unixtime"], tz=timezone.utc).isoformat().replace("+00:00", "Z"),
+            "local_time": decider.get("localtime"),
+            "timezone": decider.get("tz"),
+            "complete": decider.get("complete") == 100,
+            "winner": decider.get("winner"),
+        }
+
     # --- path to glory ---
     # Every scheduled final still to come, what it is worth to us, and -- if we
     # win this week -- who we would get next and where.
@@ -456,6 +473,7 @@ def collect():
             "calibration": calibration.as_dict(),
         },
         "next_fixture": next_fixture,
+        "grand_final": grand_final,
         "path_to_glory": path_to_glory,
         "market": market,
         "bracket": display_bracket,

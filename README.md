@@ -11,9 +11,11 @@ full feature set. What's deliberately left out is listed at the bottom.
 
 ## What this site is
 
-**Nine Lives argues a case.** It is not a neutral forecaster. It exists to lay
-out the argument that Geelong can win the flag, and it leads with the numbers
-that support that rather than the bleakest true way of stating the same data.
+**Nine Lives is a family site, built to get people up for the finals.** It is
+not a neutral forecaster and does not pretend to be. It exists to lay out the
+argument that Geelong can win the flag, in the voice of someone who badly wants
+it to happen, and it leads with the numbers that support that rather than the
+bleakest true way of stating the same data.
 
 That is a choice about emphasis, and it has a hard limit: **no figure is ever
 bent.** Every claim on the page is a rule in `fetch/case.py` that fires only
@@ -23,7 +25,8 @@ not appear. If the betting market rated us below the models, the market card
 would vanish rather than spin it. If a rival is on a longer winning run, the
 page does not claim our form is the best left in the draw — it checks first.
 
-The unflattering number is still there. The compound probability of winning
+The language is a supporter's. The arithmetic is not. The unflattering number
+is still there. The compound probability of winning
 every remaining game sits in the method panel, stated plainly, because a site
 that hides its own arithmetic is no use to the person relying on it. It simply
 isn't what the page leads with.
@@ -31,6 +34,14 @@ isn't what the page leads with.
 Ten tests exist for this alone. They feed the case engine a losing record, a
 market that disagrees, a coach with no premierships, a rival in better form,
 and check that each card goes quiet.
+
+## Two clocks
+
+At the top of the page, above everything else: a countdown to the next bounce,
+and a countdown to the Grand Final. The second one is the whole point of the
+site, so it is the gold one. Both come from the fixture, so if the AFL moves a
+game they move with it, and the premiership clock keeps running whether or not
+Geelong are still in it — right up until it flips to PREMIERS.
 
 ## How it works
 

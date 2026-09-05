@@ -343,6 +343,75 @@ body {
   color: var(--bad);
 }
 
+/* --- the two clocks ----------------------------------------------------- */
+/* One for Saturday, one for the last Saturday in September. The second is the
+   whole point of the site, so it gets the gold. */
+
+.countdowns {
+  display: grid;
+  gap: .7rem;
+  margin: 1rem var(--pad) 0;
+}
+@media (min-width: 520px) {
+  .countdowns { grid-template-columns: 1fr 1fr; }
+}
+
+.cd {
+  padding: .95rem 1rem 1.05rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-soft);
+  background: linear-gradient(180deg, var(--navy-850), var(--navy-900));
+  text-align: center;
+}
+
+.cd-glory {
+  border-color: rgba(240, 190, 90, .45);
+  background:
+    radial-gradient(120% 130% at 50% 0%, rgba(240, 190, 90, .16), transparent 70%),
+    linear-gradient(180deg, var(--navy-850), var(--navy-900));
+}
+
+.cd-label {
+  margin: 0;
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cat);
+}
+.cd-glory .cd-label { color: #f0be5a; }
+
+.cd-clock {
+  margin: .4rem 0 0;
+  font-size: clamp(1.5rem, 8vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+.cd-clock small {
+  font-size: .46em;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--dimmer);
+  margin: 0 .38em 0 .06em;
+}
+.cd-glory .cd-clock small { color: rgba(240, 190, 90, .65); -webkit-text-fill-color: currentColor; }
+.cd-glory .cd-clock {
+  background: linear-gradient(170deg, #ffe9b8 15%, #e0a93c 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cd-sub {
+  margin: .35rem 0 0;
+  font-size: .72rem;
+  color: var(--dim);
+  line-height: 1.4;
+}
+
 /* --- panels ------------------------------------------------------------ */
 
 /* minmax(0, 1fr) rather than a bare auto column: an auto-sized grid column is
@@ -619,35 +688,6 @@ main { margin-top: 1rem; }
   line-height: 1.1;
 }
 .fixture-where { color: var(--dim); font-size: .86rem; margin: .3rem 0 0; }
-
-.countdown {
-  display: flex;
-  gap: .5rem;
-  margin: 1.1rem 0 0;
-}
-.countdown div {
-  flex: 1;
-  padding: .65rem .3rem;
-  border-radius: 10px;
-  background: rgba(255,255,255,.035);
-  border: 1px solid var(--line-soft);
-  text-align: center;
-}
-.countdown b {
-  display: block;
-  font-size: 1.6rem;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.05;
-}
-.countdown span {
-  display: block;
-  font-size: .6rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--dimmer);
-  margin-top: .2rem;
-}
 
 .provisional {
   margin: 1rem 0 0;

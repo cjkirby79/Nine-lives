@@ -132,15 +132,15 @@
  ],
  "case": [
   {
-   "detail": "One win turns a long shot into a live chance. Everything below is the argument that we get it.",
+   "detail": "One win. That is the whole gap between a long shot and a live one. Win on Saturday and better than one side in five left standing is us — from fifth, with nothing to lose and everyone above us with everything to.",
    "id": "one_win_away",
-   "label": "for the flag if we beat Fremantle",
+   "label": "for the flag the moment we beat Fremantle",
    "priority": 105,
    "source": "Derived from the Squiggle consensus across the remaining bracket",
    "stat": "21.9%"
   },
   {
-   "detail": "He has lost 1 of 6. A semi-final is exactly what is in front of us.",
+   "detail": "Six times he has taken a side into a semi-final. Five times he has walked off with it. This is the game Chris Scott does not lose — and it is exactly the game sitting in front of us.",
    "id": "semi_final_pedigree",
    "label": "in semi-finals under Chris Scott",
    "priority": 100,
@@ -148,15 +148,15 @@
    "stat": "5–1"
   },
   {
-   "detail": "And against Hawthorn, the side most likely to be there, we are rated 48% on neutral ground. Get to the last Saturday and it is a coin toss against anyone.",
+   "detail": "And Hawthorn, the most likely of the lot? 48% — a coin toss. Get us to the last Saturday in September, on a neutral deck, and there is not a team left in this competition we are frightened of.",
    "id": "favoured_in_the_decider",
-   "label": "possible Grand Final opponents we would start favourite against",
+   "label": "sides in the Grand Final we would start favourite against",
    "priority": 90,
    "source": "Squiggle model consensus, priced at a neutral M.C.G.",
    "stat": "3 of 5"
   },
   {
-   "detail": "We finished 5th, but only 2 sides scored better relative to what they conceded. The ladder flatters the teams above us.",
+   "detail": "5th on the ladder is a lie. Only 2 sides in the entire competition scored more heavily against what they let in. We are a top-three team wearing a fifth-place jumper, and the draw is about to find that out.",
    "id": "better_than_our_ladder_position",
    "label": "the 3rd best percentage in the competition",
    "priority": 85,
@@ -164,7 +164,7 @@
    "stat": "122.3%"
   },
   {
-   "detail": "We have beaten most of what is left in front of us before, in exactly this kind of game.",
+   "detail": "We have met these sides in September before and walked off winners more often than not. None of them are ghosts. None of them frighten us.",
    "id": "finals_form_against_the_field",
    "label": "in finals against Hawthorn, Brisbane Lions and Sydney",
    "priority": 80,
@@ -172,7 +172,7 @@
    "stat": "8–5"
   },
   {
-   "detail": "The longest active run of anyone left in the draw. We have not been beaten since round 18 against Greater Western Sydney.",
+   "detail": "The longest active run of anyone left in the draw. Not beaten since round 18 against Greater Western Sydney, and in no mood to start now.",
    "id": "winning_streak",
    "label": "straight wins going into this week",
    "priority": 75,
@@ -180,15 +180,15 @@
    "stat": "7"
   },
   {
-   "detail": "Beaten by Hawthorn at Perth Stadium. They come into this off a defeat; we come into it off a win.",
+   "detail": "Beaten by Hawthorn in their own backyard at Perth Stadium. The minor premiers come into this bruised, doubting, one loss from the off-season. We come into it off a win, with the handbrake off.",
    "id": "opponent_is_wounded",
-   "label": "points — what Fremantle lost by last week",
+   "label": "points — what Fremantle were rolled by last week",
    "priority": 70,
    "source": "2026 finals results",
    "stat": "32"
   },
   {
-   "detail": "That is higher than the computer models rate us (38.0%). The people with money on it are more convinced than the machines.",
+   "detail": "Higher than the computers do (38.0%). When real money and a machine disagree, back the money — it has skin in the game.",
    "id": "the_money_likes_us",
    "label": "what the betting market gives us this week",
    "priority": 65,
@@ -196,7 +196,7 @@
    "stat": "39.1%"
   },
   {
-   "detail": "4 Grand Finals and 14 finals series in 16 seasons. He has been here before, and he has won it before.",
+   "detail": "4 Grand Finals, 14 finals campaigns, 16 seasons. He has stood on that dais and held it above his head. He knows the road because he has walked it.",
    "id": "a_coach_who_has_done_it",
    "label": "premierships under this coach",
    "priority": 60,
@@ -204,7 +204,7 @@
    "stat": "2"
   },
   {
-   "detail": "The Grand Final is played there, and it is where we knocked over Carlton a week ago. We know the ground.",
+   "detail": "It is our second home in September. It is where we ran over the top of Carlton a week ago. And it is where the Grand Final is played.",
    "id": "september_at_the_mcg",
    "label": "in finals at the M.C.G. under Chris Scott",
    "priority": 55,
@@ -243,7 +243,15 @@
    "team": "Western Bulldogs"
   }
  ],
- "generated_at": "2026-09-05T06:40:05+00:00",
+ "generated_at": "2026-09-05T06:45:17+00:00",
+ "grand_final": {
+  "complete": false,
+  "local_time": "2026-09-26 19:20:00",
+  "start_utc": "2026-09-26T09:20:00Z",
+  "timezone": "+10:00",
+  "venue": "M.C.G.",
+  "winner": null
+ },
  "headline": {
   "probability": 0.083364,
   "reaches_grand_final": 0.165595,

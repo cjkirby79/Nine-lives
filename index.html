@@ -30,6 +30,19 @@
 
 <div id="staleness" class="staleness" hidden role="status"></div>
 
+<section class="countdowns" aria-label="Countdowns">
+  <div class="cd" data-field="cd-next">
+    <p class="cd-label">Next bounce</p>
+    <p class="cd-clock" data-field="cd-next-clock">—</p>
+    <p class="cd-sub" data-field="cd-next-sub"></p>
+  </div>
+  <div class="cd cd-glory" data-field="cd-glory">
+    <p class="cd-label">Premiership glory</p>
+    <p class="cd-clock" data-field="cd-glory-clock">—</p>
+    <p class="cd-sub" data-field="cd-glory-sub"></p>
+  </div>
+</section>
+
 <main>
 
   <!-- 1 — the number -->
@@ -54,12 +67,12 @@
           The Grand Final is priced as a neutral ground.
         </p>
         <p class="caveat">
-          <strong>This site argues a case.</strong> It leads with the numbers that
-          support Geelong rather than the bleakest way of stating the same data —
-          the compound probability of winning every remaining game is the figure
-          above, and it is smaller. What it will not do is bend one: every figure
-          on this page is the real one, computed from the source on each refresh,
-          and a claim that stops being true stops being shown.
+          <strong>Yes, we are barracking.</strong> This page leads with the numbers
+          that are on our side, because that is what it is for. It just doesn't
+          make any of them up — every figure is the real one, pulled fresh from the
+          source, and anything that stops being true stops being shown. Win every
+          remaining game and the honest cold number is the one above. We prefer
+          the warm one.
         </p>
       </div>
     </details>
@@ -67,10 +80,10 @@
 
   <!-- 2 — why we can win -->
   <section class="panel" data-panel="case" aria-labelledby="case-title">
-    <h2 class="panel-title" id="case-title">Why we can win this</h2>
+    <h2 class="panel-title" id="case-title">Nine reasons to believe</h2>
     <p class="panel-sub">
-      Every one of these is checked against the data on each refresh. A claim
-      that stops being true stops appearing.
+      Every one of them is real, and re-checked every half hour. Read them
+      twice before Saturday.
     </p>
     <ol class="case" data-field="case"></ol>
   </section>
@@ -100,24 +113,24 @@
   <!-- premiership history. Hidden unless the manifest lists any. -->
   <section class="panel gallery-panel" data-field="history-panel" hidden
            aria-labelledby="history-title">
-    <h2 class="panel-title" id="history-title">Silverware</h2>
-    <p class="panel-sub">What the record above looks like when it lands.</p>
+    <h2 class="panel-title" id="history-title">We have done this before</h2>
+    <p class="panel-sub">This is what it looks like when it lands.</p>
     <ul class="gallery" data-field="history"></ul>
   </section>
 
   <!-- 3 — next up -->
   <section class="panel" data-panel="next" aria-labelledby="next-title">
-    <h2 class="panel-title" id="next-title">Next up</h2>
+    <h2 class="panel-title" id="next-title">Next bounce</h2>
     <div data-field="next-fixture"></div>
   </section>
 
   <!-- 4 — market against models -->
   <section class="panel" data-panel="market" aria-labelledby="market-title">
-    <h2 class="panel-title" id="market-title">What the public think</h2>
+    <h2 class="panel-title" id="market-title">What the money says</h2>
     <div data-field="market"></div>
     <p class="caveat">
-      Market pricing is shown for context only — it is what the betting public believe,
-      not a recommendation. There are no bookmaker links on this site.
+      Shown because it is interesting, not because anyone should have a punt.
+      No bookmaker links here, and none coming.
     </p>
   </section>
 

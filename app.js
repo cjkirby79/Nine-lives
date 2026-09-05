@@ -376,7 +376,76 @@
 
   // ---- 3. next fixture --------------------------------------------------
 
-  var countdownTimer = null;
+  var clocks = [];
+
+  /** Both clocks tick off one interval. */
+  function startClocks() {
+    if (window.__nineLivesClock) clearInterval(window.__nineLivesClock);
+
+    function tick() {
+      var now = Date.now();
+      clocks.forEach(function (clock) {
+        var remaining = Math.floor((clock.at - now) / 1000);
+        if (remaining <= 0) {
+          clock.node.textContent = clock.done;
+          return;
+        }
+        var days = Math.floor(remaining / 86400);
+        var hours = Math.floor(remaining / 3600) % 24;
+        var mins = Math.floor(remaining / 60) % 60;
+        var secs = remaining % 60;
+
+        clock.node.textContent = "";
+        [[days, "d"], [hours, "h"], [mins, "m"], [secs, "s"]]
+          .forEach(function (part, index) {
+            if (index === 0 && !days) return;   // no "0d" on the last day
+            var value = index > 0 && part[0] < 10 ? "0" + part[0] : String(part[0]);
+            clock.node.appendChild(document.createTextNode(value));
+            clock.node.appendChild(el("small", null, part[1]));
+          });
+      });
+    }
+    tick();
+    window.__nineLivesClock = setInterval(tick, 1000);
+  }
+
+  function addClock(nodeName, at, done) {
+    var node = field(nodeName);
+    var when = new Date(at).getTime();
+    if (!node || isNaN(when)) return false;
+    clocks.push({ node: node, at: when, done: done });
+    return true;
+  }
+
+  function renderCountdowns(state) {
+    clocks = [];
+
+    var fixture = state.next_fixture;
+    if (fixture && addClock("cd-next-clock", fixture.start_utc, "Under way!")) {
+      field("cd-next-sub").textContent =
+        state.club + " v " + fixture.opponent + " · " +
+        (fixture.venue || "venue still to be locked in");
+    } else {
+      field("cd-next").hidden = true;
+    }
+
+    var decider = state.grand_final;
+    if (decider && !decider.complete &&
+        addClock("cd-glory-clock", decider.start_utc, "It is happening.")) {
+      // Venue names like "M.C.G." already end in a full stop, so don't add
+      // another one straight after it.
+      field("cd-glory-sub").textContent =
+        "The last Saturday in September, at the " +
+        (decider.venue || "M.C.G.") + " — that is what we are playing for.";
+    } else if (decider && decider.winner === state.club) {
+      field("cd-glory-clock").textContent = "PREMIERS";
+      field("cd-glory-sub").textContent = "Get the ute down Moorabool Street.";
+    } else {
+      field("cd-glory").hidden = true;
+    }
+
+    startClocks();
+  }
 
   function renderNextFixture(state) {
     var host = field("next-fixture");
@@ -414,21 +483,12 @@
     }
     host.appendChild(where);
 
-    var countdown = el("div", "countdown");
-    ["days", "hours", "mins", "secs"].forEach(function (unit) {
-      var cell = document.createElement("div");
-      cell.appendChild(el("b", null, "—")).setAttribute("data-unit", unit);
-      cell.appendChild(el("span", null, unit));
-      countdown.appendChild(cell);
-    });
-    host.appendChild(countdown);
-
     if (fixture.provisional_reasons && fixture.provisional_reasons.length) {
       var warning = el("div", "provisional");
-      warning.appendChild(el("strong", null, "Fixture not confirmed. "));
+      warning.appendChild(el("strong", null, "Not locked in yet. "));
       warning.appendChild(document.createTextNode(
-        "The AFL sets each finals week only after the previous one finishes, so " +
-        "Squiggle is still carrying a placeholder:"));
+        "The AFL only sets each finals week once the previous one is done, so " +
+        "this is still a placeholder:"));
       var reasons = document.createElement("ul");
       fixture.provisional_reasons.forEach(function (reason) {
         reasons.appendChild(el("li", null, reason));
@@ -437,35 +497,6 @@
       host.appendChild(warning);
     }
 
-    startCountdown(countdown, fixture.start_utc);
-  }
-
-  function startCountdown(root, startUtc) {
-    var kickoff = new Date(startUtc).getTime();
-    if (countdownTimer) clearInterval(countdownTimer);
-    if (isNaN(kickoff)) return;
-
-    function tick() {
-      var remaining = Math.floor((kickoff - Date.now()) / 1000);
-      if (remaining <= 0) {
-        clearInterval(countdownTimer);
-        root.textContent = "";
-        root.appendChild(el("div", null, "Under way — or done.")).style.flex = "1";
-        return;
-      }
-      var units = {
-        days: Math.floor(remaining / 86400),
-        hours: Math.floor(remaining / 3600) % 24,
-        mins: Math.floor(remaining / 60) % 60,
-        secs: remaining % 60
-      };
-      Object.keys(units).forEach(function (unit) {
-        var cell = root.querySelector('[data-unit="' + unit + '"]');
-        if (cell) cell.textContent = units[unit] < 10 ? "0" + units[unit] : units[unit];
-      });
-    }
-    tick();
-    countdownTimer = setInterval(tick, 1000);
   }
 
   // ---- 4. market against models ----------------------------------------
@@ -501,12 +532,16 @@
       var difference = (market.club_win_probability - models) * 100;
       var line = el("p", "versus-gap");
       if (Math.abs(difference) < 0.5) {
-        line.textContent = "The public and the models agree on " + state.club +
-          " v " + fixture.opponent + ".";
+        line.textContent = "Punters and machines, dead level on " + state.club +
+          " v " + fixture.opponent + ". Nobody can split it.";
       } else {
-        line.textContent = "The public rate " + state.club + " " +
-          Math.abs(difference).toFixed(1) + " percentage points " +
-          (difference > 0 ? "higher" : "lower") + " than the models do.";
+        line.textContent = difference > 0
+          ? "The punters rate us " + difference.toFixed(1) +
+            " percentage points higher than the computers do. Somebody out " +
+            "there fancies us."
+          : "The punters have us " + Math.abs(difference).toFixed(1) +
+            " percentage points under the computers. Suits us — nobody wins " +
+            "anything in September being everyone's favourite.";
       }
       host.appendChild(line);
     }
@@ -544,10 +579,11 @@
     var playing = path.playing_now;
     var remaining = (state.headline.steps || []).length;
     field("path-sub").textContent = remaining
-      ? plural(remaining, "win") + " from the premiership, starting with " +
+      ? plural(remaining, "win") + ". That is all that stands between us and " +
+        "the last Saturday in September. It starts with " +
         (playing && playing.scenarios && playing.scenarios[0]
           ? playing.scenarios[0].opponent : "the next one") + "."
-      : "Nothing left to play.";
+      : "Nothing left to play. What a ride.";
 
     renderFixtures(path.fixtures || [], club);
 
@@ -641,10 +677,10 @@
         if (fixture.involves_club) {
           var ifWeWin = fixture.home === club
             ? fixture.club_if_home_wins : fixture.club_if_away_wins;
-          impact.appendChild(document.createTextNode("Win and we're "));
+          impact.appendChild(document.createTextNode("Win this and we are "));
           impact.appendChild(el("b", null, percent(ifWeWin)));
           impact.appendChild(document.createTextNode(
-            " for the flag. Lose and the season is over."));
+            " for the flag. Everything is still in front of us."));
         } else {
           impact.appendChild(document.createTextNode(
             fixture.home + " win → " + club + " " +
@@ -896,8 +932,8 @@
 
     banner.hidden = false;
     banner.setAttribute("data-level", hours >= STALE_BAD_HOURS ? "bad" : "warn");
-    var message = "Stale data — these numbers were last refreshed " +
-      describeAge(ageSeconds) + ".";
+    var message = "Hang on — these numbers are " + describeAge(ageSeconds) +
+      " old and haven't refreshed.";
     if (status && status.consecutive_failures) {
       message += " " + plural(status.consecutive_failures, "fetch") +
         " have failed since; the last good values are shown.";
@@ -926,6 +962,7 @@
     loadJSON("data/status.json").catch(function () { return null; })
   ]).then(function (results) {
     var state = results[0], history = results[1], status = results[2];
+    renderCountdowns(state);
     renderHeadline(state, history);
     renderScottEra(state);
     renderNextFixture(state);
