@@ -1022,7 +1022,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-06T06:09:07+00:00",
+ "generated_at": "2026-09-06T06:40:29+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1345,8 +1345,36 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-06T06:09:07+00:00",
-  "items": [],
+  "fetched_at": "2026-09-06T06:40:28+00:00",
+  "items": [
+   {
+    "about": [
+     "Fremantle",
+     "Geelong"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1604774/big-geelong-cat-mitchell-edwards-ready-for-shootout-against-the-best-back-in-the-west",
+    "published_utc": "2026-09-06T01:58:00Z",
+    "score": 24,
+    "tags": [
+     "finals"
+    ],
+    "title": "Big Cat ready for shootout against the best back in the west"
+   },
+   {
+    "about": [
+     "Geelong"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1604896/geelong-cats-carlton-blues-game-sets-new-broadcast-high-in-2026-as-afl-spruiks-crowd-record",
+    "published_utc": "2026-09-06T05:45:00Z",
+    "score": 16,
+    "tags": [
+     "finals"
+    ],
+    "title": "Cats v Blues sets new broadcast high as AFL spruiks record finals crowds"
+   }
+  ],
   "source": "AFL.com.au",
   "source_url": "https://www.afl.com.au/rss",
   "stale": false
