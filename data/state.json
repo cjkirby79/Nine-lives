@@ -122,7 +122,7 @@
   },
   {
    "away": null,
-   "club_appearance_probability": 0.439,
+   "club_appearance_probability": 0.4298,
    "club_wins_away": 1,
    "home": null,
    "node": "PF2",
@@ -130,7 +130,7 @@
   },
   {
    "away": null,
-   "club_appearance_probability": 0.161445,
+   "club_appearance_probability": 0.157788,
    "club_wins_away": 2,
    "home": null,
    "node": "GF",
@@ -144,7 +144,7 @@
    "label": "what the tipping panel gives us against Fremantle",
    "priority": 110,
    "source": "Squiggle consensus of the public AFL models",
-   "stat": "43.9%"
+   "stat": "43.0%"
   },
   {
    "detail": "2 games against Fremantle this season. 200 points to us, 199 to them — 1 to us across the whole year. There is nothing between these teams, and everyone except us seems to have forgotten it.",
@@ -457,22 +457,22 @@
  },
  "experts": {
   "best": {
-   "club_margin": -5.3,
-   "club_probability": 0.439,
+   "club_margin": -6.1,
+   "club_probability": 0.4298,
    "is_consensus": true,
    "is_market": false,
    "source": "Aggregate",
    "tips_club": false,
-   "updated": "2026-09-06 08:51:11"
+   "updated": "2026-09-06 12:51:53"
   },
   "consensus": {
-   "club_margin": -5.3,
-   "club_probability": 0.439,
+   "club_margin": -6.1,
+   "club_probability": 0.4298,
    "is_consensus": true,
    "is_market": false,
    "source": "Aggregate",
    "tips_club": false,
-   "updated": "2026-09-06 08:51:11"
+   "updated": "2026-09-06 12:51:53"
   },
   "counted": 14,
   "market": {
@@ -487,13 +487,13 @@
   "tipping_club": 3,
   "tips": [
    {
-    "club_margin": -5.3,
-    "club_probability": 0.439,
+    "club_margin": -6.1,
+    "club_probability": 0.4298,
     "is_consensus": true,
     "is_market": false,
     "source": "Aggregate",
     "tips_club": false,
-    "updated": "2026-09-06 08:51:11"
+    "updated": "2026-09-06 12:51:53"
    },
    {
     "club_margin": 13.0,
@@ -550,22 +550,13 @@
     "updated": "2026-09-06 08:47:05"
    },
    {
-    "club_margin": -6.8,
-    "club_probability": 0.4062,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Drop Kick Data",
-    "tips_club": false,
-    "updated": "2026-09-05 21:36:42"
-   },
-   {
-    "club_margin": -8.8,
-    "club_probability": 0.4017,
+    "club_margin": -11.1,
+    "club_probability": 0.374,
     "is_consensus": false,
     "is_market": false,
     "source": "s10",
     "tips_club": false,
-    "updated": "2026-09-06 08:47:44"
+    "updated": "2026-09-06 12:51:53"
    },
    {
     "club_margin": -11.4,
@@ -595,6 +586,15 @@
     "updated": "2026-09-06 07:46:33"
    },
    {
+    "club_margin": -16.2,
+    "club_probability": 0.2955,
+    "is_consensus": false,
+    "is_market": false,
+    "source": "Drop Kick Data",
+    "tips_club": false,
+    "updated": "2026-09-06 12:51:36"
+   },
+   {
     "club_margin": -21.0,
     "club_probability": 0.29,
     "is_consensus": false,
@@ -616,27 +616,27 @@
  },
  "field": [
   {
-   "probability": 0.34539,
+   "probability": 0.344198,
    "team": "Hawthorn"
   },
   {
-   "probability": 0.328723,
+   "probability": 0.328645,
    "team": "Sydney"
   },
   {
-   "probability": 0.113824,
+   "probability": 0.115302,
    "team": "Fremantle"
   },
   {
-   "probability": 0.110677,
+   "probability": 0.114004,
    "team": "Brisbane Lions"
   },
   {
-   "probability": 0.076307,
+   "probability": 0.0745,
    "team": "Geelong"
   },
   {
-   "probability": 0.025079,
+   "probability": 0.023351,
    "team": "Adelaide"
   }
  ],
@@ -1022,7 +1022,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-06T02:37:01+00:00",
+ "generated_at": "2026-09-06T03:07:22+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1032,12 +1032,12 @@
   "winner": null
  },
  "headline": {
-  "probability": 0.076307,
-  "reaches_grand_final": 0.161445,
+  "probability": 0.0745,
+  "reaches_grand_final": 0.157788,
   "steps": [
    {
-    "conditional_probability": 0.439,
-    "cumulative_probability": 0.439,
+    "conditional_probability": 0.4298,
+    "cumulative_probability": 0.4298,
     "node": "SF1",
     "opponents": [
      {
@@ -1051,7 +1051,7 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.439,
+      "club_win_probability": 0.4298,
       "neutral": false,
       "opponent": "Fremantle",
       "probability": 1.0,
@@ -1064,8 +1064,8 @@
     "venue": "Perth Stadium"
    },
    {
-    "conditional_probability": 0.367756,
-    "cumulative_probability": 0.161445,
+    "conditional_probability": 0.367119,
+    "cumulative_probability": 0.157788,
     "node": "PF2",
     "opponents": [
      {
@@ -1079,7 +1079,7 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.367756,
+      "club_win_probability": 0.367119,
       "neutral": false,
       "opponent": "Sydney",
       "probability": 1.0,
@@ -1092,20 +1092,20 @@
     "venue": "S.C.G."
    },
    {
-    "conditional_probability": 0.472649,
-    "cumulative_probability": 0.076307,
+    "conditional_probability": 0.472152,
+    "cumulative_probability": 0.0745,
     "node": "GF",
     "opponents": [
      {
-      "probability": 0.70222,
+      "probability": 0.700688,
       "team": "Hawthorn"
      },
      {
-      "probability": 0.223388,
+      "probability": 0.230042,
       "team": "Brisbane Lions"
      },
      {
-      "probability": 0.074392,
+      "probability": 0.06927,
       "team": "Adelaide"
      }
     ],
@@ -1115,26 +1115,26 @@
     "scenarios": [
      {
       "club_is_home": false,
-      "club_win_probability": 0.438066,
+      "club_win_probability": 0.438034,
       "neutral": true,
       "opponent": "Hawthorn",
-      "probability": 0.702221,
+      "probability": 0.700687,
       "venue": "M.C.G."
      },
      {
       "club_is_home": false,
-      "club_win_probability": 0.524249,
+      "club_win_probability": 0.524262,
       "neutral": true,
       "opponent": "Brisbane Lions",
-      "probability": 0.223389,
+      "probability": 0.230043,
       "venue": "M.C.G."
      },
      {
       "club_is_home": true,
-      "club_win_probability": 0.644148,
+      "club_win_probability": 0.64422,
       "neutral": true,
       "opponent": "Adelaide",
-      "probability": 0.074391,
+      "probability": 0.06927,
       "venue": "M.C.G."
      }
     ],
@@ -1329,23 +1329,23 @@
   "calibration": {
    "diagnostics": {
     "finals_holdout_games": 8,
-    "finals_holdout_rmse_points": 8.11,
+    "finals_holdout_rmse_points": 8.1,
     "margin_fit_from_round": 17,
     "margin_fit_games": 80,
     "margin_fit_r_squared": 0.92,
     "margin_fit_rmse_points": 7.03,
     "probability_fit_games": 215
    },
-   "home_ground_points": 4.2889,
-   "interstate_travel_points": 3.4326,
+   "home_ground_points": 4.2949,
+   "interstate_travel_points": 3.483,
    "logit_per_point": 0.047,
-   "points_per_power_point": 1.796
+   "points_per_power_point": 1.797
   },
   "description": "Every remaining path through the finals bracket is enumerated exhaustively and the paths ending in a premiership are summed. Fixtures Squiggle has already tipped use its published consensus verbatim; the rest use a conversion fitted to Squiggle's own published margins and confidences this season."
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-06T02:37:00+00:00",
+  "fetched_at": "2026-09-06T03:07:20+00:00",
   "items": [
    {
     "about": [
@@ -1369,7 +1369,7 @@
  "next_fixture": {
   "away": "Geelong",
   "club_is_home": false,
-  "club_win_probability": 0.439,
+  "club_win_probability": 0.4298,
   "game_id": 38725,
   "home": "Fremantle",
   "local_time": "2026-09-11 18:10:00",
@@ -1382,20 +1382,20 @@
  },
  "path_to_glory": {
   "final_step": {
-   "conditional_probability": 0.472649,
-   "cumulative_probability": 0.076307,
+   "conditional_probability": 0.472152,
+   "cumulative_probability": 0.0745,
    "node": "GF",
    "opponents": [
     {
-     "probability": 0.70222,
+     "probability": 0.700688,
      "team": "Hawthorn"
     },
     {
-     "probability": 0.223388,
+     "probability": 0.230042,
      "team": "Brisbane Lions"
     },
     {
-     "probability": 0.074392,
+     "probability": 0.06927,
      "team": "Adelaide"
     }
    ],
@@ -1405,26 +1405,26 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.438066,
+     "club_win_probability": 0.438034,
      "neutral": true,
      "opponent": "Hawthorn",
-     "probability": 0.702221,
+     "probability": 0.700687,
      "venue": "M.C.G."
     },
     {
      "club_is_home": false,
-     "club_win_probability": 0.524249,
+     "club_win_probability": 0.524262,
      "neutral": true,
      "opponent": "Brisbane Lions",
-     "probability": 0.223389,
+     "probability": 0.230043,
      "venue": "M.C.G."
     },
     {
      "club_is_home": true,
-     "club_win_probability": 0.644148,
+     "club_win_probability": 0.64422,
      "neutral": true,
      "opponent": "Adelaide",
-     "probability": 0.074391,
+     "probability": 0.06927,
      "venue": "M.C.G."
     }
    ],
@@ -1436,16 +1436,16 @@
   "fixtures": [
    {
     "away": "Geelong",
-    "away_probability": 0.439,
+    "away_probability": 0.4298,
     "away_score": null,
-    "club_if_away_wins": 0.17382,
+    "club_if_away_wins": 0.173336,
     "club_if_home_wins": 0.0,
-    "club_swing": 0.17382,
+    "club_swing": 0.173336,
     "complete_percent": 0,
     "date": "2026-09-11 20:10:00",
     "game_id": 38725,
     "home": "Fremantle",
-    "home_probability": 0.561,
+    "home_probability": 0.5702,
     "home_score": null,
     "in_progress": false,
     "involves_club": true,
@@ -1463,16 +1463,16 @@
    },
    {
     "away": "Adelaide",
-    "away_probability": 0.3227,
+    "away_probability": 0.3012,
     "away_score": null,
-    "club_if_away_wins": 0.078393,
-    "club_if_home_wins": 0.075313,
-    "club_swing": 0.003081,
+    "club_if_away_wins": 0.076598,
+    "club_if_home_wins": 0.073595,
+    "club_swing": 0.003003,
     "complete_percent": 0,
     "date": "2026-09-12 19:35:00",
     "game_id": 38726,
     "home": "Brisbane Lions",
-    "home_probability": 0.6773,
+    "home_probability": 0.6988,
     "home_score": null,
     "in_progress": false,
     "involves_club": false,
@@ -1491,8 +1491,8 @@
   ],
   "games_in_progress": 0,
   "if_we_win": {
-   "conditional_probability": 0.367756,
-   "cumulative_probability": 0.161445,
+   "conditional_probability": 0.367119,
+   "cumulative_probability": 0.157788,
    "node": "PF2",
    "opponents": [
     {
@@ -1506,7 +1506,7 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.367756,
+     "club_win_probability": 0.367119,
      "neutral": false,
      "opponent": "Sydney",
      "probability": 1.0,
@@ -1520,8 +1520,8 @@
   },
   "live_disclaimer": null,
   "playing_now": {
-   "conditional_probability": 0.439,
-   "cumulative_probability": 0.439,
+   "conditional_probability": 0.4298,
+   "cumulative_probability": 0.4298,
    "node": "SF1",
    "opponents": [
     {
@@ -1535,7 +1535,7 @@
    "scenarios": [
     {
      "club_is_home": false,
-     "club_win_probability": 0.439,
+     "club_win_probability": 0.4298,
      "neutral": false,
      "opponent": "Fremantle",
      "probability": 1.0,
