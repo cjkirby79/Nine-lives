@@ -1058,7 +1058,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-07T08:08:46+00:00",
+ "generated_at": "2026-09-07T08:40:30+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1381,7 +1381,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-07T08:08:45+00:00",
+  "fetched_at": "2026-09-07T08:40:29+00:00",
   "items": [
    {
     "about": [
@@ -1410,18 +1410,6 @@
      "team news"
     ],
     "title": "'Can't keep a good man down': Cats back hurt star to impact"
-   },
-   {
-    "about": [
-     "Geelong",
-     "Sydney"
-    ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1606165/afl-daily-listen-assessing-two-star-geelong-cats-sydney-swans-spirit-rises-to-the-top",
-    "published_utc": "2026-09-06T09:57:00Z",
-    "score": 16,
-    "tags": [],
-    "title": "LISTEN: Assessing the form of two star Cats, Swans' spirit rises to the top"
    }
   ],
   "source": "AFL.com.au",
