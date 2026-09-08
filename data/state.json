@@ -1094,7 +1094,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-08T07:09:04+00:00",
+ "generated_at": "2026-09-08T07:39:58+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1417,7 +1417,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-08T07:09:03+00:00",
+  "fetched_at": "2026-09-08T07:39:57+00:00",
   "items": [
    {
     "about": [
@@ -1468,6 +1468,18 @@
     "score": 16,
     "tags": [],
     "title": "Cats put on notice as 'fiery' Docker tipped to atone after Hawks shocker"
+   },
+   {
+    "about": [
+     "Brisbane Lions",
+     "Geelong"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1606909/listen",
+    "published_utc": "2026-09-08T07:29:00Z",
+    "score": 16,
+    "tags": [],
+    "title": "LISTEN: Lions' brutal review, can the Cats finally get their man?"
    },
    {
     "about": [
