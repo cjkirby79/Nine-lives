@@ -1094,7 +1094,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-08T06:09:26+00:00",
+ "generated_at": "2026-09-08T06:42:49+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1417,23 +1417,8 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-08T06:09:25+00:00",
+  "fetched_at": "2026-09-08T06:42:48+00:00",
   "items": [
-   {
-    "about": [
-     "Geelong",
-     "Sydney"
-    ],
-    "is_team_news": true,
-    "link": "https://www.afl.com.au/news/1606747/team-whispers-all-the-latest-selection-news-ahead-of-week-three-of-finals",
-    "published_utc": "2026-09-08T02:31:00Z",
-    "score": 24,
-    "tags": [
-     "team news",
-     "finals"
-    ],
-    "title": "Team whispers: Cats midfielder may miss rest of season, Swans to face big calls"
-   },
    {
     "about": [
      "Fremantle",
@@ -1457,6 +1442,20 @@
     "score": 22,
     "tags": [],
     "title": "MEGA-PREVIEW: Dockers v Cats, stats that matter, who wins and why"
+   },
+   {
+    "about": [
+     "Geelong"
+    ],
+    "is_team_news": true,
+    "link": "https://www.afl.com.au/news/1606747/team-whispers-all-the-latest-selection-news-ahead-of-week-three-of-finals",
+    "published_utc": "2026-09-08T06:35:00Z",
+    "score": 22,
+    "tags": [
+     "team news",
+     "finals"
+    ],
+    "title": "Team whispers: Lion must prove fitness, Cats midfielder may miss rest of season"
    },
    {
     "about": [
