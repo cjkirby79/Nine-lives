@@ -1085,7 +1085,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-08T04:40:30+00:00",
+ "generated_at": "2026-09-08T05:07:28+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1408,7 +1408,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-08T04:40:29+00:00",
+  "fetched_at": "2026-09-08T05:07:27+00:00",
   "items": [
    {
     "about": [
@@ -1448,19 +1448,6 @@
     "score": 22,
     "tags": [],
     "title": "MEGA-PREVIEW: Dockers v Cats, stats that matter, who wins and why"
-   },
-   {
-    "about": [
-     "Geelong"
-    ],
-    "is_team_news": true,
-    "link": "https://www.afl.com.au/news/1606731/cant-keep-a-good-man-down-geelong-cats-back-hurt-star-jeremy-cameron-to-impact",
-    "published_utc": "2026-09-07T06:30:00Z",
-    "score": 20,
-    "tags": [
-     "team news"
-    ],
-    "title": "'Can't keep a good man down': Cats back hurt star to impact"
    },
    {
     "about": [
