@@ -1085,7 +1085,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-08T02:07:25+00:00",
+ "generated_at": "2026-09-08T02:39:39+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1408,22 +1408,34 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-08T02:07:24+00:00",
+  "fetched_at": "2026-09-08T02:39:38+00:00",
   "items": [
    {
     "about": [
-     "Adelaide",
      "Geelong",
-     "Hawthorn"
+     "Sydney"
     ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1606391/gary-ayres-award-crows-perfect-10-hawks-and-cats-hot-on-his-heels",
-    "published_utc": "2026-09-07T05:44:00Z",
-    "score": 20,
+    "is_team_news": true,
+    "link": "https://www.afl.com.au/news/1606747/team-whispers-all-the-latest-selection-news-ahead-of-week-three-of-finals",
+    "published_utc": "2026-09-08T02:31:00Z",
+    "score": 24,
     "tags": [
+     "team news",
      "finals"
     ],
-    "title": "Gary Ayres Award: Crow's perfect 10, Hawks and Cats hot on his heels"
+    "title": "Team whispers: Cats midfielder may miss rest of season, Swans to face big calls"
+   },
+   {
+    "about": [
+     "Fremantle",
+     "Geelong"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1606777/geelong-cats-confident-star-jeremy-cameron-will-regain-form-veteran-patrick-dangerfield-backed-to-deliver-again",
+    "published_utc": "2026-09-08T02:25:00Z",
+    "score": 22,
+    "tags": [],
+    "title": "Cats confident star will regain form, veteran backed to deliver again"
    },
    {
     "about": [
