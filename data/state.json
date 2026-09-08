@@ -1094,7 +1094,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-08T06:42:49+00:00",
+ "generated_at": "2026-09-08T07:09:04+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1417,7 +1417,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-08T06:42:48+00:00",
+  "fetched_at": "2026-09-08T07:09:03+00:00",
   "items": [
    {
     "about": [
@@ -1456,6 +1456,18 @@
      "finals"
     ],
     "title": "Team whispers: Lion must prove fitness, Cats midfielder may miss rest of season"
+   },
+   {
+    "about": [
+     "Geelong",
+     "Hawthorn"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1606906/cats-put-on-notice-as-fiery-treacy-tipped-to-atone-after-hawks-shocker",
+    "published_utc": "2026-09-08T06:39:00Z",
+    "score": 16,
+    "tags": [],
+    "title": "Cats put on notice as 'fiery' Docker tipped to atone after Hawks shocker"
    },
    {
     "about": [
