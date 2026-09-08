@@ -1067,7 +1067,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-08T01:07:48+00:00",
+ "generated_at": "2026-09-08T01:38:40+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1390,7 +1390,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-08T01:07:47+00:00",
+  "fetched_at": "2026-09-08T01:38:39+00:00",
   "items": [
    {
     "about": [
