@@ -1112,7 +1112,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-09T03:39:56+00:00",
+ "generated_at": "2026-09-09T04:07:42+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1435,22 +1435,8 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-09T03:39:55+00:00",
+  "fetched_at": "2026-09-09T04:07:40+00:00",
   "items": [
-   {
-    "about": [
-     "Geelong"
-    ],
-    "is_team_news": true,
-    "link": "https://www.afl.com.au/news/1606747/team-whispers-all-the-latest-selection-news-ahead-of-week-three-of-finals",
-    "published_utc": "2026-09-08T06:35:00Z",
-    "score": 22,
-    "tags": [
-     "team news",
-     "finals"
-    ],
-    "title": "Team whispers: Lion must prove fitness, Cats midfielder may miss rest of season"
-   },
    {
     "about": [
      "Geelong",
@@ -1474,6 +1460,19 @@
     "score": 16,
     "tags": [],
     "title": "LISTEN: Lions' brutal review, can the Cats finally get their man?"
+   },
+   {
+    "about": [
+     "Geelong"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1606955/geelong-cats-forward-ollie-henry-finds-his-spark-again-after-september-heartbreak",
+    "published_utc": "2026-09-09T03:59:00Z",
+    "score": 16,
+    "tags": [
+     "finals"
+    ],
+    "title": "Cats forward finds his spark again after September heartbreak"
    }
   ],
   "source": "AFL.com.au",
