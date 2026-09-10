@@ -476,13 +476,13 @@
   },
   "counted": 27,
   "market": {
-   "club_margin": -10.5,
-   "club_probability": 0.3723,
+   "club_margin": -10.6,
+   "club_probability": 0.3712,
    "is_consensus": false,
    "is_market": true,
    "source": "Punters",
    "tips_club": false,
-   "updated": "2026-09-10 12:02:11"
+   "updated": "2026-09-10 16:03:15"
   },
   "tipping_club": 3,
   "tips": [
@@ -721,39 +721,39 @@
     "updated": "2026-09-06 07:46:21"
    },
    {
-    "club_margin": -10.5,
-    "club_probability": 0.3723,
+    "club_margin": -10.6,
+    "club_probability": 0.3712,
     "is_consensus": false,
     "is_market": true,
     "source": "Punters",
     "tips_club": false,
-    "updated": "2026-09-10 12:02:11"
+    "updated": "2026-09-10 16:03:15"
    }
   ]
  },
  "field": [
   {
-   "probability": 0.341347,
+   "probability": 0.341345,
    "team": "Sydney"
   },
   {
-   "probability": 0.306216,
+   "probability": 0.306213,
    "team": "Hawthorn"
   },
   {
-   "probability": 0.122546,
+   "probability": 0.122545,
    "team": "Fremantle"
   },
   {
-   "probability": 0.119784,
+   "probability": 0.119802,
    "team": "Brisbane Lions"
   },
   {
-   "probability": 0.078282,
+   "probability": 0.078281,
    "team": "Geelong"
   },
   {
-   "probability": 0.031824,
+   "probability": 0.031814,
    "team": "Adelaide"
   }
  ],
@@ -1139,7 +1139,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-10T05:38:40+00:00",
+ "generated_at": "2026-09-10T06:10:11+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1149,7 +1149,7 @@
   "winner": null
  },
  "headline": {
-  "probability": 0.078282,
+  "probability": 0.078281,
   "reaches_grand_final": 0.154752,
   "steps": [
    {
@@ -1209,20 +1209,20 @@
     "venue": "S.C.G."
    },
    {
-    "conditional_probability": 0.505851,
-    "cumulative_probability": 0.078282,
+    "conditional_probability": 0.505849,
+    "cumulative_probability": 0.078281,
     "node": "GF",
     "opponents": [
      {
-      "probability": 0.667367,
+      "probability": 0.66736,
       "team": "Hawthorn"
      },
      {
-      "probability": 0.244432,
+      "probability": 0.244468,
       "team": "Brisbane Lions"
      },
      {
-      "probability": 0.088201,
+      "probability": 0.088173,
       "team": "Adelaide"
      }
     ],
@@ -1235,7 +1235,7 @@
       "club_win_probability": 0.479295,
       "neutral": true,
       "opponent": "Hawthorn",
-      "probability": 0.667369,
+      "probability": 0.667358,
       "venue": "M.C.G."
      },
      {
@@ -1243,15 +1243,15 @@
       "club_win_probability": 0.536446,
       "neutral": true,
       "opponent": "Brisbane Lions",
-      "probability": 0.244431,
+      "probability": 0.244469,
       "venue": "M.C.G."
      },
      {
       "club_is_home": true,
-      "club_win_probability": 0.621993,
+      "club_win_probability": 0.621994,
       "neutral": true,
       "opponent": "Adelaide",
-      "probability": 0.0882,
+      "probability": 0.088173,
       "venue": "M.C.G."
      }
     ],
@@ -1437,10 +1437,10 @@
   }
  ],
  "market": {
-  "club_win_probability": 0.3723,
-  "expected_margin_to_club": -10.5,
+  "club_win_probability": 0.3712,
+  "expected_margin_to_club": -10.6,
   "source": "Squiggle 'Punters' source, derived from bookmaker pricing",
-  "updated": "2026-09-10 12:02:11"
+  "updated": "2026-09-10 16:03:15"
  },
  "method": {
   "calibration": {
@@ -1462,7 +1462,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-10T05:38:39+00:00",
+  "fetched_at": "2026-09-10T06:10:10+00:00",
   "items": [
    {
     "about": [
@@ -1498,20 +1498,20 @@
  },
  "path_to_glory": {
   "final_step": {
-   "conditional_probability": 0.505851,
-   "cumulative_probability": 0.078282,
+   "conditional_probability": 0.505849,
+   "cumulative_probability": 0.078281,
    "node": "GF",
    "opponents": [
     {
-     "probability": 0.667367,
+     "probability": 0.66736,
      "team": "Hawthorn"
     },
     {
-     "probability": 0.244432,
+     "probability": 0.244468,
      "team": "Brisbane Lions"
     },
     {
-     "probability": 0.088201,
+     "probability": 0.088173,
      "team": "Adelaide"
     }
    ],
@@ -1524,7 +1524,7 @@
      "club_win_probability": 0.479295,
      "neutral": true,
      "opponent": "Hawthorn",
-     "probability": 0.667369,
+     "probability": 0.667358,
      "venue": "M.C.G."
     },
     {
@@ -1532,15 +1532,15 @@
      "club_win_probability": 0.536446,
      "neutral": true,
      "opponent": "Brisbane Lions",
-     "probability": 0.244431,
+     "probability": 0.244469,
      "venue": "M.C.G."
     },
     {
      "club_is_home": true,
-     "club_win_probability": 0.621993,
+     "club_win_probability": 0.621994,
      "neutral": true,
      "opponent": "Adelaide",
-     "probability": 0.0882,
+     "probability": 0.088173,
      "venue": "M.C.G."
     }
    ],
@@ -1554,9 +1554,9 @@
     "away": "Geelong",
     "away_probability": 0.4154,
     "away_score": null,
-    "club_if_away_wins": 0.188449,
+    "club_if_away_wins": 0.188448,
     "club_if_home_wins": 0.0,
-    "club_swing": 0.188449,
+    "club_swing": 0.188448,
     "complete_percent": 0,
     "date": "2026-09-11 20:10:00",
     "game_id": 38725,
@@ -1566,7 +1566,7 @@
     "in_progress": false,
     "involves_club": true,
     "local_time": "2026-09-11 18:10:00",
-    "market_home_probability": 0.6277,
+    "market_home_probability": 0.6288,
     "node": "SF1",
     "provisional_reasons": [],
     "source_kind": "published",
@@ -1579,7 +1579,7 @@
    },
    {
     "away": "Adelaide",
-    "away_probability": 0.3145,
+    "away_probability": 0.3144,
     "away_score": null,
     "club_if_away_wins": 0.080365,
     "club_if_home_wins": 0.077326,
@@ -1588,12 +1588,12 @@
     "date": "2026-09-12 19:35:00",
     "game_id": 38726,
     "home": "Brisbane Lions",
-    "home_probability": 0.6855,
+    "home_probability": 0.6856,
     "home_score": null,
     "in_progress": false,
     "involves_club": false,
     "local_time": "2026-09-12 19:35:00",
-    "market_home_probability": 0.7429,
+    "market_home_probability": 0.7434,
     "node": "SF2",
     "provisional_reasons": [],
     "source_kind": "published",
