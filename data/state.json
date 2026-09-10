@@ -1139,7 +1139,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-10T08:08:18+00:00",
+ "generated_at": "2026-09-10T08:40:34+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1462,8 +1462,24 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-10T08:08:17+00:00",
+  "fetched_at": "2026-09-10T08:40:33+00:00",
   "items": [
+   {
+    "about": [
+     "Adelaide",
+     "Fremantle",
+     "Geelong"
+    ],
+    "is_team_news": true,
+    "link": "https://www.afl.com.au/news/1607098/finals-teams-fremantle-dockers-youngster-nathan-odriscoll-out-crows-leader-isaac-cumming-axed-geelong-cats-make-sam-de-koning-call",
+    "published_utc": "2026-09-10T08:20:00Z",
+    "score": 32,
+    "tags": [
+     "team news",
+     "finals"
+    ],
+    "title": "FINALS TEAMS: Dockers mid dropped, Crows leader axed, Cats make De Koning call"
+   },
    {
     "about": [
      "Geelong"
