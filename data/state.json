@@ -1139,7 +1139,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-10T04:07:38+00:00",
+ "generated_at": "2026-09-10T04:40:04+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1462,20 +1462,20 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-10T04:07:37+00:00",
+  "fetched_at": "2026-09-10T04:40:01+00:00",
   "items": [
    {
     "about": [
      "Geelong"
     ],
-    "is_team_news": false,
-    "link": "https://www.afl.com.au/news/1606955/geelong-cats-forward-ollie-henry-finds-his-spark-again-after-september-heartbreak",
-    "published_utc": "2026-09-09T03:59:00Z",
-    "score": 14,
+    "is_team_news": true,
+    "link": "https://www.afl.com.au/news/1607182/the-knee-injury-connection-that-brought-draft-hopeful-jack-pickett-and-geelong-cats-great-joel-selwood-together",
+    "published_utc": "2026-09-10T04:30:00Z",
+    "score": 20,
     "tags": [
-     "finals"
+     "team news"
     ],
-    "title": "Cats forward finds his spark again after September heartbreak"
+    "title": "The knee injury connection that brought draft hopeful and Cats great together"
    }
   ],
   "source": "AFL.com.au",
