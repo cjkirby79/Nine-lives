@@ -86,17 +86,17 @@
   },
   {
    "away": "Geelong",
-   "away_score": 94,
-   "complete": false,
+   "away_score": 106,
+   "complete": true,
    "date": "2026-09-11 20:10:00",
    "home": "Fremantle",
-   "home_score": 112,
+   "home_score": 120,
    "involves_club": true,
    "node": "SF1",
    "provisional_reasons": [],
    "stage": "Semi-final",
    "venue": "Perth Stadium",
-   "winner": null
+   "winner": "Fremantle"
   },
   {
    "away": "Adelaide",
@@ -121,71 +121,32 @@
    "stage": "Preliminary final"
   },
   {
-   "away": null,
-   "club_appearance_probability": 0.4109,
-   "club_wins_away": 1,
-   "home": null,
+   "away": "Fremantle",
+   "away_score": 0,
+   "complete": false,
+   "date": "2026-09-19 19:20:00",
+   "home": "Sydney",
+   "home_score": 0,
+   "involves_club": false,
    "node": "PF2",
-   "stage": "Preliminary final"
+   "provisional_reasons": [
+    "venue shown is M.C.G., but Sydney would host at S.C.G.",
+    "another game in this round carries the identical kickoff time"
+   ],
+   "stage": "Preliminary final",
+   "venue": "M.C.G.",
+   "winner": null
   },
   {
    "away": null,
-   "club_appearance_probability": 0.157961,
-   "club_wins_away": 2,
+   "club_appearance_probability": 0.0,
+   "club_wins_away": null,
    "home": null,
    "node": "GF",
    "stage": "Grand Final"
   }
  ],
  "case": [
-  {
-   "detail": "One game. Nothing beyond it matters this week. History and form say otherwise, and both are below.",
-   "id": "what_the_experts_give_us",
-   "label": "what the tipping panel gives us against Fremantle",
-   "priority": 110,
-   "source": "Squiggle consensus of the public AFL models",
-   "stat": "41.1%"
-  },
-  {
-   "detail": "2 games against Fremantle this season. 200 points to us, 199 to them — 1 to us across the whole year. There is nothing between these teams, and everyone except us seems to have forgotten it.",
-   "id": "one_point_in_it",
-   "label": "point between these two sides all year",
-   "priority": 100,
-   "source": "2026 home-and-away results",
-   "stat": "1"
-  },
-  {
-   "detail": "Six times he has taken a side into a semi-final. Five times he has walked off with it. This is the game Chris Scott does not lose — and it is exactly the game sitting in front of us.",
-   "id": "semi_final_pedigree",
-   "label": "win rate in semi-finals under Chris Scott",
-   "priority": 95,
-   "source": "Every final Geelong have played since 2011, from match records",
-   "stat": "83%"
-  },
-  {
-   "detail": "Beaten by Hawthorn in their own backyard at Perth Stadium. The minor premiers come into this bruised, doubting, one loss from the off-season. We come into it off a win, with the handbrake off.",
-   "id": "opponent_is_wounded",
-   "label": "points — what Fremantle were rolled by last week",
-   "priority": 90,
-   "source": "2026 finals results",
-   "stat": "32"
-  },
-  {
-   "detail": "The longest active run of anyone left in the draw. Not beaten since round 18 against Greater Western Sydney, and in no mood to start now.",
-   "id": "winning_streak",
-   "label": "straight wins going into this week",
-   "priority": 85,
-   "source": "2026 results",
-   "stat": "7"
-  },
-  {
-   "detail": "At Kardinia Park, this season, with this list. We have already proved we can do it once. Saturday is about doing it again when it counts.",
-   "id": "we_have_beaten_them",
-   "label": "points — how we beat Fremantle in round 1",
-   "priority": 80,
-   "source": "2026 home-and-away results",
-   "stat": "10"
-  },
   {
    "detail": "5th on the ladder is a lie. Only 2 sides in the entire competition scored more heavily against what they let in. We are a top-three team wearing a fifth-place jumper, and the draw is about to find that out.",
    "id": "better_than_our_ladder_position",
@@ -214,16 +175,16 @@
  "club": "Geelong",
  "dominance": {
   "club": {
-   "finals": 34,
+   "finals": 35,
    "finals_series": 14,
-   "finals_win_rate": 0.5,
+   "finals_win_rate": 0.4857,
    "finals_won": 17,
    "flags": 2,
    "grand_finals": 4,
-   "lost": 120,
-   "played": 381,
+   "lost": 121,
+   "played": 382,
    "team": "Geelong",
-   "win_rate": 0.685,
+   "win_rate": 0.6832,
    "won": 261
   },
   "clubs_compared": 18,
@@ -349,16 +310,16 @@
   },
   "table": [
    {
-    "finals": 34,
+    "finals": 35,
     "finals_series": 14,
-    "finals_win_rate": 0.5,
+    "finals_win_rate": 0.4857,
     "finals_won": 17,
     "flags": 2,
     "grand_finals": 4,
-    "lost": 120,
-    "played": 381,
+    "lost": 121,
+    "played": 382,
     "team": "Geelong",
-    "win_rate": 0.685,
+    "win_rate": 0.6832,
     "won": 261
    },
    {
@@ -401,17 +362,17 @@
     "won": 220
    },
    {
-    "finals": 13,
+    "finals": 14,
     "finals_series": 7,
-    "finals_win_rate": 0.3846,
-    "finals_won": 5,
+    "finals_win_rate": 0.4286,
+    "finals_won": 6,
     "flags": 0,
     "grand_finals": 1,
     "lost": 166,
-    "played": 361,
+    "played": 362,
     "team": "Fremantle",
-    "win_rate": 0.5402,
-    "won": 195
+    "win_rate": 0.5414,
+    "won": 196
    },
    {
     "finals": 13,
@@ -456,467 +417,38 @@
   "to_year": 2026
  },
  "experts": {
-  "best": {
-   "club_margin": -7.9,
-   "club_probability": 0.4109,
-   "is_consensus": true,
-   "is_market": false,
-   "source": "Aggregate",
-   "tips_club": false,
-   "updated": "2026-09-11 20:01:58"
-  },
-  "consensus": {
-   "club_margin": -7.9,
-   "club_probability": 0.4109,
-   "is_consensus": true,
-   "is_market": false,
-   "source": "Aggregate",
-   "tips_club": false,
-   "updated": "2026-09-11 20:01:58"
-  },
-  "counted": 29,
-  "market": {
-   "club_margin": -10.7,
-   "club_probability": 0.3532,
-   "is_consensus": false,
-   "is_market": true,
-   "source": "Punters",
-   "tips_club": false,
-   "updated": "2026-09-11 20:00:18"
-  },
-  "tipping_club": 3,
-  "tips": [
-   {
-    "club_margin": -7.9,
-    "club_probability": 0.4109,
-    "is_consensus": true,
-    "is_market": false,
-    "source": "Aggregate",
-    "tips_club": false,
-    "updated": "2026-09-11 20:01:58"
-   },
-   {
-    "club_margin": 3.7,
-    "club_probability": 0.5375,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "In The Game",
-    "tips_club": true,
-    "updated": "2026-09-11 05:46:02"
-   },
-   {
-    "club_margin": 2.4,
-    "club_probability": 0.5227,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "The Footycast",
-    "tips_club": true,
-    "updated": "2026-09-06 04:33:04"
-   },
-   {
-    "club_margin": 0.8,
-    "club_probability": 0.512,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "HBin",
-    "tips_club": true,
-    "updated": "2026-09-10 19:37:11"
-   },
-   {
-    "club_margin": -0.5,
-    "club_probability": 0.495,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Massey Ratings",
-    "tips_club": false,
-    "updated": "2026-09-08 09:36:06"
-   },
-   {
-    "club_margin": -1.1,
-    "club_probability": 0.4876,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Glicko Ratings",
-    "tips_club": false,
-    "updated": "2026-09-10 18:59:06"
-   },
-   {
-    "club_margin": -1.0,
-    "club_probability": 0.4872,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Winnable",
-    "tips_club": false,
-    "updated": "2026-09-10 21:02:07"
-   },
-   {
-    "club_margin": -1.0,
-    "club_probability": 0.4822,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Elo Predicts!",
-    "tips_club": false,
-    "updated": "2026-09-10 07:23:21"
-   },
-   {
-    "club_margin": -2.0,
-    "club_probability": 0.48,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Informed Stats",
-    "tips_club": false,
-    "updated": "2026-09-07 12:26:05"
-   },
-   {
-    "club_margin": -5.0,
-    "club_probability": 0.469,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Graft",
-    "tips_club": false,
-    "updated": "2026-09-06 18:57:09"
-   },
-   {
-    "club_margin": -4.0,
-    "club_probability": 0.4472,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "The Cruncher",
-    "tips_club": false,
-    "updated": "2026-09-11 13:50:06"
-   },
-   {
-    "club_margin": -6.6,
-    "club_probability": 0.4181,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Wheelo Ratings",
-    "tips_club": false,
-    "updated": "2026-09-10 21:34:15"
-   },
-   {
-    "club_margin": -6.9,
-    "club_probability": 0.4177,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "s10",
-    "tips_club": false,
-    "updated": "2026-09-11 19:56:27"
-   },
-   {
-    "club_margin": -7.2,
-    "club_probability": 0.4119,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Matter of Stats",
-    "tips_club": false,
-    "updated": "2026-09-10 18:57:14"
-   },
-   {
-    "club_margin": -10.0,
-    "club_probability": 0.41,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Cheap Stats",
-    "tips_club": false,
-    "updated": "2026-09-10 09:25:20"
-   },
-   {
-    "club_margin": -7.1,
-    "club_probability": 0.3958,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Don't Blame the Data",
-    "tips_club": false,
-    "updated": "2026-09-11 18:04:03"
-   },
-   {
-    "club_margin": -16.1,
-    "club_probability": 0.3949,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Holy Grail Ratings",
-    "tips_club": false,
-    "updated": "2026-09-09 20:07:03"
-   },
-   {
-    "club_margin": -10.7,
-    "club_probability": 0.3835,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "AFLalytics",
-    "tips_club": false,
-    "updated": "2026-09-10 20:33:06"
-   },
-   {
-    "club_margin": -11.0,
-    "club_probability": 0.38,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "The Wooden Finger",
-    "tips_club": false,
-    "updated": "2026-09-07 21:23:10"
-   },
-   {
-    "club_margin": -11.6,
-    "club_probability": 0.372,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "AFL Lab",
-    "tips_club": false,
-    "updated": "2026-09-10 23:38:03"
-   },
-   {
-    "club_margin": -12.0,
-    "club_probability": 0.3493,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Live Ladders",
-    "tips_club": false,
-    "updated": "2026-09-07 11:14:11"
-   },
-   {
-    "club_margin": -13.8,
-    "club_probability": 0.3482,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Squiggle",
-    "tips_club": false,
-    "updated": "2026-09-10 22:18:03"
-   },
-   {
-    "club_margin": -13.9,
-    "club_probability": 0.3443,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Stattraction",
-    "tips_club": false,
-    "updated": "2026-09-06 08:51:06"
-   },
-   {
-    "club_margin": -15.0,
-    "club_probability": 0.34,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "ZaphBot",
-    "tips_club": false,
-    "updated": "2026-09-11 19:56:16"
-   },
-   {
-    "club_margin": -13.6,
-    "club_probability": 0.3393,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "footycharts",
-    "tips_club": false,
-    "updated": "2026-09-06 07:46:33"
-   },
-   {
-    "club_margin": -15.0,
-    "club_probability": 0.316,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "PlusSixOne",
-    "tips_club": false,
-    "updated": "2026-09-08 15:43:20"
-   },
-   {
-    "club_margin": -15.4,
-    "club_probability": 0.3105,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Drop Kick Data",
-    "tips_club": false,
-    "updated": "2026-09-10 22:38:04"
-   },
-   {
-    "club_margin": -17.0,
-    "club_probability": 0.3071,
-    "is_consensus": false,
-    "is_market": false,
-    "source": "Hyperion",
-    "tips_club": false,
-    "updated": "2026-09-07 12:19:03"
-   },
-   {
-    "club_margin": -10.7,
-    "club_probability": 0.3532,
-    "is_consensus": false,
-    "is_market": true,
-    "source": "Punters",
-    "tips_club": false,
-    "updated": "2026-09-11 20:00:18"
-   }
-  ]
+  "best": null,
+  "consensus": null,
+  "counted": 0,
+  "market": null,
+  "tipping_club": 0,
+  "tips": []
  },
  "field": [
   {
-   "probability": 0.382442,
+   "probability": 0.351818,
    "team": "Hawthorn"
   },
   {
-   "probability": 0.294667,
+   "probability": 0.289632,
    "team": "Sydney"
   },
   {
-   "probability": 0.127101,
+   "probability": 0.2333,
    "team": "Fremantle"
   },
   {
-   "probability": 0.105624,
+   "probability": 0.105566,
    "team": "Brisbane Lions"
   },
   {
-   "probability": 0.070397,
-   "team": "Geelong"
-  },
-  {
-   "probability": 0.019768,
+   "probability": 0.019684,
    "team": "Adelaide"
   }
  ],
  "finals_head_to_head": {
   "from_year": 2000,
   "teams": [
-   {
-    "biggest_win": {
-     "at_home": true,
-     "margin": 69,
-     "opponent_won_flag": false,
-     "scott_era": false,
-     "stage": "Semi-Finals",
-     "unixtime": 1284111900,
-     "venue": "M.C.G.",
-     "won": true,
-     "year": 2010
-    },
-    "lost": 2,
-    "meetings": [
-     {
-      "at_home": true,
-      "margin": -15,
-      "opponent_won_flag": false,
-      "scott_era": true,
-      "stage": "Finals Week 1",
-      "unixtime": 1378527600,
-      "venue": "Kardinia Park",
-      "won": false,
-      "year": 2013
-     },
-     {
-      "at_home": true,
-      "margin": -16,
-      "opponent_won_flag": false,
-      "scott_era": true,
-      "stage": "Finals Week 1",
-      "unixtime": 1347097500,
-      "venue": "M.C.G.",
-      "won": false,
-      "year": 2012
-     },
-     {
-      "at_home": true,
-      "margin": 69,
-      "opponent_won_flag": false,
-      "scott_era": false,
-      "stage": "Semi-Finals",
-      "unixtime": 1284111900,
-      "venue": "M.C.G.",
-      "won": true,
-      "year": 2010
-     }
-    ],
-    "most_recent": {
-     "at_home": true,
-     "margin": -15,
-     "opponent_won_flag": false,
-     "scott_era": true,
-     "stage": "Finals Week 1",
-     "unixtime": 1378527600,
-     "venue": "Kardinia Park",
-     "won": false,
-     "year": 2013
-    },
-    "played": 3,
-    "team": "Fremantle",
-    "win_rate": 0.3333,
-    "won": 1
-   },
-   {
-    "biggest_win": {
-     "at_home": true,
-     "margin": 81,
-     "opponent_won_flag": false,
-     "scott_era": true,
-     "stage": "Grand Final",
-     "unixtime": 1663993800,
-     "venue": "M.C.G.",
-     "won": true,
-     "year": 2022
-    },
-    "lost": 2,
-    "meetings": [
-     {
-      "at_home": true,
-      "margin": 81,
-      "opponent_won_flag": false,
-      "scott_era": true,
-      "stage": "Grand Final",
-      "unixtime": 1663993800,
-      "venue": "M.C.G.",
-      "won": true,
-      "year": 2022
-     },
-     {
-      "at_home": true,
-      "margin": 59,
-      "opponent_won_flag": false,
-      "scott_era": true,
-      "stage": "Semi-Finals",
-      "unixtime": 1505469000,
-      "venue": "M.C.G.",
-      "won": true,
-      "year": 2017
-     },
-     {
-      "at_home": true,
-      "margin": -37,
-      "opponent_won_flag": false,
-      "scott_era": true,
-      "stage": "Preliminary Finals",
-      "unixtime": 1474620600,
-      "venue": "M.C.G.",
-      "won": false,
-      "year": 2016
-     },
-     {
-      "at_home": false,
-      "margin": -3,
-      "opponent_won_flag": true,
-      "scott_era": false,
-      "stage": "Semi-Finals",
-      "unixtime": 1126260000,
-      "venue": "S.C.G.",
-      "won": false,
-      "year": 2005
-     }
-    ],
-    "most_recent": {
-     "at_home": true,
-     "margin": 81,
-     "opponent_won_flag": false,
-     "scott_era": true,
-     "stage": "Grand Final",
-     "unixtime": 1663993800,
-     "venue": "M.C.G.",
-     "won": true,
-     "year": 2022
-    },
-    "played": 4,
-    "team": "Sydney",
-    "win_rate": 0.5,
-    "won": 2
-   },
    {
     "biggest_win": {
      "at_home": true,
@@ -1024,6 +556,156 @@
     "team": "Hawthorn",
     "win_rate": 0.4286,
     "won": 3
+   },
+   {
+    "biggest_win": {
+     "at_home": true,
+     "margin": 81,
+     "opponent_won_flag": false,
+     "scott_era": true,
+     "stage": "Grand Final",
+     "unixtime": 1663993800,
+     "venue": "M.C.G.",
+     "won": true,
+     "year": 2022
+    },
+    "lost": 2,
+    "meetings": [
+     {
+      "at_home": true,
+      "margin": 81,
+      "opponent_won_flag": false,
+      "scott_era": true,
+      "stage": "Grand Final",
+      "unixtime": 1663993800,
+      "venue": "M.C.G.",
+      "won": true,
+      "year": 2022
+     },
+     {
+      "at_home": true,
+      "margin": 59,
+      "opponent_won_flag": false,
+      "scott_era": true,
+      "stage": "Semi-Finals",
+      "unixtime": 1505469000,
+      "venue": "M.C.G.",
+      "won": true,
+      "year": 2017
+     },
+     {
+      "at_home": true,
+      "margin": -37,
+      "opponent_won_flag": false,
+      "scott_era": true,
+      "stage": "Preliminary Finals",
+      "unixtime": 1474620600,
+      "venue": "M.C.G.",
+      "won": false,
+      "year": 2016
+     },
+     {
+      "at_home": false,
+      "margin": -3,
+      "opponent_won_flag": true,
+      "scott_era": false,
+      "stage": "Semi-Finals",
+      "unixtime": 1126260000,
+      "venue": "S.C.G.",
+      "won": false,
+      "year": 2005
+     }
+    ],
+    "most_recent": {
+     "at_home": true,
+     "margin": 81,
+     "opponent_won_flag": false,
+     "scott_era": true,
+     "stage": "Grand Final",
+     "unixtime": 1663993800,
+     "venue": "M.C.G.",
+     "won": true,
+     "year": 2022
+    },
+    "played": 4,
+    "team": "Sydney",
+    "win_rate": 0.5,
+    "won": 2
+   },
+   {
+    "biggest_win": {
+     "at_home": true,
+     "margin": 69,
+     "opponent_won_flag": false,
+     "scott_era": false,
+     "stage": "Semi-Finals",
+     "unixtime": 1284111900,
+     "venue": "M.C.G.",
+     "won": true,
+     "year": 2010
+    },
+    "lost": 3,
+    "meetings": [
+     {
+      "at_home": false,
+      "margin": -14,
+      "opponent_won_flag": false,
+      "scott_era": true,
+      "stage": "Semi-Finals",
+      "unixtime": 1789121400,
+      "venue": "Perth Stadium",
+      "won": false,
+      "year": 2026
+     },
+     {
+      "at_home": true,
+      "margin": -15,
+      "opponent_won_flag": false,
+      "scott_era": true,
+      "stage": "Finals Week 1",
+      "unixtime": 1378527600,
+      "venue": "Kardinia Park",
+      "won": false,
+      "year": 2013
+     },
+     {
+      "at_home": true,
+      "margin": -16,
+      "opponent_won_flag": false,
+      "scott_era": true,
+      "stage": "Finals Week 1",
+      "unixtime": 1347097500,
+      "venue": "M.C.G.",
+      "won": false,
+      "year": 2012
+     },
+     {
+      "at_home": true,
+      "margin": 69,
+      "opponent_won_flag": false,
+      "scott_era": false,
+      "stage": "Semi-Finals",
+      "unixtime": 1284111900,
+      "venue": "M.C.G.",
+      "won": true,
+      "year": 2010
+     }
+    ],
+    "most_recent": {
+     "at_home": false,
+     "margin": -14,
+     "opponent_won_flag": false,
+     "scott_era": true,
+     "stage": "Semi-Finals",
+     "unixtime": 1789121400,
+     "venue": "Perth Stadium",
+     "won": false,
+     "year": 2026
+    },
+    "played": 4,
+    "team": "Fremantle",
+    "win_rate": 0.25,
+    "won": 1
    },
    {
     "biggest_win": {
@@ -1157,7 +839,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-11T12:42:32+00:00",
+ "generated_at": "2026-09-11T13:07:15+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1167,124 +849,15 @@
   "winner": null
  },
  "headline": {
-  "probability": 0.070397,
-  "reaches_grand_final": 0.157961,
-  "steps": [
-   {
-    "conditional_probability": 0.4109,
-    "cumulative_probability": 0.4109,
-    "node": "SF1",
-    "opponents": [
-     {
-      "probability": 1.0,
-      "team": "Fremantle"
-     }
-    ],
-    "possible_venues": [
-     "Perth Stadium"
-    ],
-    "scenarios": [
-     {
-      "club_is_home": false,
-      "club_win_probability": 0.4109,
-      "neutral": false,
-      "opponent": "Fremantle",
-      "probability": 1.0,
-      "venue": "Perth Stadium"
-     }
-    ],
-    "source": "Squiggle Aggregate consensus",
-    "source_kind": "published",
-    "stage": "Semi-final",
-    "venue": "Perth Stadium"
-   },
-   {
-    "conditional_probability": 0.384427,
-    "cumulative_probability": 0.157961,
-    "node": "PF2",
-    "opponents": [
-     {
-      "probability": 1.0,
-      "team": "Sydney"
-     }
-    ],
-    "possible_venues": [
-     "S.C.G."
-    ],
-    "scenarios": [
-     {
-      "club_is_home": false,
-      "club_win_probability": 0.384427,
-      "neutral": false,
-      "opponent": "Sydney",
-      "probability": 1.0,
-      "venue": "S.C.G."
-     }
-    ],
-    "source": "fitted from Squiggle power ratings",
-    "source_kind": "fitted",
-    "stage": "Preliminary final",
-    "venue": "S.C.G."
-   },
-   {
-    "conditional_probability": 0.445663,
-    "cumulative_probability": 0.070397,
-    "node": "GF",
-    "opponents": [
-     {
-      "probability": 0.728003,
-      "team": "Hawthorn"
-     },
-     {
-      "probability": 0.212508,
-      "team": "Brisbane Lions"
-     },
-     {
-      "probability": 0.059489,
-      "team": "Adelaide"
-     }
-    ],
-    "possible_venues": [
-     "M.C.G."
-    ],
-    "scenarios": [
-     {
-      "club_is_home": false,
-      "club_win_probability": 0.40653,
-      "neutral": true,
-      "opponent": "Hawthorn",
-      "probability": 0.728004,
-      "venue": "M.C.G."
-     },
-     {
-      "club_is_home": false,
-      "club_win_probability": 0.519585,
-      "neutral": true,
-      "opponent": "Brisbane Lions",
-      "probability": 0.212507,
-      "venue": "M.C.G."
-     },
-     {
-      "club_is_home": true,
-      "club_win_probability": 0.660488,
-      "neutral": true,
-      "opponent": "Adelaide",
-      "probability": 0.059489,
-      "venue": "M.C.G."
-     }
-    ],
-    "source": "fitted from Squiggle power ratings",
-    "source_kind": "fitted",
-    "stage": "Grand Final",
-    "venue": "M.C.G."
-   }
-  ],
+  "probability": 0.0,
+  "reaches_grand_final": 0.0,
+  "steps": [],
   "team": "Geelong"
  },
  "in_our_defence": {
-  "away_from_home": 9,
+  "away_from_home": 10,
   "from_year": 2011,
-  "losses": 17,
+  "losses": 18,
   "no_team_news": "Injuries and late outs are not in this data, so they are not claimed here. Everything above is.",
   "premier_bound_or_close": 10,
   "to_eventual_premier": 8,
@@ -1454,33 +1027,28 @@
    "wins": 2
   }
  ],
- "market": {
-  "club_win_probability": 0.3532,
-  "expected_margin_to_club": -10.7,
-  "source": "Squiggle 'Punters' source, derived from bookmaker pricing",
-  "updated": "2026-09-11 20:00:18"
- },
+ "market": null,
  "method": {
   "calibration": {
    "diagnostics": {
-    "finals_holdout_games": 8,
-    "finals_holdout_rmse_points": 9.08,
+    "finals_holdout_games": 9,
+    "finals_holdout_rmse_points": 8.1,
     "margin_fit_from_round": 17,
-    "margin_fit_games": 80,
-    "margin_fit_r_squared": 0.917,
-    "margin_fit_rmse_points": 7.14,
-    "probability_fit_games": 215
+    "margin_fit_games": 81,
+    "margin_fit_r_squared": 0.922,
+    "margin_fit_rmse_points": 6.91,
+    "probability_fit_games": 216
    },
-   "home_ground_points": 4.314,
-   "interstate_travel_points": 3.4898,
+   "home_ground_points": 4.162,
+   "interstate_travel_points": 3.6518,
    "logit_per_point": 0.047,
-   "points_per_power_point": 1.6034
+   "points_per_power_point": 1.6114
   },
   "description": "Every remaining path through the finals bracket is enumerated exhaustively and the paths ending in a premiership are summed. Fixtures Squiggle has already tipped use its published consensus verbatim; the rest use a conversion fitted to Squiggle's own published margins and confidences this season."
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-11T12:42:30+00:00",
+  "fetched_at": "2026-09-11T13:07:14+00:00",
   "items": [
    {
     "about": [
@@ -1491,7 +1059,7 @@
     "is_team_news": true,
     "link": "https://www.afl.com.au/news/1607098/finals-teams-fremantle-dockers-youngster-nathan-odriscoll-out-crows-leader-isaac-cumming-axed-geelong-cats-make-sam-de-koning-call",
     "published_utc": "2026-09-10T08:20:00Z",
-    "score": 30,
+    "score": 24,
     "tags": [
      "team news",
      "finals"
@@ -1505,120 +1073,43 @@
     ],
     "is_team_news": false,
     "link": "https://www.afl.com.au/news/1607142/live-its-all-on-the-line-as-dockers-host-cats-in-do-or-die-semi-final",
-    "published_utc": "2026-09-11T12:27:00Z",
-    "score": 24,
+    "published_utc": "2026-09-11T12:54:00Z",
+    "score": 18,
     "tags": [
      "finals"
     ],
-    "title": "LIVE: Dockers lead enthralling semi-final, Scott in disbelief as Dempsey denied"
+    "title": "LIVE: Dockers win enthralling clash against Cats to book prelim berth"
+   },
+   {
+    "about": [
+     "Fremantle",
+     "Geelong"
+    ],
+    "is_team_news": false,
+    "link": "https://www.afl.com.au/news/1607322/anchors-away-fremantle-dockers-prevails-in-finals-epic-after-weathering-geelong-cats-storm",
+    "published_utc": "2026-09-11T13:00:00Z",
+    "score": 18,
+    "tags": [
+     "finals"
+    ],
+    "title": "Anchors away: Freo prevails in finals epic after weathering Cats' storm"
    }
   ],
   "source": "AFL.com.au",
   "source_url": "https://www.afl.com.au/rss",
   "stale": false
  },
- "next_fixture": {
-  "away": "Geelong",
-  "club_is_home": false,
-  "club_win_probability": 0.4109,
-  "game_id": 38725,
-  "home": "Fremantle",
-  "local_time": "2026-09-11 18:10:00",
-  "opponent": "Fremantle",
-  "provisional_reasons": [],
-  "stage": "Semi-Finals",
-  "start_utc": "2026-09-11T10:10:00Z",
-  "timezone": "+10:00",
-  "venue": "Perth Stadium"
- },
+ "next_fixture": null,
  "path_to_glory": {
-  "final_step": {
-   "conditional_probability": 0.445663,
-   "cumulative_probability": 0.070397,
-   "node": "GF",
-   "opponents": [
-    {
-     "probability": 0.728003,
-     "team": "Hawthorn"
-    },
-    {
-     "probability": 0.212508,
-     "team": "Brisbane Lions"
-    },
-    {
-     "probability": 0.059489,
-     "team": "Adelaide"
-    }
-   ],
-   "possible_venues": [
-    "M.C.G."
-   ],
-   "scenarios": [
-    {
-     "club_is_home": false,
-     "club_win_probability": 0.40653,
-     "neutral": true,
-     "opponent": "Hawthorn",
-     "probability": 0.728004,
-     "venue": "M.C.G."
-    },
-    {
-     "club_is_home": false,
-     "club_win_probability": 0.519585,
-     "neutral": true,
-     "opponent": "Brisbane Lions",
-     "probability": 0.212507,
-     "venue": "M.C.G."
-    },
-    {
-     "club_is_home": true,
-     "club_win_probability": 0.660488,
-     "neutral": true,
-     "opponent": "Adelaide",
-     "probability": 0.059489,
-     "venue": "M.C.G."
-    }
-   ],
-   "source": "fitted from Squiggle power ratings",
-   "source_kind": "fitted",
-   "stage": "Grand Final",
-   "venue": "M.C.G."
-  },
+  "final_step": null,
   "fixtures": [
-   {
-    "away": "Geelong",
-    "away_probability": 0.4109,
-    "away_score": 94,
-    "club_if_away_wins": 0.171325,
-    "club_if_home_wins": 0.0,
-    "club_swing": 0.171325,
-    "complete_percent": 89,
-    "date": "2026-09-11 20:10:00",
-    "game_id": 38725,
-    "home": "Fremantle",
-    "home_probability": 0.5891,
-    "home_score": 112,
-    "in_progress": true,
-    "involves_club": true,
-    "local_time": "2026-09-11 18:10:00",
-    "market_home_probability": 0.6468,
-    "node": "SF1",
-    "provisional_reasons": [],
-    "source_kind": "published",
-    "stage": "Semi-final",
-    "start_utc": "2026-09-11T10:10:00Z",
-    "time_string": "Q4 16:57",
-    "timezone": "+10:00",
-    "venue": "Perth Stadium",
-    "we_want": "Geelong"
-   },
    {
     "away": "Adelaide",
     "away_probability": 0.3033,
     "away_score": null,
-    "club_if_away_wins": 0.072084,
-    "club_if_home_wins": 0.069663,
-    "club_swing": 0.002421,
+    "club_if_away_wins": 0.0,
+    "club_if_home_wins": 0.0,
+    "club_swing": 0.0,
     "complete_percent": 0,
     "date": "2026-09-12 19:35:00",
     "game_id": 38726,
@@ -1637,67 +1128,43 @@
     "time_string": null,
     "timezone": "+10:00",
     "venue": "Gabba",
-    "we_want": "Adelaide"
+    "we_want": null
+   },
+   {
+    "away": "Fremantle",
+    "away_probability": 0.3737,
+    "away_score": null,
+    "club_if_away_wins": 0.0,
+    "club_if_home_wins": 0.0,
+    "club_swing": 0.0,
+    "complete_percent": 0,
+    "date": "2026-09-19 19:20:00",
+    "game_id": 38728,
+    "home": "Sydney",
+    "home_probability": 0.6263,
+    "home_score": null,
+    "in_progress": false,
+    "involves_club": false,
+    "local_time": "2026-09-19 19:20:00",
+    "market_home_probability": null,
+    "node": "PF2",
+    "provisional_reasons": [
+     "venue shown is M.C.G., but Sydney would host at S.C.G.",
+     "another game in this round carries the identical kickoff time"
+    ],
+    "source_kind": "published",
+    "stage": "Preliminary final",
+    "start_utc": "2026-09-19T09:20:00Z",
+    "time_string": null,
+    "timezone": "+10:00",
+    "venue": "M.C.G.",
+    "we_want": null
    }
   ],
-  "games_in_progress": 1,
-  "if_we_win": {
-   "conditional_probability": 0.384427,
-   "cumulative_probability": 0.157961,
-   "node": "PF2",
-   "opponents": [
-    {
-     "probability": 1.0,
-     "team": "Sydney"
-    }
-   ],
-   "possible_venues": [
-    "S.C.G."
-   ],
-   "scenarios": [
-    {
-     "club_is_home": false,
-     "club_win_probability": 0.384427,
-     "neutral": false,
-     "opponent": "Sydney",
-     "probability": 1.0,
-     "venue": "S.C.G."
-    }
-   ],
-   "source": "fitted from Squiggle power ratings",
-   "source_kind": "fitted",
-   "stage": "Preliminary final",
-   "venue": "S.C.G."
-  },
-  "live_disclaimer": "A final is being played right now. Every probability here is the pre-match consensus and takes no account of the live score.",
-  "playing_now": {
-   "conditional_probability": 0.4109,
-   "cumulative_probability": 0.4109,
-   "node": "SF1",
-   "opponents": [
-    {
-     "probability": 1.0,
-     "team": "Fremantle"
-    }
-   ],
-   "possible_venues": [
-    "Perth Stadium"
-   ],
-   "scenarios": [
-    {
-     "club_is_home": false,
-     "club_win_probability": 0.4109,
-     "neutral": false,
-     "opponent": "Fremantle",
-     "probability": 1.0,
-     "venue": "Perth Stadium"
-    }
-   ],
-   "source": "Squiggle Aggregate consensus",
-   "source_kind": "published",
-   "stage": "Semi-final",
-   "venue": "Perth Stadium"
-  }
+  "games_in_progress": 0,
+  "if_we_win": null,
+  "live_disclaimer": null,
+  "playing_now": null
  },
  "precedent": {
   "flag_rate_after_winning_semi": 0.1538,
@@ -1810,13 +1277,13 @@
     "won": 0
    },
    {
-    "lost": 2,
-    "played": 2,
+    "lost": 3,
+    "played": 3,
     "team": "Fremantle",
     "won": 0
    }
   ],
-  "average_margin": 5.4,
+  "average_margin": 4.9,
   "by_stage": [
    {
     "lost": 8,
@@ -1831,8 +1298,8 @@
     "won": 4
    },
    {
-    "lost": 1,
-    "played": 6,
+    "lost": 2,
+    "played": 7,
     "stage": "Semi-final",
     "won": 5
    },
@@ -1863,8 +1330,8 @@
     "won": 2
    },
    {
-    "lost": 1,
-    "played": 2,
+    "lost": 2,
+    "played": 3,
     "venue": "Perth Stadium",
     "won": 1
    },
@@ -1878,11 +1345,19 @@
   "from_year": 2011,
   "grand_finals_reached": 4,
   "overall": {
-   "lost": 17,
-   "played": 34,
+   "lost": 18,
+   "played": 35,
    "won": 17
   },
   "recent": [
+   {
+    "margin": -14,
+    "opponent": "Fremantle",
+    "result": "L",
+    "stage": "Semi-final",
+    "venue": "Perth Stadium",
+    "year": 2026
+   },
    {
     "margin": 33,
     "opponent": "Carlton",
@@ -1936,14 +1411,6 @@
     "opponent": "Sydney",
     "result": "W",
     "stage": "Grand Final",
-    "venue": "M.C.G.",
-    "year": 2022
-   },
-   {
-    "margin": 71,
-    "opponent": "Brisbane Lions",
-    "result": "W",
-    "stage": "Preliminary final",
     "venue": "M.C.G.",
     "year": 2022
    }
