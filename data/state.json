@@ -86,11 +86,11 @@
   },
   {
    "away": "Geelong",
-   "away_score": 44,
+   "away_score": 80,
    "complete": false,
    "date": "2026-09-11 20:10:00",
    "home": "Fremantle",
-   "home_score": 65,
+   "home_score": 72,
    "involves_club": true,
    "node": "SF1",
    "provisional_reasons": [],
@@ -1157,7 +1157,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-11T11:37:48+00:00",
+ "generated_at": "2026-09-11T12:09:53+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1480,7 +1480,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-11T11:37:47+00:00",
+  "fetched_at": "2026-09-11T12:09:52+00:00",
   "items": [
    {
     "about": [
@@ -1505,12 +1505,12 @@
     ],
     "is_team_news": false,
     "link": "https://www.afl.com.au/news/1607142/live-its-all-on-the-line-as-dockers-host-cats-in-do-or-die-semi-final",
-    "published_utc": "2026-09-11T11:21:00Z",
+    "published_utc": "2026-09-11T12:00:00Z",
     "score": 24,
     "tags": [
      "finals"
     ],
-    "title": "LIVE: Dockers in control against Cats, star kicks brilliant goal"
+    "title": "LIVE: Cats make charge against Dockers, Scott in disbelief as Dempsey denied"
    }
   ],
   "source": "AFL.com.au",
@@ -1588,16 +1588,16 @@
    {
     "away": "Geelong",
     "away_probability": 0.4109,
-    "away_score": 44,
+    "away_score": 80,
     "club_if_away_wins": 0.144388,
     "club_if_home_wins": 0.0,
     "club_swing": 0.144388,
-    "complete_percent": 50,
+    "complete_percent": 71,
     "date": "2026-09-11 20:10:00",
     "game_id": 38725,
     "home": "Fremantle",
     "home_probability": 0.5891,
-    "home_score": 65,
+    "home_score": 72,
     "in_progress": true,
     "involves_club": true,
     "local_time": "2026-09-11 18:10:00",
@@ -1607,7 +1607,7 @@
     "source_kind": "published",
     "stage": "Semi-final",
     "start_utc": "2026-09-11T10:10:00Z",
-    "time_string": "1/2 Time",
+    "time_string": "Q3 25:59",
     "timezone": "+10:00",
     "venue": "Perth Stadium",
     "we_want": "Geelong"
