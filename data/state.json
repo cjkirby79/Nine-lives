@@ -1157,7 +1157,7 @@
   ],
   "to_year": 2026
  },
- "generated_at": "2026-09-11T09:07:14+00:00",
+ "generated_at": "2026-09-11T09:39:23+00:00",
  "grand_final": {
   "complete": false,
   "local_time": "2026-09-26 19:20:00",
@@ -1480,7 +1480,7 @@
  },
  "news": {
   "error": null,
-  "fetched_at": "2026-09-11T09:07:13+00:00",
+  "fetched_at": "2026-09-11T09:39:22+00:00",
   "items": [
    {
     "about": [
@@ -1505,12 +1505,12 @@
     ],
     "is_team_news": false,
     "link": "https://www.afl.com.au/news/1607142/live-its-all-on-the-line-as-dockers-host-cats-in-do-or-die-semi-final",
-    "published_utc": "2026-09-11T08:40:00Z",
+    "published_utc": "2026-09-11T09:10:00Z",
     "score": 24,
     "tags": [
      "finals"
     ],
-    "title": "LIVE: It's all on the line as Dockers host Cats in do-or-die semi-final"
+    "title": "LIVE: Dockers, Cats lock in final teams for semi-final"
    }
   ],
   "source": "AFL.com.au",
